@@ -1,0 +1,34 @@
+<view class="container">
+
+  <view class="article-container">
+    <view class='article-item' wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}" wx:for-index='idx'>
+    <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
+    <view class='article-date' wx:if='{{!item.isSameDay}}'>{{item.day}}</view>
+    <view class="article-box">
+      <view class='article-left'>
+        <view class='article-title'>{{item.title}}</view>
+        <view class='article-des'>{{item.des}}</view>
+        <view class='article-box2'>
+          <view wx:if="{{item.contributor != null}}" class='article-author'>{{item.contributor}}</view>
+          <view class='article-time'>{{item.time}}</view>
+        </view>
+        <view class='article-box3'>
+          <!-- <view class='article-comments'>{{item.comments}}</view> -->
+          <view class='article-stars'>{{item.stars}}收藏</view>
+          <view class='article-view'>{{item.views}}浏览</view>
+        </view>
+      </view>
+
+      <view class='article-right'>
+        <image class='article-img' mode='aspectFill' src='{{item.img_url}}'></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 上拉加载更多 -->
+  <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore_tips">正在加载</view>
+  </view>
+</view>
+</view>

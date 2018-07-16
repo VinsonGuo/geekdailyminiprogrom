@@ -1,0 +1,21 @@
+<view class="container">
+   <view class='paly-container'>
+    <image src='/images/more/hole.gif' class='hole-img'/>
+    <view wx:for="{{balls}}" class='ball-container'>
+      <image wx:if="{{item.isShow}}" src='{{item.src}}' class='ball-img' animation="{{item.animation}}"/>
+    </view>
+   </view>
+
+   <view>
+    <button type='primary' bindtap='start'>开始游戏</button>
+    <button type='primary' bindtap='restart'>重新开始</button>
+    <button type='primary' bindtap='end'>暂停游戏</button>
+   </view>
+
+  <modal hidden="{{hiddenmodal}}" title="新纪录" confirm-text="确定" no-cancel="true" bindconfirm="confirm">
+    <view class='modal-container'>
+      <image class= "modal-img" mode="aspectFit" src='/images/more/record.png'/>
+      <text>{{record}}分</text>
+    </view>
+  </modal>
+</view>

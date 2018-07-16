@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.paly-container{
+  width: 100%;
+  height: 80px;
+  position: relative;
+}
+.hole-img{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 0;
+}
+.ball-container{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 0;
+}
+.ball-img{
+  width: 35px;
+  height: 35px;
+}

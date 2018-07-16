@@ -1,0 +1,10 @@
+<!-- <import src="../logs/logs.wxml"/>
+  <template is="log_text" data="{{text:'哈哈哈哈哈哈'}}"/>
+  <include src="../logs/logs.wxml"/> -->
+<view class='bottomView'>
+  <image id="rotateView" class="img" src="/images/more/timg.png" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" bindtouchcancel="touchCancel" animation="{{animation}}" style='transform:rotate({{rotate}}deg)'>
+  </image>
+
+  <!-- <image id="rotateView1" class="img" src="/images/more/timg.png" bindtouchstart="touchStart1" bindtouchmove="touchMove1" bindtouchend="touchEnd1" bindtouchcancel="touchCancel1" animation="{{animation}}" style='transform:rotate({{rotate}}deg)'>
+  </image> -->
+</view>

@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="userInfo">
+    <image wx:if="{{userInfo && userInfo.avatarUrl}}" class='userinfo-avatar' src='{{userInfo.avatarUrl}}'
+    background-size="cover"></image>
+    <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
+
+  </view>
+
+  <view class='my-item' style='background:none;display:flex;justify-content:center'>
+    <view class='score'>{{score}}</view>
+    <button wx:if="{{score_sign_continuous == 0}}" style='height:80rpx;margin-right:70rpx;'
+    bindtap='scoresign'>每日签到</button>
+    <button wx:if="{{score_sign_continuous > 0}}" disabled='true' style='height:80rpx;margin-right:70rpx;'>
+    已连续{{score_sign_continuous}}天签到</button>
+  </view>
+  <view class='my-item'>
+    <navigator url='/pages/detail/detail'>我的收藏</navigator>
+  </view>
+  <view class='my-item' style='background:none;display:flex;justify-content:space-between'>
+    <text>当前版本: </text>
+    <text class='version' style='margin-right:80rpx'>V 1.0.2</text>
+  </view>
+  <view class='my-item'>
+    <navigator url='/pages/detail/detail'>意见反馈</navigator>
+  </view>
+
+  <button type='warn' bindtap='relogin' class='reload'>重新登录</button>
+</view>

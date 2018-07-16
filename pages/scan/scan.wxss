@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  background: #fff;
+}
+
+.scan-box {
+  display: flex;
+  flex-wrap:wrap; 
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+.item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.device-name {
+  font-size: 30rpx;
+  margin: 20rpx;
+}
+
+.device-id {
+  font-size: 24rpx;
+  margin: 20rpx;
+  color: #666;
+}
+
+.connect-item {
+  /* position: relative; */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+}
+
+.connect-name{
+  /* position: absolute; */
+  /* top: 50%;
+  transform: translateY(-50%);  */
+  flex: 5
+}
+
+.connect-img {
+  /* position: absolute;
+  width: 25px;
+  height: 40px;
+  margin-right: 20rpx;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);  */
+  width: 25px;
+  height: 30px; 
+  /* float: right;
+  top: 50%;
+  transform: translateY(-50%); */
+  flex: 1;
+}

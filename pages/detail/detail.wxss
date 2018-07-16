@@ -1,0 +1,21 @@
+.container {
+  background-color: #f2f2f2;
+  min-height: 100%;
+}
+
+ .webview{
+  height: 300rpx;
+} 
+
+.comments-view {
+  /* display: flex; */
+  width: 100%;
+  height: 300rpx;
+  color: firebrick;
+  position: fixed;
+  bottom: 0;
+}
+
+.comment-item {
+  width: 100%;
+}

@@ -1,0 +1,37 @@
+<view class='container'>
+  <text>连接状态：{{states}}</text>
+  <text>设备名称：{{device_name}}</text>
+    <view class='command'>
+      <button type="primary" bindtap="play">开始播放</button>
+      <button type="primary" bindtap="pause">停止播放</button>
+      <button type="primary" bindtap="forward">前进</button>
+      <button type="primary" bindtap="disconnect">断开</button>
+      <button type="primary" bindtap="toplay">打地鼠</button>
+    </view>
+  <text>发送数据内容：{{sendData}}</text>
+  <view>初始化结果:{{result}}</view>
+  <view>震动数据:{{shake}}</view>
+
+ 
+  <!-- 游戏布局 
+ <view class="weui-grids">  
+        <view class="weui-grid" wx:for="{{routers}}" wx:key="name" data-id="{{item}}"  bindtap="click">  
+                <view class='weui-grid__bg'>  
+                    <view class='weui-grid__mouse'>
+                      <image wx:if="{{item}}" src="/images/more/mouse.png" animation="{{animationData}}" mode="scaleToFill" /> 
+                    </view>
+                    <view class="weui-grid__icon">  
+                      <image src="/images/more/hole.png" mode="scaleToFill" />   
+                    </view>  
+                </view>  
+        </view>  
+    </view>   -->
+
+    <!-- <view>
+      <text>得分:{{score}}</text>
+      <button type='primary' bindtap='start'>开始游戏</button>
+      <button type='primary' bindtap='end'>暂停游戏</button>
+      <button type='primary' bindtap='restart'>重新开始</button>
+    </view> -->
+
+</view>

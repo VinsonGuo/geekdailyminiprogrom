@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="swiper-container">
+    <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
+      <block wx:for="{{imgUrls}}" wx:key="id">
+        <swiper-item>
+          <image bindtap="tapBanner" src="{{item.url}}" class="slide-image" width="750rpx" height="500rpx" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+
+  <view class="type-container">
+    <scroll-view class="type-navbar" scroll-x="true">
+      <view class="type-box" wx:for-items="{{categories}}" wx:key="id">
+        <view id="{{item.id}}" class="type-navbar-item {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick">
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="categories-container">
+    <view class="categories-box" wx:for="{{categorys}}" wx:for-item="item" data-title="{{item.desc}}" data-url='{{item.url}}'
+     wx:key="{{item._id}}" bindtap="itemTap" data-id="{{item._id}}">
+      <view class='categories-title'>{{item.desc}}</view>
+      <view class='categories-box2'>
+        <view wx:if="{{item.who != null}}" class='categories-author'>{{item.who}}</view>
+        <view class='categories-time'>{{item.publishedAt}}</view>
+      </view> 
+    </view>
+  </view>
+
+<!-- 上拉加载更多 -->
+ <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+
+</view>
