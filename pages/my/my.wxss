@@ -24,15 +24,13 @@
 }
 .my-item{
   width: 100%;
-  background: url(https://cdn.it120.cc/images/weappshop/arrow-right.png) no-repeat 750rpx center;
-  background-size: 16rpx auto,750rpx auto;
-  margin: 15rpx 0;
+  padding: 15rpx 0;
   border-bottom: 1px solid #eee;
   height: 100rpx;
   line-height: 100rpx;
   padding-left: 30rpx;
 }
 .reload{
-  width: 100%;
   color: #fff;
+  margin: 40rpx 20rpx;
 }

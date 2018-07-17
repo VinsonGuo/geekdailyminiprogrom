@@ -46,7 +46,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 40rpx;
-  margin: 10rpx;
+  padding: 10rpx;
 }
 
 .article-des {
@@ -54,12 +54,12 @@
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;
-  overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden;
   color: #666;
   font-size: 30rpx;
-  margin: 10rpx;
+  padding: 10rpx;
 }
 
 .article-right{
