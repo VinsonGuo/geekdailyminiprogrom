@@ -15,8 +15,9 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      url: options.url
+      url: `https://502tech.com/geekdaily/wxWebView?url=${options.url}`
     })
+    console.log(that.data.url);
   },
 
   

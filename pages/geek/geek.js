@@ -19,6 +19,7 @@ Page({
     },
 
   onLoad: function() {
+    console.log(app.globalData.userInfo)
     wx.setNavigationBarTitle({
       title: '极客日报',
     })
@@ -46,7 +47,6 @@ Page({
   itemTap: function(e) {
     var url = e.currentTarget.dataset.link;
     var article_id = e.currentTarget.dataset.id;
-    console.log(url);
     api.viewArticle(article_id);
     wx.navigateTo({
       url: '../detail/detail?url=' + url
