@@ -45,11 +45,11 @@ Page({
 
   //item点击事件
   itemTap: function(e) {
-    var url = e.currentTarget.dataset.link;
-    var article_id = e.currentTarget.dataset.id;
-    api.viewArticle(article_id);
+    var item = e.currentTarget.dataset.article;
+    let article = JSON.stringify(item);
+    api.viewArticle(item.article_id);
     wx.navigateTo({
-      url: '../detail/detail?url=' + url
+      url: '../detail/detail?article=' + article
     })
   },
 

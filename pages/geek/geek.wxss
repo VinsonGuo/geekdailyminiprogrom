@@ -145,7 +145,7 @@
 .round-click{
     height: 120rpx;
     width: 120rpx;
-    background-color: #d92a2a;
+    background-color: #e64340;
     border-radius: 100%;
     position: fixed;
     bottom: 50rpx;
@@ -154,6 +154,10 @@
     align-items: center;
     justify-content: center;
     z-index: 9;
+}
+.search-icon{
+  width: 50rpx;
+  height: 50rpx;
 }
 .round-click navigator{
     font-size: 32rpx;

@@ -39,4 +39,44 @@ export default class api {
       }
     })
   }
+
+  static getArticleDetail = (article_id, success, fail) => {
+    wx.request({
+      url: `${baseUrl}getArticleDetail`,
+      method: "POST",
+      data: {
+        article_id: article_id
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
+
+  static query = (page, size, query, success, fail) => {
+    wx.request({
+      url: `${baseUrl}query`,
+      method: "POST",
+      data: {
+        page: page,
+        size: size,
+        query: query
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
 }

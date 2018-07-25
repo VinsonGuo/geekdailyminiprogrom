@@ -1,5 +1,6 @@
 <view>
-  <view class="search-view" style="background:{{ scrollTop === 0 ?'-webkit-linear-gradient(top, rgba(105,195,170, 1), rgba(105,195,170, 0.3))' :( scrollTop<200 ? 'rgba(105,195,170,'+(scrollTop/400+0.3) +')' : 'rgba(105,195,170,1)')  }} ">
+  <view class="search-view" >
+  <!-- style="background:{{ scrollTop === 0 ?'-webkit-linear-gradient(top, rgba(105,195,170, 1), rgba(105,195,170, 0.3))' :( scrollTop<200 ? 'rgba(105,195,170,'+(scrollTop/400+0.3) +')' : 'rgba(105,195,170,1)')  }} " -->
     <view class="serarch-content">
       <image src="/images/search-pic.png" class="search-icon" />
       <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索" bindinput='bindKeyInput' bindconfirm='toSearch'>
@@ -10,7 +11,7 @@
   </view>
 
   <view class="article-container">
-    <view class="article-box" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}">
+    <view class="article-box" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}">
       <view class='article-item'>
         <view class='article-title'>{{item.title}}</view>
         <view class='article-des'>{{item.des}}</view>

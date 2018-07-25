@@ -22,11 +22,11 @@ Page({
 
   //item点击事件
   itemTap: function (e) {
-    var url = e.currentTarget.dataset.link;
-    var article_id = e.currentTarget.dataset.id;
-    api.viewArticle(article_id);
+    var item = e.currentTarget.dataset.article;
+    let article = JSON.stringify(item);
+    api.viewArticle(item.article_id);
     wx.navigateTo({
-      url: '../detail/detail?url=' + url
+      url: '../detail/detail?article=' + article
     })
   },
 
@@ -42,30 +42,14 @@ Page({
 
   //全局关键字查询相关文章
   query: function (page, size, query) {
-    var that = this;
-    wx.request({
-      url: 'https://502tech.com/geekdaily/query',
-      method: "POST",
-      data: {
-        page: page,
-        size: size,
-        query: query
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          articles: res.data.data,
-        })
-      },
-      fail: function (res) {
-
-      }
-    })
+    let that = this;
+    api.query(page, size, query, (res) => {
+      console.log(res.data.data)
+      that.setData({
+        articles: res.data.data,
+      })
+    });
 
   },
-
  
 })
