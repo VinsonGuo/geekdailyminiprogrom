@@ -3,9 +3,9 @@
   min-height: 100%;
 }
 
- .webview{
-  height: 300rpx;
-} 
+.markdown {
+  padding: 0 20rpx;
+}
 
 .comments-view {
   /* display: flex; */

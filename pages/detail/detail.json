@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "wemark": "../../wemark/wemark"
+  }
+}
