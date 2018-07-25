@@ -31,4 +31,9 @@
     <view class="weui-loadmore_tips">正在加载</view>
   </view>
 </view>
+
+<!--圆形点击框  -->
+    <view class="round-click">
+       <navigator url='/pages/search/search'>文章搜索</navigator >
+    </view>
 </view>

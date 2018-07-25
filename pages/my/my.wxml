@@ -5,7 +5,7 @@
 
   </view>
   <view class='my-item'>
-    <navigator url='/pages/detail/detail'>我的收藏</navigator>
+    <navigator url='/pages/article/article?typeId=0'>我的收藏</navigator>
   </view>
   <view class='my-item' style='background:none;display:flex;justify-content:space-between'>
     <text>当前版本: </text>

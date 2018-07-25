@@ -140,3 +140,24 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+
+.round-click{
+    height: 120rpx;
+    width: 120rpx;
+    background-color: #d92a2a;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 50rpx;
+    right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+.round-click navigator{
+    font-size: 32rpx;
+    max-width: 80rpx;
+    color: #fff;
+    text-align: center;
+}

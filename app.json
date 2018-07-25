@@ -11,7 +11,9 @@
     "pages/test/test",
     "pages/study/study",
     "pages/geek/geek",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/article/article",
+    "pages/search/search"
   ],
   "workers":{
     "workers": "workers"
