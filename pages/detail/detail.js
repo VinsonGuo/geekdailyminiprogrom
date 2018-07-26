@@ -9,7 +9,8 @@ Page({
   data: {
     url: "",
     article: {},
-    comments:[],
+    comments: [],
+    star: "收藏",
     md: "",
     actionSheetHidden: true,
     actionSheetItems: [],
@@ -27,11 +28,29 @@ Page({
     that.setData({
       article: article
     });
-    console.log(article);
+    // console.log(article);
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
     wx.setNavigationBarTitle({
       title: article.title,
     })
+    
+  },
+
+  toStar:function(){
+    this.star(this.data.article.article_id, 3, 1, 1);
+  },
+
+  //收藏（点赞）
+  star: function (article_id, user_id, type, status){
+    let that = this;
+    api.articleStar(article_id, user_id, type, status, (res) => {
+      console.log(res.data.data)
+      wx.showToast({
+        title: '收藏成功!',
+      })
+    }, (res) => {
+
+    });
   },
 
   // actionSheetTap: function (e) {

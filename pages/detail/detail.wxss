@@ -8,6 +8,22 @@
   padding: 0 20rpx;
 }
 
+.round-click{
+    height: 120rpx;
+    width: 120rpx;
+    background-color: #e64340;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 50rpx;
+    right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+    color: white
+}
+
+/* 以下暂时注释 */
 .function-view {
   /* display: flex;  */
   width: 100%;

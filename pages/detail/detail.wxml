@@ -1,6 +1,13 @@
 <view class="markdown">
   <wemark md="{{md}}" link="false" highlight="true" type="wemark"></wemark>
 
+<!--收藏按钮  -->
+    <view class="round-click" bindtap='toStar'>
+      {{star}}
+       <!-- <image src="/images/search-pic.png" class="star-icon"/>  -->
+    </view>
+
+
   <!-- <view class='function-view'>
     <view class='bottom-view'>
       <view class='comment-view' bindtap='actionSheetTap'>

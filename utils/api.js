@@ -2,6 +2,7 @@ const baseUrl = "https://502tech.com/geekdaily/";
 const contentType = 'application/x-www-form-urlencoded';
 
 export default class api {
+  //获取文章列表
   static getArticalList = (page, success, fail) => {
     wx.request({
       url: `${baseUrl}getArticleList`,
@@ -21,6 +22,7 @@ export default class api {
     })
   }
 
+  //浏览文章（增加浏览量）
   static viewArticle = (id) => {
     wx.request({
       url: `${baseUrl}viewArticle`,
@@ -40,6 +42,52 @@ export default class api {
     })
   }
 
+  //收藏或取消（点赞或取消点赞）
+  static articleStar = (article_id, user_id, type, status, success, fail) => {
+    wx.request({
+      url: `${baseUrl}articleStar`,
+      method: "POST",
+      data: {
+        article_id: article_id,
+        user_id: user_id,
+        type: type,
+        status: status,
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
+
+  //获取我  点赞的文章列表
+  static getMyStarArticles = (page, user_id, success, fail) => {
+    wx.request({
+      url: `${baseUrl}getMyStarArticles`,
+      method: "POST",
+      data: {
+        page: page,
+        user_id: user_id,
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
+
+
+  //获取文章详情
   static getArticleDetail = (article_id, success, fail) => {
     wx.request({
       url: `${baseUrl}getArticleDetail`,
@@ -59,6 +107,7 @@ export default class api {
     })
   }
 
+  //关键字查询文章
   static query = (page, size, query, success, fail) => {
     wx.request({
       url: `${baseUrl}query`,
@@ -80,6 +129,7 @@ export default class api {
     })
   }
 
+  //获取文章评论列表
   static getArticleComments = (page, article_id, success, fail) => {
     wx.request({
       url: `${baseUrl}getArticleComments`,
@@ -100,6 +150,7 @@ export default class api {
     })
   }
 
+  //评论文章
   static commentArticle = (article_id, article_type, content, from_uid, from_nick,
     from_avatar, to_uid, to_nick, to_avatar,
   success, fail) => {
