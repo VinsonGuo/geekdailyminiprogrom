@@ -2,15 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/my/my",
-    "pages/logs/logs",
-    "pages/scan/scan",
-    "pages/conn/conn",
-    "pages/play/play",
-    "pages/play1/play1",
-    "pages/play2/play2",
-    "pages/test/test",
-    "pages/study/study",
-    "pages/geek/geek",
     "pages/detail/detail",
     "pages/article/article",
     "pages/search/search"
@@ -35,12 +26,6 @@
         "iconPath": "images/nav/home-off.png",
         "selectedIconPath": "images/nav/home-on.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/geek/geek",
-        "iconPath": "images/nav/logs-off.png",
-        "selectedIconPath": "images/nav/logs-on.png",
-        "text": "极客日报"
       },
       {
         "pagePath": "pages/my/my",

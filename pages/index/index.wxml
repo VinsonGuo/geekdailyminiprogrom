@@ -1,23 +1,40 @@
-<!--index.wxml-->
 <view class="container">
-  <view class="remind-box" wx:if="{{remind}}">
-    <image class="remind-img" src="/images/more/loading.gif"></image>
-  </view>
-  <block wx:else>
-    <image class="title" src="/images/more/title8.png"></image>
-    <view class="content">
-      <view class="hd" style="transform:rotateZ({{angle}}deg);">
-        <image class="logo" src="{{userInfo.avatarUrl}}"></image>
-        <image class="wave" src="/images/more/wave.png" mode="aspectFill"></image>
-        <image class="wave wave-bg" src="/images/more/wave.png" mode="aspectFill"></image>
-      </view>
-      <view class="bd">
-         <!-- <image class="smalltitle" src="/images/more/confirm-word1.png"></image> -->
-        <view class="confirm-btn" bindtap='toScan'>
-          <text >进入扫描页面</text>
+
+  <view class="article-container">
+    <view class='article-item' wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}" wx:for-index='idx'>
+    <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
+    <view class='article-date' wx:if='{{!item.isSameDay}}'>{{item.day}}</view>
+    <view class="article-box">
+      <view class='article-left'>
+        <view class='article-title'>{{item.title}}</view>
+        <view class='article-des'>{{item.des}}</view>
+        <view class='article-box2'>
+          <view wx:if="{{item.contributor != null}}" class='article-author'>{{item.contributor}}</view>
+          <view class='article-time'>{{item.time}}</view>
         </view>
-        <!-- <text class="copyright">@qindiandadudu 贡献本页代码</text> -->
+        <view class='article-box3'>
+          <!-- <view class='article-comments'>{{item.comments}}</view> -->
+          <view class='article-stars'>{{item.stars}}收藏</view>
+          <view class='article-view'>{{item.views}}浏览</view>
+        </view>
+      </view>
+
+      <view class='article-right'>
+        <image class='article-img' mode='aspectFill' src='{{item.img_url}}'></image>
       </view>
     </view>
-  </block>
+  </view>
+
+  <!-- 上拉加载更多 -->
+  <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore_tips">正在加载</view>
+  </view>
+</view>
+
+<!--圆形点击框  -->
+    <view class="round-click">
+      <!-- <image src="/images/search-pic.png" class="search-icon"/> -->
+       <navigator url='/pages/search/search'>文章搜索</navigator >
+    </view>
 </view>

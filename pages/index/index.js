@@ -1,78 +1,94 @@
+import api from '../../utils/api'
 //index.js
 //获取应用实例
 const app = getApp()
+//上拉加载当前页
+let currentPage = 1;
+let articles = [];
+let isLastPage = false;
 
 Page({
   data: {
-    motto: '点击进入扫描页面',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    isHideLoadMore: true,
+    articles: [],
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  isSameDay: function (d1, d2) {
+    return d1.getFullYear() === d2.getFullYear() &&
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate();
   },
-  toScan: function(){
-    wx.navigateTo({
-      // url: '../play2/play2'
-      url: '../scan/scan'
-      // url: '../conn/conn'
-      // url: '../play1/play1'
-    })
-  },
+
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    console.log(app.globalData.userInfo)
+    wx.setNavigationBarTitle({
+      title: '极客日报',
+    })
+    this.getArticle(0, false);
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+
+  //下拉刷新
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading()
+    currentPage = 0;
+    this.getArticle(0, false)
+  },
+
+  //上拉加载更多
+  onReachBottom: function () {
+    var that = this;
+    that.setData({
+      isHideLoadMore: isLastPage
+    })
+    currentPage += 1
+    that.getArticle(currentPage, true)
+  },
+
+  //item点击事件
+  itemTap: function (e) {
+    var item = e.currentTarget.dataset.article;
+    let article = JSON.stringify(item);
+    api.viewArticle(item.article_id);
+    wx.navigateTo({
+      url: '../detail/detail?article=' + article
     })
   },
 
-  onShareAppMessage:function(){
-    return{
-      title:'蓝牙demo',
-      path:'/pages/index/index',
-      success:function(res){
-        //转发成功
-        console.log("转发成功!");
-      },
-      fail:function(res){
-        //转发失败
-        console.log("转发失败！")
+  //获取article内容
+  getArticle: function (page, isLoadMore) {
+    let that = this;
+    api.getArticalList(page, (res) => {
+      isLastPage = (res.data.data.length === 0);
+      //完成停止加载
+      if (!isLoadMore) {
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
+        articles = [];
       }
-    }
+      // 处理数据
+      res.data.data.map((item, index) => {
+        if (index == 0) {
+          item.isSameDay = false;
+        } else {
+          item.isSameDay = that.isSameDay(new Date(item.date),
+            new Date(res.data.data[index - 1].date))
+        }
+        let arr = item.date.split(' ');
+        item.day = arr[0];
+        item.time = arr[1];
+      })
+      articles.push(...res.data.data);
+      console.log(res.data.data)
+      this.setData({
+        articles: articles,
+        isHideLoadMore: true
+      })
+    }, (res) => {
+      currentPage--;
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+    });
+
   }
+
 
 })
