@@ -1,3 +1,33 @@
-<view  class="markdown">
-<wemark md="{{md}}" link="false" highlight="true" type="wemark"></wemark>
+<view class="markdown">
+  <wemark md="{{md}}" link="false" highlight="true" type="wemark"></wemark>
+
+  <!-- <view class='function-view'>
+    <view class='bottom-view'>
+      <view class='comment-view' bindtap='actionSheetTap'>
+        评论
+      </view>
+      <view class='star-view'>
+        点赞
+      </view>
+    </view>
+  </view>
+
+
+  <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetChange">
+    <block wx:for="{{actionSheetItems}}" wx:key="{{actionSheetItems.id}}">
+        <action-sheet-item class="item" bindtap="bindItemTap " data-name="{{item}} ">
+         <view class='comment-item'>
+        <image class='from-avater' mode='aspectFill' src='{{item.from_avater == undefined ? defaultImg : item.from_avater}}'></image>
+        <view class='comment-right'>
+        <view class='from-nick'>{{item.from_nick}}</view>
+        <view class='comment-content'>{{item.content}}</view>
+        <view class='comment-time'>{{item.date}}</view>
+        </view>
+        </view> 
+        </action-sheet-item>
+    </block>
+    <input type='text' placeholder='说点什么东西吧!' value='{{inputValue}}' confirm-type="确定" bindinput='bindKeyInput' bindconfirm='toComment'></input>
+    <action-sheet-cancel class="cancel ">取消</action-sheet-cancel>
+</action-sheet> -->
 </view>
+
