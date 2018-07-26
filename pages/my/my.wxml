@@ -9,7 +9,7 @@
   </view>
   <view class='my-item' style='background:none;display:flex;justify-content:space-between'>
     <text>当前版本: </text>
-    <text class='version' style='margin-right:80rpx'>V 1.0.2</text>
+    <text class='version' style='margin-right:80rpx'>V 1.0.0</text>
   </view>
 
   <button type='warn' bindtap='relogin' class='reload'>重新登录</button>

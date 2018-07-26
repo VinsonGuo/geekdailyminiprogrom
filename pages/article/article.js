@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     articles: [],
-    typeId: 0  //0  我的点赞  1我的评论  2我的贡献
+    typeId: 0  //0  我的收藏（点赞）  1我的评论  2我的贡献
   },
   
   onLoad: function (options) {
@@ -18,7 +18,7 @@ Page({
     var title = "";
     switch(typeId){
       case "0":
-        title = "我的点赞";
+        title = "我的收藏";
         that.getMyStarArticles(0, 1);
       break
       case "1":
@@ -38,7 +38,7 @@ Page({
     
   },
 
-  //获取我的点赞文章列表
+  //获取我的收藏(点赞)文章列表
   getMyStarArticles: function (page, user_id) {
     var that = this;
     wx.request({

@@ -1,5 +1,6 @@
 .container{
   min-height: 100%;
+  width: 100%;
   overflow: hidden;
   overflow-y: hidden
 }
@@ -31,6 +32,10 @@
   padding-left: 30rpx;
 }
 .reload{
+  width: 90%;
   color: #fff;
-  margin: 40rpx 20rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

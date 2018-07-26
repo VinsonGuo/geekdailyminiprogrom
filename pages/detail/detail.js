@@ -23,12 +23,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    let article = JSON.parse(options.article);
+    var article = JSON.parse(options.article);
     console.log(article.article_id)
     that.setData({
       article: article
     });
-    // console.log(article);
+    console.log(article);
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
     wx.setNavigationBarTitle({
       title: article.title,

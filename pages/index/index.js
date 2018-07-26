@@ -10,7 +10,7 @@ let isLastPage = false;
 Page({
   data: {
     isHideLoadMore: true,
-    articles: [],
+    articles: []
   },
   isSameDay: function (d1, d2) {
     return d1.getFullYear() === d2.getFullYear() &&
@@ -46,7 +46,11 @@ Page({
   //item点击事件
   itemTap: function (e) {
     var item = e.currentTarget.dataset.article;
-    let article = JSON.stringify(item);
+    //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
+    item.img_url = encodeURIComponent(item.img_url);
+    item.link = encodeURIComponent(item.link);
+    var article = JSON.stringify(item);
+    console.log("sss",article)
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
