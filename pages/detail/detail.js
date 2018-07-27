@@ -110,7 +110,7 @@ Page({
   getArticleDetail: function (article_id) {
     let that = this;
     api.getArticleDetail(article_id, (res) => {
-      console.log(res.data.data)
+      // console.log(res.data.data)
       that.setData({
         md: res.data.data
       })

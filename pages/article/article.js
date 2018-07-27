@@ -1,4 +1,5 @@
 //index.js
+import api from '../../utils/api'
 //获取应用实例
 const app = getApp()
 var size = 10;//返回每页的数量
@@ -122,7 +123,20 @@ Page({
       }
     })
 
-  }
+  },
+
+  itemTap: function (e) {
+    var item = e.currentTarget.dataset.article;
+    //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
+    // item.img_url = encodeURIComponent(item.img_url);
+    // item.link = encodeURIComponent(item.link);
+    var article = JSON.stringify(item);
+    console.log("sss", article)
+    api.viewArticle(item.article_id);
+    wx.navigateTo({
+      url: '../detail/detail?article=' + article
+    })
+  },
 
 
 })

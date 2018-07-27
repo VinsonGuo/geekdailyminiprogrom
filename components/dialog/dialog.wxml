@@ -1,0 +1,10 @@
+<view class='dialog-container' hidden="{{!isShow}}">
+    <view class='dialog-mask'></view>
+    <view class='dialog-info'>
+        <view class='dialog-title'>{{ title }}</view>
+        <view class='dialog-content'>{{ content }}</view>
+        <view class='dialog-footer'>
+          <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo' catchtap='confirmEvent'>{{ confirmText }}</button>
+        </view>
+    </view>
+</view>

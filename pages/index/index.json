@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "首页",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "dialog": "../../components/dialog/dialog"
+  }
 }
