@@ -2,13 +2,36 @@ const baseUrl = "https://502tech.com/geekdaily/";
 const contentType = 'application/x-www-form-urlencoded';
 
 export default class api {
+  //微信登陆
+  static WxLogin = (code, nickName, avatarUrl, success, fail) => {
+    wx.request({
+      url: `${baseUrl}WxLogin`,
+      method: "POST",
+      data: {
+        code: code,
+        nickName: nickName,
+        avatarUrl: avatarUrl
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
+
   //获取文章列表
-  static getArticalList = (page, success, fail) => {
+  static getArticalList = (page, size, success, fail) => {
     wx.request({
       url: `${baseUrl}getArticleList`,
       method: "POST",
       data: {
-        page: page
+        page: page,
+        size: size
       },
       header: {
         'content-type': contentType
@@ -66,12 +89,13 @@ export default class api {
   }
 
   //获取我  点赞的文章列表
-  static getMyStarArticles = (page, user_id, success, fail) => {
+  static getMyStarArticles = (page, size, user_id, success, fail) => {
     wx.request({
       url: `${baseUrl}getMyStarArticles`,
       method: "POST",
       data: {
         page: page,
+        size: size,
         user_id: user_id,
       },
       header: {
@@ -130,12 +154,13 @@ export default class api {
   }
 
   //获取文章评论列表
-  static getArticleComments = (page, article_id, success, fail) => {
+  static getArticleComments = (page, size, article_id, success, fail) => {
     wx.request({
       url: `${baseUrl}getArticleComments`,
       method: "POST",
       data: {
         page: page,
+        size: size,
         article_id: article_id
       },
       header: {

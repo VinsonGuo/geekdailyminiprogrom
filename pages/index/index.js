@@ -4,6 +4,7 @@ import api from '../../utils/api'
 const app = getApp()
 //上拉加载当前页
 let currentPage = 1;
+let size = 10;//每页返回数量
 let articles = [];
 let isLastPage = false;
 
@@ -23,14 +24,14 @@ Page({
     wx.setNavigationBarTitle({
       title: '极客日报',
     })
-    this.getArticle(0, false);
+    this.getArticle(0, size, false);
   },
 
   //下拉刷新
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading()
     currentPage = 0;
-    this.getArticle(0, false)
+    this.getArticle(0, size, false)
   },
 
   //上拉加载更多
@@ -40,7 +41,7 @@ Page({
       isHideLoadMore: isLastPage
     })
     currentPage += 1
-    that.getArticle(currentPage, true)
+    that.getArticle(currentPage, size, true)
   },
 
   //item点击事件
@@ -58,9 +59,9 @@ Page({
   },
 
   //获取article内容
-  getArticle: function (page, isLoadMore) {
+  getArticle: function (page, size, isLoadMore) {
     let that = this;
-    api.getArticalList(page, (res) => {
+    api.getArticalList(page, size, (res) => {
       isLastPage = (res.data.data.length === 0);
       //完成停止加载
       if (!isLoadMore) {

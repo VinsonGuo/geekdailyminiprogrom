@@ -1,6 +1,6 @@
 import api from '../../utils/api'
 const app = getApp()
-
+var user_id = 0;
 Page({
 
   /**
@@ -22,6 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    user_id = app.globalData.userId;
     var that = this;
     var article = JSON.parse(options.article);
     console.log(article.article_id)
@@ -37,7 +38,9 @@ Page({
   },
 
   toStar:function(){
-    this.star(this.data.article.article_id, 3, 1, 1);
+    if(user_id != 0){
+      this.star(this.data.article.article_id, user_id, 1, 1);
+    }
   },
 
   //收藏（点赞）

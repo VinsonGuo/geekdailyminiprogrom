@@ -12,5 +12,5 @@
     <text class='version' style='margin-right:80rpx'>V 1.0.0</text>
   </view>
 
-  <button type='warn' bindtap='relogin' class='reload'>重新登录</button>
+  <button type='warn' bindtap='loginOrLogout' class='reload'>{{loginOrLogout}}</button>
 </view>

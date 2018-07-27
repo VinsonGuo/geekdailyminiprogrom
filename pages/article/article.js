@@ -1,6 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var size = 10;//返回每页的数量
+//用户唯一的id
+var user_id = 0;
 
 Page({
   data: {
@@ -9,6 +12,7 @@ Page({
   },
   
   onLoad: function (options) {
+    user_id = app.globalData.userId;
     var that = this;
     that.setData({
       typeId: options.typeId
@@ -19,15 +23,15 @@ Page({
     switch(typeId){
       case "0":
         title = "我的收藏";
-        that.getMyStarArticles(0, 1);
+        that.getMyStarArticles(0, size, user_id);
       break
       case "1":
         title = "我的评论";
-        that.getMyCommentArticles(0, 1);
+        that.getMyCommentArticles(0, size, user_id);
       break
       case "2":
         title = "我的贡献";
-        that.getMyContributeArticles(0, 1);
+        that.getMyContributeArticles(0, size, user_id);
       break
     }
     wx.setNavigationBarTitle({
@@ -39,13 +43,14 @@ Page({
   },
 
   //获取我的收藏(点赞)文章列表
-  getMyStarArticles: function (page, user_id) {
+  getMyStarArticles: function (page, size, user_id) {
     var that = this;
     wx.request({
       url: 'https://502tech.com/geekdaily/getMyStarArticles',
       method: "POST",
       data: {
         page: page,
+        size: size,
         user_id: user_id
       },
       header: {
@@ -66,13 +71,14 @@ Page({
 
 
   //获取我的贡献的文章列表
-  getMyContributeArticles: function (page, user_id) {
+  getMyContributeArticles: function (page, size, user_id) {
     var that = this;
     wx.request({
       url: 'https://502tech.com/geekdaily/getMyContributeArticles',
       method: "POST",
       data: {
         page: page,
+        size: size,
         user_id: user_id
       },
       header: {
@@ -92,13 +98,14 @@ Page({
   },
 
   //获取我的评论过的文章列表
-  getMyCommentArticles: function (page, user_id) {
+  getMyCommentArticles: function (page, size, user_id) {
     var that = this;
     wx.request({
       url: 'https://502tech.com/geekdaily/getMyCommentArticles',
       method: "POST",
       data: {
         page: page,
+        size: size,
         user_id: user_id
       },
       header: {
