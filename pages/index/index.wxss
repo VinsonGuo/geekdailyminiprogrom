@@ -22,7 +22,6 @@
 }
 
 .article-box {
-  width: 100%;
   padding: 4rpx 10rpx;
   display: flex;
   flex-direction: row;

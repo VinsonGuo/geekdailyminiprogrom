@@ -23,7 +23,7 @@ Page({
 
   onLoad: function () {
     wx.setNavigationBarTitle({
-      title: '极客日报',
+      title: 'GeekReader',
     })
     this.getArticle(0, size, false);
   },
@@ -110,7 +110,6 @@ Page({
     item.img_url = encodeURIComponent(item.img_url);
     item.link = encodeURIComponent(item.link);
     var article = JSON.stringify(item);
-    console.log("sss",article)
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article

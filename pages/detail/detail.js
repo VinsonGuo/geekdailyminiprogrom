@@ -1,6 +1,8 @@
 import api from '../../utils/api'
 const app = getApp()
-var user_id = 0;
+let user_id = 0;
+let lastScrollTop = 0;
+
 Page({
 
   /**
@@ -11,6 +13,8 @@ Page({
     article: {},
     comments: [],
     star: "收藏",
+    isStart: false,
+    isScrollUp: true,
     md: "",
     actionSheetHidden: true,
     actionSheetItems: [],
@@ -31,6 +35,13 @@ Page({
     });
     console.log(article);
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
+    api.isStarArticle(article.article_id, user_id, (res)=>{
+      let isStar = res.data.data;
+      that.setData({
+        isStar: isStar,
+        star: isStar?"已收藏":"收藏"
+      })
+    })
     wx.setNavigationBarTitle({
       title: article.title,
     })
@@ -47,15 +58,27 @@ Page({
   star: function (article_id, user_id, type, status){
     let that = this;
     api.articleStar(article_id, user_id, type, status, (res) => {
-      console.log(res.data.data)
+      let isStar = !that.data.isStar;
       wx.showToast({
-        title: '收藏成功!',
+        title: `${isStar?'':'取消'}收藏成功!`,
+      })
+      that.setData({
+        isStar: isStar,
+        star:  isStar?"已收藏": "收藏"
       })
     }, (res) => {
 
     });
   },
 
+  onPageScroll:function(obj) {
+    let dy = lastScrollTop - obj.scrollTop;
+    console.log(dy)
+    this.setData({
+      isScrollUp: dy>=0
+    })
+    lastScrollTop = obj.scrollTop;
+  },
   // actionSheetTap: function (e) {
   //   this.setData({
   //     actionSheetHidden: !this.data.actionSheetHidden

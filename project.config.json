@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
 	"appid": "wx5cd48edea47a1f48",
-	"projectname": "%E6%9E%81%E5%AE%A2%E6%97%A5%E6%8A%A5",
+	"projectname": "GeekReader",
 	"condition": {
 		"search": {
 			"current": -1,

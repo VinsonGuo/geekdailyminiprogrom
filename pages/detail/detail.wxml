@@ -2,7 +2,7 @@
   <wemark md="{{md}}" link="false" highlight="true" type="wemark"></wemark>
 
 <!--收藏按钮  -->
-    <view class="round-click" bindtap='toStar'>
+    <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
       {{star}}
        <!-- <image src="/images/search-pic.png" class="star-icon"/>  -->
     </view>

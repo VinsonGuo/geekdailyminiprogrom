@@ -88,6 +88,26 @@ export default class api {
     })
   }
 
+  static isStarArticle = (article_id, user_id, success, fail = (res)=>{}) => {
+    wx.request({
+      url: `${baseUrl}isStarArticle`,
+      method: "POST",
+      data: {
+        article_id: article_id,
+        user_id: user_id
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
+
   //获取我  点赞的文章列表
   static getMyStarArticles = (page, size, user_id, success, fail) => {
     wx.request({
