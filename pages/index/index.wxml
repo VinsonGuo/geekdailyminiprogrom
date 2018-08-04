@@ -1,47 +1,35 @@
 <view class="container">
   <view class="article-container">
     <view class='article-item' wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}" wx:for-index='idx'>
-    <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
-    <view class='article-date' wx:if='{{!item.isSameDay}}'>{{item.day}}</view>
-    <view class="article-box">
-      <view class='article-left'>
-        <view class='article-title'>{{item.title}}</view>
-        <view class='article-des'>{{item.des}}</view>
-        <view class='article-box2'>
-          <view wx:if="{{item.contributor != null}}" class='article-author'>{{item.contributor}}</view>
-          <view class='article-time'>{{item.time}}</view>
+      <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
+      <view class='article-date' wx:if='{{!item.isSameDay}}'>{{item.day}}</view>
+
+      <view class="article-box-vertical">
+        <view class='article-top'>
+          <view class='article-des'>{{item.contributor + ': ' +item.des}}</view>
         </view>
-        <view class='article-box3'>
+        <view class='article-middle'>
+          <view class='article-title'>{{item.title}}</view>
+          <image class='article-img' mode='aspectFill' src='{{item.img_url}}'></image>
+        </view>
+
+        <view class='article-buttom'>
           <!-- <view class='article-comments'>{{item.comments}}</view> -->
           <view class='article-stars'>{{item.stars}}收藏</view>
           <view class='article-view'>{{item.views}}浏览</view>
         </view>
       </view>
 
-      <view class='article-right'>
-        <image class='article-img' mode='aspectFill' src='{{item.img_url}}'></image>
-      </view>
+    </view>
+
+    <!-- 上拉加载更多 -->
+    <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore_tips">正在加载</view>
     </view>
   </view>
 
-  <!-- 上拉加载更多 -->
-  <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
-    <view class="weui-loading"></view>
-    <view class="weui-loadmore_tips">正在加载</view>
-  </view>
-</view>
-
-<!--圆形点击框  -->
-    <view class="round-click">
-      <!-- <image src="/images/search-pic.png" class="search-icon"/> -->
-       <navigator url='/pages/search/search'>文章搜索</navigator >
-    </view>
-
-    <dialog id='dialog' 
-      title='登录提示' 
-      content='小程序需要您的授权才能提供更好的服务哦' 
-      confirmText='知道了'
-      bind:confirmEvent='confirmEvent'
-      bind:bindGetUserInfo='bindGetUserInfo'>
-</dialog>
+  <dialog id='dialog' title='登录提示' content='小程序需要您的授权才能提供更好的服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent' bind:bindGetUserInfo='bindGetUserInfo'>
+  </dialog>
+  <floating-button buttons="{{ buttons }}" bind:click="buttonClicked" />
 </view>

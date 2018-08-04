@@ -2,6 +2,7 @@
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "dialog": "../../components/dialog/dialog"
+    "dialog": "../../components/dialog/dialog",
+    "floating-button":"../../components/floating-button/index"
   }
 }
