@@ -10,13 +10,14 @@
         </view>
         <view class='article-middle'>
           <view class='article-title'>{{item.title}}</view>
-          <image class='article-img' mode='aspectFill' src='{{item.img_url}}'></image>
+          <image wx:if="{{item.img_url}}" class='article-img' mode='widthFix' lazy-load src='{{item.img_url}}'></image>
         </view>
 
-        <view class='article-buttom'>
+        <view class='article-bottom'>
           <!-- <view class='article-comments'>{{item.comments}}</view> -->
-          <view class='article-stars'>{{item.stars}}收藏</view>
-          <view class='article-view'>{{item.views}}浏览</view>
+          <view class='article-view'><zan-icon type="browsing-history"/> {{item.views}}</view>
+
+          <view class='article-stars'><zan-icon type="like"/> {{item.stars}}</view>
         </view>
       </view>
 

@@ -16,11 +16,10 @@
 .userinfo-avatar{
   width: 160rpx;
   height: 160rpx;
-  margin: 20rpx;
+  margin: 40rpx;
   border-radius: 50%
 }
 .userinfo-nickname{
-  margin-top: 15rpx;
   color: #FFF
 }
 .my-item{
@@ -32,9 +31,5 @@
   padding-left: 30rpx;
 }
 .reload{
-  width: 90%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin: 60rpx 16rpx;
 }
