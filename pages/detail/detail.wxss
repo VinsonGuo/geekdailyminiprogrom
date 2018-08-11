@@ -9,9 +9,9 @@
 }
 
 .round-click{
-    height: 120rpx;
-    width: 120rpx;
-    background-color: #e64340;
+    height: 100rpx;
+    width: 100rpx;
+    background-color: #33cd5f;
     border-radius: 100%;
     position: fixed;
     bottom: 50rpx;

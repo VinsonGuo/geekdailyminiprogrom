@@ -13,9 +13,11 @@
 }
 
 .article-date{
-  padding: 4rpx 10rpx;
+  padding: 10rpx 10rpx;
   font-size: 40rpx;
-  background:#ddd;
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  background: white
 }
 
 .article-item {
@@ -158,26 +160,3 @@
 }
 
 
-.round-click{
-    height: 120rpx;
-    width: 120rpx;
-    background-color: #e64340;
-    border-radius: 100%;
-    position: fixed;
-    bottom: 50rpx;
-    right: 20rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9;
-}
-.search-icon{
-  width: 50rpx;
-  height: 50rpx;
-}
-.round-click navigator{
-    font-size: 32rpx;
-    max-width: 80rpx;
-    color: #fff;
-    text-align: center;
-}

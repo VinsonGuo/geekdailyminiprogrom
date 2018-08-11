@@ -9,8 +9,8 @@
   </view>
   <view class='my-item' style='background:none;display:flex;justify-content:space-between'>
     <text>当前版本: </text>
-    <text class='version' style='margin-right:80rpx'>V 1.0.0</text>
+    <text class='version' style='margin-right:80rpx'>V 1.0.1</text>
   </view>
 
-  <button type='warn' bindtap='loginOrLogout' class='reload'>{{loginOrLogout}}</button>
+  <button bindtap='loginOrLogout' class='reload'>{{loginOrLogout}}</button>
 </view>

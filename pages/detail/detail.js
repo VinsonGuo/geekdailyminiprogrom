@@ -12,8 +12,8 @@ Page({
     url: "",
     article: {},
     comments: [],
-    star: "收藏",
-    isStart: false,
+    star: "like-o",
+    isStar: false,
     isScrollUp: true,
     md: "",
     actionSheetHidden: true,
@@ -39,7 +39,7 @@ Page({
       let isStar = res.data.data;
       that.setData({
         isStar: isStar,
-        star: isStar?"已收藏":"收藏"
+        star: isStar?"like":"like-o"
       })
     })
     wx.setNavigationBarTitle({
@@ -64,7 +64,7 @@ Page({
       })
       that.setData({
         isStar: isStar,
-        star:  isStar?"已收藏": "收藏"
+        star:  isStar?"like": "like-o"
       })
     }, (res) => {
 
@@ -73,7 +73,6 @@ Page({
 
   onPageScroll:function(obj) {
     let dy = lastScrollTop - obj.scrollTop;
-    console.log(dy)
     this.setData({
       isScrollUp: dy>=0
     })

@@ -1,9 +1,10 @@
 <view class="markdown">
-  <wemark md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
+  <wemark md="{{md}}" link="false" highlight="true" type="wemark"></wemark>
 
 <!--收藏按钮  -->
     <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
-      {{star}}
+    <zan-icon type="{{star}}"></zan-icon>
+      <!-- {{star}} -->
        <!-- <image src="/images/search-pic.png" class="star-icon"/>  -->
     </view>
 

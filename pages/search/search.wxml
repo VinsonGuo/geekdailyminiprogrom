@@ -1,13 +1,8 @@
 <view>
-  <view class="search-view" >
-  <!-- style="background:{{ scrollTop === 0 ?'-webkit-linear-gradient(top, rgba(105,195,170, 1), rgba(105,195,170, 0.3))' :( scrollTop<200 ? 'rgba(105,195,170,'+(scrollTop/400+0.3) +')' : 'rgba(105,195,170,1)')  }} " -->
-    <view class="serarch-content">
-      <image src="/images/search-pic.png" class="search-icon" />
-      <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索" bindinput='bindKeyInput' bindconfirm='toSearch'>
-      </input>
-      <button class='search-btn' bindtap="toSearch">搜索
-      </button>
-    </view>
+  <view class="search-view">
+    <zan-search bindsearch="toSearch" 
+    focus="true"
+    searchStyle="height: 88rpx; padding: 0 30rpx; background: {{ searchbg || '#F2F2F2' }};" keyword="{{ inputValue }}" bindchange="searchChange" inputStyle="height: 56rpx; border-radius: 8rpx;" />
   </view>
 
   <view class="article-container">

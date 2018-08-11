@@ -30,10 +30,10 @@ Page({
     })
   },
 
-  bindKeyInput: function (e) {
+  searchChange(e) {
     this.setData({
       inputValue: e.detail.value
-    })
+    });
   },
 
   toSearch: function(){
