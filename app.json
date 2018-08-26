@@ -4,11 +4,11 @@
     "pages/my/my",
     "pages/detail/detail",
     "pages/article/article",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/qrcode/qrcode"
   ],
-  "workers":{
+  "workers": {
     "workers": "workers"
   },
-  "window": {
-  }
+  "window": {}
 }

@@ -45,7 +45,17 @@ Page({
     wx.setNavigationBarTitle({
       title: article.title,
     })
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     
+  },
+
+  onShareAppMessage: function () {
+    let article = JSON.stringify(this.data.article);
+    return {
+      path: '/pages/index/index?article='+article
+    }
   },
 
   toStar:function(){

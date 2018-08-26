@@ -49,7 +49,12 @@ Page({
     })
   },
 
-  onLoad: function() {
+  onLoad: function (options) {
+    if(options.article) { // 如果是转发过来的，直接跳转到详情页
+      wx.navigateTo({
+        url: '/pages/detail/detail?article=' + options.article
+      })
+    }
     wx.setNavigationBarTitle({
       title: 'GeekReader',
     })
