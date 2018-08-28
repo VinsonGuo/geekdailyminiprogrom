@@ -5,7 +5,7 @@
 }
 
 .markdown {
-  padding: 0 20rpx;
+  padding: 20rpx 20rpx 100rpx 20rpx;
 }
 
 .round-click{

@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "qrcode": "../../components/qrcode/index"
+  }
+}

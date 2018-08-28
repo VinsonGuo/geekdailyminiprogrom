@@ -59,6 +59,10 @@ Page({
       title: 'GeekReader',
     })
     this.getArticle(0, size, false);
+
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   onReady: function() {

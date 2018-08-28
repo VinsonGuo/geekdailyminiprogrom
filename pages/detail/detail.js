@@ -45,15 +45,13 @@ Page({
     wx.setNavigationBarTitle({
       title: article.title,
     })
-    wx.showShareMenu({
-      withShareTicket: true
-    })
     
   },
 
   onShareAppMessage: function () {
     let article = JSON.stringify(this.data.article);
     return {
+      title: this.data.article.title,
       path: '/pages/index/index?article='+article
     }
   },

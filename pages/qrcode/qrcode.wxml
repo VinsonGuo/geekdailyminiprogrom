@@ -1,2 +1,6 @@
 <!--pages/qrcode.wxml-->
-<text>pages/qrcode.wxml</text>
+<view class='container'>
+<text style='margin-top:100rpx;' class='center'>点击二维码，然后长按进行页面跳转</text>
+<qrcode style='margin-top:40rpx;'  class="center" id="qrcode" canvas-id="{{canvasId}}" data="{{ value }}" fg-color="{{ fgColor }}" width="200" height="200" bind:drawSuccess="drawSuccess" bind:tap="drawSuccess"/>
+</view>
+
