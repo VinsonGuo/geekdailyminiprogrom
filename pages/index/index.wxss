@@ -6,8 +6,10 @@
 }
 
 .article-container {
+  width:94%;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
   flex-wrap: wrap;
   box-sizing: content-box;
 }
@@ -15,12 +17,11 @@
 .article-date{
   padding: 10rpx 10rpx;
   font-size: 40rpx;
-  border-top:1px solid #ddd;
-  background: white
+  background: #eee
 }
 
 .article-item {
-  width:100%;
+  width:100%
 }
 
 .article-left{
@@ -37,8 +38,8 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;
+  border:1px solid #ddd;
+  border-radius: 15rpx;
   margin-bottom: 20rpx;
 }
 .article-top{

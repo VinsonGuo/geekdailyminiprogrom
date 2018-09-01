@@ -10,5 +10,10 @@
   "workers": {
     "workers": "workers"
   },
-  "window": {}
+  "window": {
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eee",
+    "backgroundTextStyle": "black"
+  }
 }
