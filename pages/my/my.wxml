@@ -7,6 +7,9 @@
   <view class='my-item'>
     <navigator url='/pages/article/article?typeId=0'>我的收藏</navigator>
   </view>
+  <view class='my-item'>
+    <navigator url='/pages/article/article?typeId=2'>我的贡献</navigator>
+  </view>
   <view class='my-item' style='background:none;display:flex;justify-content:space-between'>
     <text>当前版本: </text>
     <text class='version' style='margin-right:80rpx'>V 1.0.1</text>

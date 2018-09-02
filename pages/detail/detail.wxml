@@ -1,10 +1,16 @@
 <view class="markdown">
-  <wemark md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
+  <view>
+    <text style='font-size:42rpx;' class="center">{{article.title}}</text>
+  </view>
+  <view>
+  <text style='color:#777;font-size:28rpx' wx:if="{{article.des}}">{{article.contributor + ': '+article.des}}</text>
+  </view>
+  <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
 
-<!--收藏按钮  -->
-    <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
+  <!--收藏按钮  -->
+  <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
     <zan-icon type="{{star}}"></zan-icon>
-    </view>
+  </view>
 
 
   <!-- <view class='function-view'>
@@ -36,4 +42,3 @@
     <action-sheet-cancel class="cancel ">取消</action-sheet-cancel>
 </action-sheet> -->
 </view>
-

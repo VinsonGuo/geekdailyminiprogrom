@@ -17,7 +17,7 @@
           <!-- <view class='article-comments'>{{item.comments}}</view> -->
           <view class='article-view'><zan-icon type="browsing-history"/> {{item.views}}</view>
 
-          <view class='article-stars'><zan-icon type="like"/> {{item.stars}}</view>
+          <view class='article-stars'  data-id="{{item.article_id}}" catchtap='starTap'><zan-icon type="{{item.isStar?'like':'like-o'}}"/> {{item.stars}}</view>
         </view>
       </view>
 

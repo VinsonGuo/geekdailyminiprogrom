@@ -5,7 +5,8 @@
     "pages/detail/detail",
     "pages/article/article",
     "pages/search/search",
-    "pages/qrcode/qrcode"
+    "pages/qrcode/qrcode",
+    "pages/upload/upload"
   ],
   "workers": {
     "workers": "workers"

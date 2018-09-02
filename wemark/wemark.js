@@ -66,6 +66,18 @@ Component({
 				}
 
             }
-        }
+      },
+      linkTap(e) {
+        let url = e.target.dataset.url;
+        wx.setClipboardData({
+          data: url,
+          success:()=>{
+            wx.showToast({
+              title: '复制链接成功',
+              icon: 'success'
+            })
+          }
+        });
+      }
     }
 });

@@ -43,9 +43,13 @@ const isToday = (td) => {
   let d = new Date();
   return td.getDate() == d.getDate() && td.getMonth() == d.getMonth() && td.getFullYear() == d.getFullYear();
 }
-
+const isYesterday = (td) => {
+  let d = new Date();
+  return td.getDate() == d.getDate()-1 && td.getMonth() == d.getMonth() && td.getFullYear() == d.getFullYear();
+}
 module.exports = {
   formatTime: formatTime,
   parseDate: parseDate,
-  isToday:isToday
+  isToday:isToday,
+  isYesterday
 }

@@ -78,8 +78,8 @@ function parse(md, options){
 					if(options.link){
 						env = 'link';
 						tokenData = {
-							// href: token.href
-              href: '/pages/qrcode/qrcode?content='+token.href
+							href: token.href
+              // href: '/pages/qrcode/qrcode?content='+token.href
 						};
 					}
 				}else if(token.type === 'image'){

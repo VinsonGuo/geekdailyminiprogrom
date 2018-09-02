@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url: "",
     article: {},
     comments: [],
     star: "like-o",
@@ -18,8 +17,7 @@ Page({
     md: "",
     actionSheetHidden: true,
     actionSheetItems: [],
-    inputValue: '',
-    defaultImg: "/images/defaultImg.jpg", //默认图片
+    inputValue: ''
   },
 
   /**
@@ -28,12 +26,12 @@ Page({
   onLoad: function (options) {
     user_id = app.globalData.userId;
     var that = this;
-    var article = JSON.parse(options.article);
+    console.log(options)
+    var article = JSON.parse(decodeURIComponent(options.article));
     console.log(article.article_id)
     that.setData({
       article: article
     });
-    console.log(article);
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
     api.isStarArticle(article.article_id, user_id, (res)=>{
       let isStar = res.data.data;
@@ -49,10 +47,12 @@ Page({
   },
 
   onShareAppMessage: function () {
-    let article = JSON.stringify(this.data.article);
+    let article = encodeUriComponent(JSON.stringify(this.data.article));
+    let self = this;
     return {
-      title: this.data.article.title,
-      path: '/pages/index/index?article='+article
+      title: self.data.article.title,
+      path: '/pages/index/index?article='+article,
+      imageUrl: self.data.article.img_url
     }
   },
 
@@ -139,13 +139,16 @@ Page({
   //获取文章MD内容详情
   getArticleDetail: function (article_id) {
     let that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
     api.getArticleDetail(article_id, (res) => {
-      // console.log(res.data.data)
+      wx.hideLoading()
       that.setData({
         md: res.data.data
       })
     }, (res) => {
-      
+      wx.hideLoading()
     });
 
   },

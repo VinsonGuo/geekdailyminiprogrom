@@ -6,7 +6,6 @@ const app = getApp()
 //上拉加载当前页
 let currentPage = 1;
 let size = 10; //每页返回数量
-let articles = [];
 let isLastPage = false;
 let format = "yyyy-MM-dd HH:mm:ss"
 
@@ -18,11 +17,11 @@ Page({
         label: '个人中心',
         icon: 'contact',
       },{
-        label: '我的收藏',
-        icon: 'like',
-      }, {
         label: '文章搜索',
         icon: 'search',
+      }, {
+        label: '贡献文章',
+        icon: 'add',
       }
     ]
   },
@@ -41,11 +40,11 @@ Page({
     })
 
     index === 1 && wx.navigateTo({
-      url: '/pages/article/article?typeId=0'
+      url: '/pages/search/search'
     })
 
     index === 2 && wx.navigateTo({
-      url: '/pages/search/search'
+      url: '/pages/upload/upload'
     })
   },
 
@@ -144,13 +143,33 @@ Page({
   itemTap: function(e) {
     var item = e.currentTarget.dataset.article;
     //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
-    item.img_url = encodeURIComponent(item.img_url);
-    item.link = encodeURIComponent(item.link);
-    var article = JSON.stringify(item);
+    // item.img_url = encodeURIComponent(item.img_url);
+    // item.link = encodeURIComponent(item.link);
+    var article = encodeURIComponent(JSON.stringify(item));
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
     })
+  },
+
+  starTap(e) {
+    let that = this;
+    let article_id = e.currentTarget.dataset.id;
+    let user_id = app.globalData.userId;
+    api.articleStar(article_id, user_id, 1, 1, (res) => {
+      let articles = that.data.articles;
+      let item = articles.filter((it, index)=>{
+        return it.article_id == article_id;
+      })[0];
+      item.isStar = !item.isStar;
+      wx.showToast({
+        title: res.data.data,
+      })
+      console.log(item)
+      that.setData({ articles});
+    }, (res) => {
+
+    });
   },
 
   //获取article内容
@@ -162,7 +181,9 @@ Page({
       if (!isLoadMore) {
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
-        articles = [];
+        that.setData({
+          articles:[]
+        });
       }
       // 处理数据
       for (let i = 0; i < res.data.data.length; i++) {
@@ -176,16 +197,16 @@ Page({
         let arr = item.date.split(' ');
         if(util.isToday(util.parseDate(item.date, format))){
           item.day='今日更新';
-        }else{
-          item.day=arr[0]
+        } else if (util.isYesterday(util.parseDate(item.date, format))){
+          item.day='昨天'
         }
         item.time = arr[1];
       }
 
-      articles.push(...res.data.data);
+      that.data.articles.push(...res.data.data);
       // console.log(res.data.data)
       this.setData({
-        articles: articles,
+        articles: that.data.articles,
         isHideLoadMore: true
       })
     }, (res) => {
@@ -194,8 +215,13 @@ Page({
       wx.stopPullDownRefresh()
     });
 
-  }
-
+  },
+ onShareAppMessage: function () {
+    return {
+      title: 'GeekReader-极客的阅读世界',
+      path: '/pages/index/index'
+    }
+  },
 
 
 

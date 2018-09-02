@@ -1,0 +1,23 @@
+/* upload.wxss */
+.image{
+  width: 200rpx;
+  margin: 0 auto;
+}
+
+.input {
+  border-bottom: 1px solid #ccc;
+  padding: 10rpx 0;
+}
+
+.picker-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 20rpx;
+  align-items: center;
+}
