@@ -8,22 +8,73 @@
   padding: 20rpx 20rpx 100rpx 20rpx;
 }
 
-.round-click{
-    height: 100rpx;
-    width: 100rpx;
-    background-color: #33cd5f;
-    border-radius: 100%;
-    position: fixed;
-    bottom: 50rpx;
-    right: 20rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9;
-    color: white
+.container-top {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+}
+
+.article-image {
+  width: 100%;
+}
+
+.article-des {
+  font-size: 35rpx;
+  font-weight: 750;
+  padding-left: 10rpx;
+  margin-top: 30rpx;
+  margin-bottom: 10rpx;
+}
+
+.article-time {
+  color: #666;
+  font-size: 30rpx;
+  padding: 0 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.container-link {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  padding: 10rpx;
+  margin-top: 30rpx;
+}
+
+.article-link {
+  color: #666;
+  font-size: 30rpx;
+  padding: 6rpx;
+  display: -webkit-box;
+  line-height: 40rpx;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 15rpx;
+  margin-bottom: 30rpx;
+  background-color: #33cd5f;
+  border-radius: 8rpx;
+}
+
+.round-click {
+  height: 100rpx;
+  width: 100rpx;
+  background-color: #33cd5f;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 50rpx;
+  right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  color: white;
 }
 
 /* 以下暂时注释 */
+
 .function-view {
   /* display: flex;  */
   width: 100%;
@@ -60,7 +111,7 @@
 }
 
 .from-avater {
-  width: 80rpx; 
+  width: 80rpx;
   height: 80rpx;
   margin: 10rpx;
 }

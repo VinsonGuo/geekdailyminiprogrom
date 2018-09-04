@@ -1,10 +1,16 @@
 <view class="markdown">
-  <view>
-    <text style='font-size:42rpx;' class="center">{{article.title}}</text>
+  <view class="container-top">
+    <text class='article-des' wx:if="{{article.des}}">{{article.contributor + ': '+article.des}}</text>
+    <view class='article-time'>{{'分享于 '+article.date}}</view>
+    <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
+    <view class='container-link'>
+      <view class='article-time'>{{'↓ 来源地址，请点击复制'}}</view>
+      <view class='article-link' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
+    </view>
+
+
   </view>
-  <view>
-  <text style='color:#777;font-size:28rpx' wx:if="{{article.des}}">{{article.contributor + ': '+article.des}}</text>
-  </view>
+
   <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
 
   <!--收藏按钮  -->

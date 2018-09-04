@@ -31,7 +31,7 @@
     </view>
   </view>
 
-  <dialog id='dialog' title='登录提示' content='需要您的授权才能提供所有服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent' bind:bindGetUserInfo='bindGetUserInfo'>
+  <dialog id='dialog' title='登录提示' content='授权后才能享受所有服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent' bind:bindGetUserInfo='bindGetUserInfo'>
   </dialog>
   <floating-button buttons="{{ buttons }}" bind:click="buttonClicked" />
 </view>

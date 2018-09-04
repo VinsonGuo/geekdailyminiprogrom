@@ -20,10 +20,11 @@ Page({
     inputValue: ''
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     user_id = app.globalData.userId;
     var that = this;
     console.log(options)
@@ -33,56 +34,56 @@ Page({
       article: article
     });
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
-    api.isStarArticle(article.article_id, user_id, (res)=>{
+    api.isStarArticle(article.article_id, user_id, (res) => {
       let isStar = res.data.data;
       that.setData({
         isStar: isStar,
-        star: isStar?"like":"like-o"
+        star: isStar ? "like" : "like-o"
       })
     })
     wx.setNavigationBarTitle({
       title: article.title,
     })
-    
+
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     let article = encodeUriComponent(JSON.stringify(this.data.article));
     let self = this;
     return {
       title: self.data.article.title,
-      path: '/pages/index/index?article='+article,
+      path: '/pages/index/index?article=' + article,
       imageUrl: self.data.article.img_url
     }
   },
 
-  toStar:function(){
-    if(user_id != 0){
+  toStar: function() {
+    if (user_id != 0) {
       this.star(this.data.article.article_id, user_id, 1, 1);
     }
   },
 
   //收藏（点赞）
-  star: function (article_id, user_id, type, status){
+  star: function(article_id, user_id, type, status) {
     let that = this;
     api.articleStar(article_id, user_id, type, status, (res) => {
       let isStar = !that.data.isStar;
       wx.showToast({
-        title: `${isStar?'':'取消'}收藏成功!`,
+        title: `${isStar ? '' : '取消'}收藏成功!`,
       })
       that.setData({
         isStar: isStar,
-        star:  isStar?"like": "like-o"
+        star: isStar ? "like" : "like-o"
       })
     }, (res) => {
 
     });
   },
 
-  onPageScroll:function(obj) {
+  onPageScroll: function(obj) {
     let dy = lastScrollTop - obj.scrollTop;
     this.setData({
-      isScrollUp: dy>=0
+      isScrollUp: dy >= 0
     })
     lastScrollTop = obj.scrollTop;
   },
@@ -137,7 +138,7 @@ Page({
   //   },
 
   //获取文章MD内容详情
-  getArticleDetail: function (article_id) {
+  getArticleDetail: function(article_id) {
     let that = this;
     wx.showLoading({
       title: '加载中',
@@ -167,6 +168,20 @@ Page({
 
   },
 
- 
-  
+  copyText: function(e) {
+    console.log(e)
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function(res) {
+        wx.getClipboardData({
+          success: function(res) {
+            wx.showToast({
+              title: '复制成功'
+            })
+          }
+        })
+      }
+    })
+  },
+
 })
