@@ -1,5 +1,6 @@
 /* upload.wxss */
-.image{
+
+.image {
   width: 200rpx;
   margin: 0 auto;
 }
@@ -9,13 +10,66 @@
   padding: 10rpx 0;
 }
 
-.picker-container{
+.input-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 30rpx;
+  align-items: center;
 }
 
-.form{
+.des-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  align-items: center;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  align-items: center;
+}
+
+.image-container {
+  display: flex;
+  height: 300rpx;
+  margin-bottom: 30rpx;
+}
+
+.category-container {
+  display: flex;
+  margin-bottom: 30rpx;
+  align-items: center;
+}
+
+.level-container {
+  display: flex;
+  margin-bottom: 30rpx;
+  align-items: center;
+}
+
+.picker-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100rpx;
+}
+
+.radio-group-level {
+  display: flex;
+  flex-direction: row;
+}
+
+.radio-level {
+  display: block;
+  padding: 5px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   padding: 10rpx 20rpx;

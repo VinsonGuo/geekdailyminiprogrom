@@ -1,24 +1,44 @@
 <!--描述、标题、链接、图片、分类、等级-->
 <view class='container'>
   <form class='form' bindsubmit='onFormSubmit'>
-    <input class='input' focus='true' type='text' name="title" placeholder="标题" />
-    <textarea class='input' style='height:200rpx' type='text' name="desc" placeholder="描述" />
-    <input class='input' type='text' name="desc" placeholder="链接" />
-    <view class='picker-container'>
+    <view class='input-container'>
+      <input style="flex:1" bindinput="bindKeyInputTitle" class='input' focus='true' type='text' name="title" placeholder="标题" value='{{titleContent}}' />
+      <button bindtap="pasteTitle">粘贴</button>
+    </view>
+
+    <view class='des-container'>
+      <textarea style="flex:1" bindinput="bindKeyInputDes" class='input' style='height:200rpx' type='text' name="desc" placeholder="描述" value='{{desContent}}' />
+      <button bindtap="pasteDes">粘贴</button>
+    </view>
+
+    <view class='link-container'>
+      <input style="flex:1" bindinput="bindKeyInputLink" class='input' type='text' name="desc" placeholder="链接" value='{{linkContent}}' />
+      <button bindtap="pasteLink">粘贴</button>
+    </view>
+
+    <view class='image-container'>
+      <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
+    </view>
+
+    <view class='category-container'>
       <picker bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
         <view class="picker">
           分类：{{categoryArray[categoryIndex]}}
         </view>
       </picker>
-      <picker bindchange="bindLevelPickerChange" value="{{levelIndex}}" range="{{levelArray}}">
-        <view class="picker">
-          级别：{{levelArray[levelIndex]}}
-        </view>
-      </picker>
     </view>
-    <view>
-      <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
+
+
+    <view class='level-container'>
+      <text class="page__desc">级别</text>
+      <view class="section section_gap">
+        <radio-group class="radio-group-level" bindchange="radioChangeLevel">
+          <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
+            <text>{{item.value}}</text>
+          </radio>
+        </radio-group>
+      </view>
     </view>
-    <button type='primary' form-type='submit'>上传</button>
+    <button type='primary' form-type='submit'>提交</button>
   </form>
 </view>

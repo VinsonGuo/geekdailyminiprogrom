@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: "文章搜索",
+      title: "搜索",
     })
   },
 
