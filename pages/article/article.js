@@ -131,7 +131,6 @@ Page({
     // item.img_url = encodeURIComponent(item.img_url);
     // item.link = encodeURIComponent(item.link);
     var article = JSON.stringify(item);
-    console.log("sss", article)
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article

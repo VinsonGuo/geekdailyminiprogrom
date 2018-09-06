@@ -4,6 +4,7 @@ import api from '../../utils/api'
 const app = getApp()
 //用户唯一的id
 var user_id = 0;
+let page = 0;
 
 Page({
   data: {
@@ -12,7 +13,18 @@ Page({
     score_sign_continuous: 0,
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    tab: {
+      list: [{
+        id: 1,
+        title: '我的收藏'
+      }, {
+        id: 2,
+        title: '我的贡献'
+      }],
+      selectedId: 1
+    },
+    articles:[]
   },
   
   onLoad: function () {
@@ -53,6 +65,7 @@ Page({
         }
       })
     }
+    this.getMyStarArticles(page);
   },
 
   //登录或登出
@@ -122,6 +135,88 @@ Page({
       wx.hideLoading();
     });
     
+  },
+
+  tabChange(e) {
+    let id = e.detail;
+    console.log(e)
+    this.setData({
+      articles: [],
+    })
+    page = 0;
+    if(id == 1) {
+      this.getMyStarArticles(page);
+    }else{
+      this.getMyContributeArticles(page);
+    }
+  },
+
+  //获取我的收藏(点赞)文章列表
+  getMyStarArticles: function (page, size = 10) {
+    var that = this;
+    wx.request({
+      url: 'https://502tech.com/geekdaily/getMyStarArticles',
+      method: "POST",
+      data: {
+        page: page,
+        size: size,
+        user_id: user_id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          articles: res.data.data,
+        })
+      },
+      fail: function (res) {
+
+      }
+    })
+
+  },
+
+
+  //获取我的贡献的文章列表
+  getMyContributeArticles: function (page, size = 10) {
+    var that = this;
+    wx.request({
+      url: 'https://502tech.com/geekdaily/getMyContributeArticles',
+      method: "POST",
+      data: {
+        page: page,
+        size: size,
+        user_id: user_id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          articles: res.data.data,
+        })
+      },
+      fail: function (res) {
+
+      }
+    })
+
+  },
+
+
+  itemTap: function (e) {
+    var item = e.currentTarget.dataset.article;
+    //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
+    // item.img_url = encodeURIComponent(item.img_url);
+    // item.link = encodeURIComponent(item.link);
+    var article = JSON.stringify(item);
+    api.viewArticle(item.article_id);
+    wx.navigateTo({
+      url: '../detail/detail?article=' + article
+    })
   },
 
 })

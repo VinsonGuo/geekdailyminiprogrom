@@ -4,16 +4,30 @@
     <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
 
   </view>
-  <view class='my-item'>
-    <navigator url='/pages/article/article?typeId=0'>我的收藏</navigator>
-  </view>
-  <view class='my-item'>
-    <navigator url='/pages/article/article?typeId=2'>我的贡献</navigator>
-  </view>
   <view class='my-item' style='background:none;display:flex;justify-content:space-between'>
     <text>当前版本: </text>
     <text class='version' style='margin-right:80rpx'>V 1.0.1</text>
   </view>
 
   <button bindtap='loginOrLogout' class='reload'>{{loginOrLogout}}</button>
+
+  <zan-tab
+      list="{{ tab.list }}"
+      selected-id="{{ tab.selectedId }}"
+      bindtabchange="tabChange"
+    />
+
+    <view class="article-container">
+    <view class="article-box" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-article="{{item}}" data-id="{{item.article_id}}">
+      <view class='article-item'>
+        <view class='article-title'>{{item.title}}</view>
+        <view class='article-des'>{{item.des}}</view>
+        <view class='article-box2'>
+          <view wx:if="{{item.contributor != null}}" class='article-author'>{{item.contributor}}</view>
+          <view class='article-time'>{{item.date}}</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
 </view>
