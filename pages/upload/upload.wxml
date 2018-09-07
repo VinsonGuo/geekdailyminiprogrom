@@ -1,36 +1,17 @@
 <!--描述、标题、链接、图片、分类、等级-->
 <view class='container'>
+
   <form class='form' bindsubmit='onFormSubmit'>
-    <view class='input-container'>
-      <input style="flex:1" bindinput="bindKeyInputTitle" class='input' focus='true' type='text' name="title" placeholder="标题" value='{{titleContent}}' />
-      <button bindtap="pasteTitle">粘贴</button>
-    </view>
-
-    <view class='des-container'>
-      <textarea style="flex:1" bindinput="bindKeyInputDes" class='input' style='height:200rpx' type='text' name="desc" placeholder="描述" value='{{desContent}}' />
-      <button bindtap="pasteDes">粘贴</button>
-    </view>
-
-    <view class='link-container'>
-      <input style="flex:1" bindinput="bindKeyInputLink" class='input' type='text' name="desc" placeholder="链接" value='{{linkContent}}' />
-      <button bindtap="pasteLink">粘贴</button>
-    </view>
-
-    <view class='image-container'>
-      <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
-    </view>
-
     <view class='category-container'>
       <picker bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
-        <view class="picker">
-          分类：{{categoryArray[categoryIndex]}}
+        <view class="picker">分类：{{categoryArray[categoryIndex]}}
         </view>
       </picker>
     </view>
-
+    <view class="division"></view>
 
     <view class='level-container'>
-      <text class="page__desc">级别</text>
+      <text class="page__desc">适用于：</text>
       <view class="section section_gap">
         <radio-group class="radio-group-level" bindchange="radioChangeLevel">
           <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
@@ -39,6 +20,40 @@
         </radio-group>
       </view>
     </view>
+
+    <view class="division"></view>
+
+    <view class='input-container'>
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputTitle" auto-height focus='true' type='text' name="title" placeholder="1.标题，小于100字" value='{{titleContent}}' maxlength='100' />
+      <button bindtap="pasteTitle">粘贴</button>
+    </view>
+    <view class="division"></view>
+
+    <view class='link-container'>
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="desc" placeholder="2.链接" value='{{linkContent}}' maxlength='-1' />
+      <button bindtap="pasteLink">粘贴</button>
+    </view>
+    <view class="division"></view>
+    <view class='des-container'>
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputDes" auto-height type='text' name="link" placeholder="3.描述，小于140字" value='{{desContent}}' maxlength='140' />
+      <button bindtap="pasteDes">粘贴</button>
+    </view>
+
+    <view class="division"></view>
+
+
+    <view class='image-image'>
+      <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
+    </view>
+    <view class='image-container'>
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" auto-height type='text' name="image" placeholder="4.图片链接" value='{{imageContent}}' maxlength='140' />
+      <button bindtap="pasteImage">粘贴</button>
+    </view>
+
+    <view class="division"></view>
+
     <button type='primary' form-type='submit'>提交</button>
+    <view class="division"></view>
   </form>
+
 </view>

@@ -23,6 +23,7 @@ Page({
     titleContent: '',
     desContent: '',
     linkContent: '',
+    imageContent: '',
   },
 
   /**
@@ -126,6 +127,23 @@ Page({
         let link = this.data.linkContent;
         this.setData({
           linkContent: link + res.data
+        })
+      }
+    })
+  },
+
+  bindKeyInputImage: function (e) {
+    this.setData({
+      imageContent: e.detail.value
+    })
+  },
+
+  pasteImage(e) {
+    wx.getClipboardData({
+      success: (res) => {
+        let image = this.data.imageContent;
+        this.setData({
+          imageContent: image + res.data
         })
       }
     })
