@@ -1,37 +1,36 @@
-.container{
+.container {
   min-height: 100%;
   width: 100%;
   overflow: hidden;
-  overflow-y: hidden
+  background-color: #eee;
+  overflow-y: hidden;
 }
-.userInfo{
+
+.userInfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* padding: 50rpx; */
   align-items: center;
-  background: #33cd5f;
   width: 100%;
-  height: 300rpx;
+  height: 200rpx;
 }
-.userinfo-avatar{
+
+.userinfo-avatar {
   width: 160rpx;
   height: 160rpx;
   margin: 40rpx;
-  border-radius: 50%
+  border-radius: 50%;
 }
-.userinfo-nickname{
-  color: #FFF
+
+.login-button{
+  width: 140rpx;
+  margin-right: 30rpx;
 }
-.my-item{
-  width: 100%;
-  padding: 15rpx 0;
-  border-bottom: 1px solid #eee;
-  height: 100rpx;
-  line-height: 100rpx;
-  padding-left: 30rpx;
-}
-.reload{
-  margin: 60rpx 16rpx;
+
+
+.userinfo-nickname {
+  color: #000;
+  flex:1;
 }
 
 .article-container {
@@ -47,12 +46,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #eee;
   overflow: hidden;
   padding: 0 20rpx;
 }
 
-.article-item{
+.article-item {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -80,6 +79,7 @@
   font-size: 30rpx;
   margin: 10rpx;
 }
+
 .article-box2 {
   display: flex;
   justify-content: flex-start;

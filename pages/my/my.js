@@ -17,10 +17,10 @@ Page({
     tab: {
       list: [{
         id: 1,
-        title: '我的收藏'
+        title: '收藏'
       }, {
         id: 2,
-        title: '我的贡献'
+        title: '贡献'
       }],
       selectedId: 1
     },
