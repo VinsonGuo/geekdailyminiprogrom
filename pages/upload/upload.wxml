@@ -1,10 +1,10 @@
 <!--描述、标题、链接、图片、分类、等级-->
 <view class='container'>
-
   <form class='form' bindsubmit='onFormSubmit'>
     <view class='category-container'>
-      <picker bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
-        <view class="picker">分类：{{categoryArray[categoryIndex]}}
+      <picker name="category" bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
+        <view class="picker">
+          分类：{{categoryArray[categoryIndex]}}
         </view>
       </picker>
     </view>
@@ -13,7 +13,7 @@
     <view class='level-container'>
       <text class="page__desc">适用于：</text>
       <view class="section section_gap">
-        <radio-group class="radio-group-level" bindchange="radioChangeLevel">
+        <radio-group name="rank" class="radio-group-level" bindchange="radioChangeLevel">
           <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
             <text>{{item.value}}</text>
           </radio>
@@ -30,7 +30,7 @@
     <view class="division"></view>
 
     <view class='link-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="desc" placeholder="2.链接" value='{{linkContent}}' maxlength='-1' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="des" placeholder="2.链接" value='{{linkContent}}' maxlength='-1' />
       <button bindtap="pasteLink">粘贴</button>
     </view>
     <view class="division"></view>

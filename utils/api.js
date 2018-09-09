@@ -224,4 +224,25 @@ export default class api {
       }
     })
   }
+
+//上传文章
+  static uploadArticle = (param, success, fail) => {
+    wx.request({
+      url: `${baseUrl}uploadArticle`,
+      method: "POST",
+      data: param,
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
 }
+
+api.baseUrl = baseUrl;
+api.uploadArticleImg = baseUrl +'uploadArticleImg';

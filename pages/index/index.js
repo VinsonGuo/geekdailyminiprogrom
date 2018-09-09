@@ -4,7 +4,7 @@ import util from '../../utils/util';
 //获取应用实例
 const app = getApp()
 //上拉加载当前页
-let currentPage = 1;
+let currentPage = 0;
 let size = 10; //每页返回数量
 let isLastPage = false;
 let format = "yyyy-MM-dd HH:mm:ss"
@@ -150,26 +150,6 @@ Page({
     wx.navigateTo({
       url: '../detail/detail?article=' + article
     })
-  },
-
-  starTap(e) {
-    let that = this;
-    let article_id = e.currentTarget.dataset.id;
-    let user_id = app.globalData.userId;
-    api.articleStar(article_id, user_id, 1, 1, (res) => {
-      let articles = that.data.articles;
-      let item = articles.filter((it, index)=>{
-        return it.article_id == article_id;
-      })[0];
-      item.isStar = !item.isStar;
-      wx.showToast({
-        title: res.data.data,
-      })
-      console.log(item)
-      that.setData({ articles});
-    }, (res) => {
-
-    });
   },
 
   //获取article内容

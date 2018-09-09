@@ -1,4 +1,6 @@
-// upload.js
+import api from '../../utils/api'
+const app = getApp();
+
 Page({
 
   /**
@@ -42,24 +44,45 @@ Page({
         this.setData({
           imageUrl: tempFilePaths[0]
         })
-        wx.uploadFile({
-          url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'user': 'test'
-          },
-          success: function(res) {
-            var data = res.data
-            //do something
-          }
-        })
       }
     })
   },
 
   onFormSubmit(e) {
-    console.log(e.detail.value);
+    wx.uploadFile({
+      url: api.uploadArticleImg,
+      filePath: this.data.imageUrl,
+      name: 'article_img',
+      success:  (res) => {
+        let param = e.detail.value;
+        param.article_img = res.data;
+        param.rank = this.data.levelIndex;
+        param.category = this.data.categoryArray[this.data.categoryIndex];
+        param.contributor_id = app.globalData.userId;
+        console.log(param)
+        api.uploadArticle(param, (res) => {
+          console.log(res)
+          if (res.data.code === 0) {
+            wx.showToast({
+              title: '上传成功!',
+            })
+            wx.navigateBack();
+          } else {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none'
+            })
+          }
+        }, (res) => {
+          console.log(res)
+          wx.showToast({
+            title: '上传失败!',
+            icon: 'none'
+          })
+        });
+      }
+    })
+    
   },
 
   bindCategoryPickerChange(e) {
@@ -149,6 +172,13 @@ Page({
     })
   },
   radioChangeLevel: function(e) {
-    console.log('radioChangeLevel发生change事件，携带value值为：', e.detail.value)
+    console.log(e.detail.value)
+    this.data.items.forEach((item, index)=>{
+      if(item.value === e.detail.value) {
+        this.setData({
+          levelIndex: index
+        })
+      }
+    })
   }
 })

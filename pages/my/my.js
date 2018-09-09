@@ -139,7 +139,6 @@ Page({
 
   tabChange(e) {
     let id = e.detail;
-    console.log(e)
     this.setData({
       articles: [],
     })

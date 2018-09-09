@@ -131,6 +131,11 @@
   border-right:1px solid #ccc;
 }
 
+.avatar {
+  width: 28rpx;
+  height: 28rpx;
+}
+
 
 /*  加载更多   */
 

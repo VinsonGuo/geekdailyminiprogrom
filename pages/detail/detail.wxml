@@ -1,6 +1,6 @@
 <view class="markdown">
   <view class="container-top">
-    <text class='article-des' wx:if="{{article.des}}">{{article.contributor + ': '+article.des}}</text>
+    <text class='article-des' wx:if="{{article.des}}">{{article.user.nick_name + ': '+article.des}}</text>
     <view class='article-time'>{{'分享于 '+article.date}}</view>
     <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
     <view class='container-link'>
