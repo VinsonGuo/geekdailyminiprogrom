@@ -113,6 +113,7 @@ Page({
       console.log(res.data.data)
       //保存user_id到内存
       var userId = res.data.data.user_id;
+      console.log(userId)
       wx.setStorage({
         key: 'user_id',
         data: userId,

@@ -30,12 +30,12 @@
     <view class="division"></view>
 
     <view class='link-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="des" placeholder="2.链接" value='{{linkContent}}' maxlength='-1' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="link" placeholder="2.链接" value='{{linkContent}}' maxlength='-1' />
       <button bindtap="pasteLink">粘贴</button>
     </view>
     <view class="division"></view>
     <view class='des-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputDes" auto-height type='text' name="link" placeholder="3.描述，小于140字" value='{{desContent}}' maxlength='140' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputDes" auto-height type='text' name="des" placeholder="3.描述，小于140字" value='{{desContent}}' maxlength='140' />
       <button bindtap="pasteDes">粘贴</button>
     </view>
 

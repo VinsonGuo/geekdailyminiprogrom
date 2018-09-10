@@ -66,14 +66,14 @@ export default class api {
   }
 
   //收藏或取消（点赞或取消点赞）
-  static articleStar = (article_id, user_id, type, status, success, fail) => {
+  static articleStar = (article_id, user_id, status, success, fail) => {
     wx.request({
-      url: `${baseUrl}articleStar`,
+      url: `${baseUrl}starArticle`,
       method: "POST",
       data: {
         article_id: article_id,
         user_id: user_id,
-        type: type,
+        type: 1,
         status: status,
       },
       header: {
@@ -90,7 +90,7 @@ export default class api {
 
   static isStarArticle = (article_id, user_id, success, fail = (res)=>{}) => {
     wx.request({
-      url: `${baseUrl}isStarArticle`,
+      url: `${baseUrl}getStarStatus`,
       method: "POST",
       data: {
         article_id: article_id,
@@ -231,6 +231,26 @@ export default class api {
       url: `${baseUrl}uploadArticle`,
       method: "POST",
       data: param,
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
+
+/**
+ * 相关文章
+ */
+  static relativeArticles = (key, success, fail = (res)=>{}) => {
+    wx.request({
+      url: `${baseUrl}like`,
+      method: "POST",
+      data: {key},
       header: {
         'content-type': contentType
       },

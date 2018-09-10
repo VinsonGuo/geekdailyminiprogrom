@@ -13,9 +13,15 @@
 
   <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
 
+  <view class='star-container'>
+  <text bindtap='likeTap'>顶</text>
+  <van-progress custom-class="progress" percentage="{{starProgress}}" />
+  <text bindtap='dislikeTap'>踩</text>
+  </view>
+
   <!--收藏按钮  -->
   <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
-    <zan-icon type="{{star}}"></zan-icon>
+    <zan-icon type="{{starStatus==0?'like-o':'like'}}"></zan-icon>
   </view>
 
 

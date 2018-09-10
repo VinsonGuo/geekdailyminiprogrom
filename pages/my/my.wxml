@@ -14,7 +14,7 @@
         <view class='article-title'>{{item.title}}</view>
         <view class='article-des'>{{item.des}}</view>
         <view class='article-box2'>
-          <view wx:if="{{item.contributor != null}}" class='article-author'>{{item.contributor}}</view>
+          <view class='article-author'>{{item.user.nick_name}}</view>
           <view class='article-time'>{{item.date}}</view>
         </view>
       </view>

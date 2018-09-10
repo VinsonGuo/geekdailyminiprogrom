@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "wemark": "../../wemark/wemark",
-    "zan-icon": "../../components/icon/index"
+    "zan-icon": "../../components/icon/index",
+    "van-progress": "../../components/progress/index"
   }
 }

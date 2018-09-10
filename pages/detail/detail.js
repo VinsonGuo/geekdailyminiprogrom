@@ -11,8 +11,8 @@ Page({
   data: {
     article: {},
     comments: [],
-    star: "like-o",
-    isStar: false,
+    starStatus:0,
+    starProgress: 0,
     isScrollUp: true,
     md: "",
     actionSheetHidden: true,
@@ -28,18 +28,21 @@ Page({
     user_id = app.globalData.userId;
     var that = this;
     console.log(options)
-    var article = JSON.parse(decodeURIComponent(options.article));
-    console.log(article.article_id)
+    let article = JSON.parse(decodeURIComponent(options.article));
+    let starProgress = (article.stars)/(article.stars + article.un_stars) * 100;
+    console.log("starProgress" + starProgress);
     that.setData({
-      article: article
+      article, starProgress
     });
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
     api.isStarArticle(article.article_id, user_id, (res) => {
-      let isStar = res.data.data;
+      let starStatus = res.data.data;
       that.setData({
-        isStar: isStar,
-        star: isStar ? "like" : "like-o"
+        starStatus
       })
+    })
+    api.relativeArticles(article.title, (res)=> {
+      console.log(res);
     })
     wx.setNavigationBarTitle({
       title: article.title,
@@ -59,21 +62,32 @@ Page({
 
   toStar: function() {
     if (user_id != 0) {
-      this.star(this.data.article.article_id, user_id, 1, 1);
+      this.star(this.data.article.article_id, user_id, 1);
+    }
+  },
+
+  likeTap() {
+    if (user_id != 0) {
+      this.star(this.data.article.article_id, user_id, 1);
+    }
+  },
+
+  dislikeTap() {
+    if (user_id != 0) {
+      this.star(this.data.article.article_id, user_id, 2);
     }
   },
 
   //收藏（点赞）
-  star: function(article_id, user_id, type, status) {
+  star: function(article_id, user_id, status) {
     let that = this;
-    api.articleStar(article_id, user_id, type, status, (res) => {
-      let isStar = !that.data.isStar;
+    api.articleStar(article_id, user_id, status, (res) => {
+      let starStatus = that.data.data;
       wx.showToast({
-        title: `${isStar ? '' : '取消'}收藏成功!`,
+        title: res.data.data,
       })
       that.setData({
-        isStar: isStar,
-        star: isStar ? "like" : "like-o"
+        starStatus
       })
     }, (res) => {
 
