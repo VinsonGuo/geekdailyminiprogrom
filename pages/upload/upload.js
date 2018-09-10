@@ -49,40 +49,78 @@ Page({
   },
 
   onFormSubmit(e) {
+    let param = e.detail.value;
+    wx.showLoading({
+      title: '上传中',
+    })
+    if (this.data.imageContent) {
+      param.article_img = this.data.imageContent;
+      this.upload(param);
+    }else {
+      if (this.data.imageUrl === '/images/default_upload_img.png') { //默认图片，请求失败
+        wx.showToast({
+          title: '请上传图片',
+          icon: 'none'
+        })
+        wx.hideLoading();
+        return;
+      }
     wx.uploadFile({
       url: api.uploadArticleImg,
       filePath: this.data.imageUrl,
       name: 'article_img',
       success:  (res) => {
-        let param = e.detail.value;
-        param.article_img = res.data;
-        param.rank = this.data.levelIndex;
-        param.category = this.data.categoryArray[this.data.categoryIndex];
-        param.contributor_id = app.globalData.userId;
-        console.log(param)
-        api.uploadArticle(param, (res) => {
-          console.log(res)
-          if (res.data.code === 0) {
-            wx.showToast({
-              title: '上传成功!',
-            })
-            wx.navigateBack();
-          } else {
-            wx.showToast({
-              title: res.data.message,
-              icon: 'none'
-            })
-          }
-        }, (res) => {
-          console.log(res)
-          wx.showToast({
-            title: '上传失败!',
-            icon: 'none'
-          })
-        });
+        console.log(res)
+        param.article_img = JSON.parse(res.data).article_img;
+        this.upload(param);
+      },
+      fail:(res)=>{
+        console.log(res)
+        wx.showToast({
+          title: '上传失败!',
+          icon: 'none'
+        })
+        wx.hideLoading();
       }
     })
-    
+    }
+  },
+
+  upload(param) {
+    param.rank = this.data.levelIndex;
+    param.category = this.data.categoryArray[this.data.categoryIndex];
+    param.contributor_id = app.globalData.userId;
+    console.log(param)
+    if(!param.title || !param.des || !param.link || !param.article_img) {
+      wx.showToast({
+        title: '请输入内容',
+        icon: 'none'
+      })
+      wx.hideLoading();
+      return;
+    }
+    api.uploadArticle(param, (res) => {
+      console.log(res)
+      wx.hideLoading();
+      if (res.data.code === 0) {
+        wx.showToast({
+          title: '上传成功!',
+        })
+        wx.navigateBack();
+      } else {
+        wx.showToast({
+          title: res.data.message || res.data.msg,
+          icon: 'none'
+        })
+      }
+    }, (res) => {
+      console.log(res)
+      wx.hideLoading();
+      wx.showToast({
+        title: '上传失败!',
+        icon: 'none'
+      })
+    });
   },
 
   bindCategoryPickerChange(e) {

@@ -7,7 +7,7 @@
         <view class='article-top'>
           <view class='article-title'>{{item.title}}</view>
           <view class='article-des'>
-          <image class='avatar' src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}</view>
+          <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}</view>
         </view>
         <view class='article-middle'>
           <image wx:if="{{item.img_url}}" class='article-img' mode='widthFix' lazy-load src='{{item.img_url}}'></image>
