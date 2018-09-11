@@ -14,13 +14,13 @@ Page({
     isHideLoadMore: true,
     articles: [],
     buttons: [{
-        label: '个人中心',
+        label: '我的',
         icon: 'contact',
       },{
-        label: '文章搜索',
+        label: '搜索',
         icon: 'search',
       }, {
-        label: '贡献文章',
+        label: '投稿',
         icon: 'add',
       }
     ]

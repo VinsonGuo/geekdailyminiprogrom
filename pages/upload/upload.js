@@ -163,6 +163,7 @@ Page({
     this.setData({
       desContent: e.detail.value
     })
+    console.log(e.detail.value);
   },
 
   pasteDes(e) {

@@ -20,29 +20,30 @@
     <view class="division"></view>
 
     <view class='input-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputTitle" auto-height focus='true' type='text' name="title" placeholder="1.标题，小于100字" value='{{titleContent}}' maxlength='100' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputTitle" auto-height type='text' name="title" placeholder="1.标题，<100字" value='{{titleContent}}' maxlength='100' />
       <button bindtap="pasteTitle">粘贴</button>
     </view>
     <view class="division"></view>
 
-    <view class='link-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="link" placeholder="2.链接" value='{{linkContent}}' maxlength='-1' />
-      <button bindtap="pasteLink">粘贴</button>
+    <view class='des-container'>
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputDes" auto-height type='text' name="des" placeholder="2.描述，<140字" value='{{desContent}}' maxlength='140' />
+      <button bindtap="pasteDes">粘贴</button>
     </view>
     <view class="division"></view>
-    <view class='des-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputDes" auto-height type='text' name="des" placeholder="3.描述，小于140字" value='{{desContent}}' maxlength='140' />
-      <button bindtap="pasteDes">粘贴</button>
+
+    <view class='link-container'>
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="link" placeholder="3.链接，源文地址" value='{{linkContent}}' maxlength='-1' />
+      <button bindtap="pasteLink">粘贴</button>
     </view>
 
     <view class="division"></view>
-   
+
     <view class='image-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" auto-height type='text' name="image" placeholder="4.图片，上传本地图片或插入链接" value='{{imageContent}}' maxlength='140' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" auto-height type='text' name="image" placeholder="4.图片，插入链接或上传本地图片" value='{{imageContent}}' maxlength='140' />
       <button bindtap="pasteImage">粘贴</button>
     </view>
 
-     <view class='image-image'>
+    <view class='image-image'>
       <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
     </view>
 
