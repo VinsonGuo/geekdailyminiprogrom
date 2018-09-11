@@ -9,16 +9,21 @@
   <zan-tab list="{{ tab.list }}" selected-id="{{ tab.selectedId }}" bindtabchange="tabChange" />
 
   <view class="article-container">
-    <view class="article-box" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-article="{{item}}" data-id="{{item.article_id}}">
+    <view class="article-box" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}">
       <view class='article-item'>
         <view class='article-title'>{{item.title}}</view>
-        <view class='article-des'>{{item.des}}</view>
         <view class='article-box2'>
-          <view class='article-author'>{{item.user.nick_name}}</view>
+          <view class='article-des'>{{item.des}}</view>
+          <image wx:if="{{item.img_url}}" class='article-img' mode='widthFix' lazy-load src='{{item.img_url}}'></image>
+        </view>
+        <view class='article-box2'>
+          <view wx:if="{{item.contributor != null}}" class='article-author'>{{item.contributor}}</view>
           <view class='article-time'>{{item.date}}</view>
         </view>
       </view>
 
     </view>
   </view>
+
+  
 </view>
