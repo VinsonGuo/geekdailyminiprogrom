@@ -6,8 +6,10 @@
 }
 
 .image {
+  margin-top: 8rpx;
   width: 300rpx;
   margin-left: 120rpx;
+  background-color: #fff;
 }
 
 .input-container {

@@ -57,7 +57,7 @@ Page({
       param.article_img = this.data.imageContent;
       this.upload(param);
     } else {
-      if (this.data.imageUrl === '/images/default_upload_img.png') { //默认图片，请求失败
+      if (this.data.imageUrl === '/images/add_image.png') { //默认图片，请求失败
         wx.showToast({
           title: '请上传图片',
           icon: 'none'
@@ -196,7 +196,8 @@ Page({
 
   bindKeyInputImage: function(e) {
     this.setData({
-      imageContent: e.detail.value
+      imageContent: e.detail.value,
+      imageUrl: e.detail.value
     })
   },
 
@@ -205,7 +206,8 @@ Page({
       success: (res) => {
         let image = this.data.imageContent;
         this.setData({
-          imageContent: image + res.data
+          imageContent: image + res.data,
+          imageUrl: image + res.data
         })
       }
     })
