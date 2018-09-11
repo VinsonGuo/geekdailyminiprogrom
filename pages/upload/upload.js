@@ -71,7 +71,7 @@ Page({
         name: 'article_img',
         success: (res) => {
           console.log(res)
-          param.article_img = JSON.parse(res.data).article_img;
+          param.article_img = JSON.parse(res.data).data.article_img;
           this.upload(param);
         },
         fail: (res) => {

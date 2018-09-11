@@ -24,18 +24,18 @@ Page({
       }],
       selectedId: 1
     },
-    articles:[]
+    articles: []
   },
-  
-  onLoad: function () {
+
+  onLoad: function() {
     var that = this;
     user_id = app.globalData.userId;
-    if(user_id != 0){//已登录
+    if (user_id != 0) { //已登录
       that.setData({
         loginOrLogout: "退出",
       })
     }
-    
+
     wx.setNavigationBarTitle({
       title: '我的',
     })
@@ -65,17 +65,17 @@ Page({
         }
       })
     }
-    this.getMyStarArticles(page);
+    this.getMyStarArticles(1);
   },
 
   //登录或登出
-  loginOrLogout:function(){
+  loginOrLogout: function() {
     var that = this;
-    if(user_id != 0){//存在user_id
+    if (user_id != 0) { //存在user_id
       //登出
       wx.removeStorage({
         key: 'user_id',
-        success: function (res) {
+        success: function(res) {
           console.log(res.data)
           user_id = 0;
           app.globalData.userId = 0;
@@ -84,7 +84,7 @@ Page({
           })
         }
       })
-    } else {//不存在user_id
+    } else { //不存在user_id
       wx.showLoading({
         title: '登录中...',
       })
@@ -107,7 +107,7 @@ Page({
     }
   },
 
-  wxLogin: function (code, nickName, avatarUrl) {
+  wxLogin: function(code, nickName, avatarUrl) {
     let that = this;
     api.WxLogin(code, nickName, avatarUrl, (res) => {
       console.log(res.data.data)
@@ -117,7 +117,7 @@ Page({
       wx.setStorage({
         key: 'user_id',
         data: userId,
-        success:function(){
+        success: function() {
           user_id = userId;
           app.globalData.userId = userId;
           that.setData({
@@ -135,7 +135,7 @@ Page({
       })
       wx.hideLoading();
     });
-    
+
   },
 
   tabChange(e) {
@@ -144,18 +144,16 @@ Page({
       articles: [],
     })
     page = 0;
-    if(id == 1) {
-      this.getMyStarArticles(page);
-    }else{
-      this.getMyContributeArticles(page);
-    }
+    this.getMyStarArticles(id);
   },
 
   //获取我的收藏(点赞)文章列表
-  getMyStarArticles: function (page, size = 10) {
+  getMyStarArticles: function(id, size = 10) {
     var that = this;
+    let url = id === 1 ? 'https://502tech.com/geekdaily/getMyStarArticles' :
+      'https://502tech.com/geekdaily/getMyContributeArticles';
     wx.request({
-      url: 'https://502tech.com/geekdaily/getMyStarArticles',
+      url,
       method: "POST",
       data: {
         page: page,
@@ -165,54 +163,38 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded' // 
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
-        that.setData({
-          articles: res.data.data,
-        })
+        if (page == 0) {
+          that.setData({
+            articles: res.data.data,
+          })
+        } else {
+          that.data.articles.push(...res.data.data)
+          that.setData({
+            articles: that.data.articles,
+          })
+        }
       },
-      fail: function (res) {
-
+      fail: function(res) {
+        page--;
       }
     })
 
   },
 
 
-  //获取我的贡献的文章列表
-  getMyContributeArticles: function (page, size = 10) {
-    var that = this;
-    wx.request({
-      url: 'https://502tech.com/geekdaily/getMyContributeArticles',
-      method: "POST",
-      data: {
-        page: page,
-        size: size,
-        user_id: user_id
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          articles: res.data.data,
-        })
-      },
-      fail: function (res) {
 
-      }
-    })
-
+  onReachBottom: function() {
+    let that = this;
+    page += 1
+    this.getMyStarArticles(this.data.tab.selectedId);
   },
 
-
-  itemTap: function (e) {
+  itemTap: function(e) {
     var item = e.currentTarget.dataset.article;
     //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
-    // item.img_url = encodeURIComponent(item.img_url);
-    // item.link = encodeURIComponent(item.link);
-    var article = JSON.stringify(item);
+    var article = encodeURIComponent(JSON.stringify(item));
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
