@@ -27,6 +27,7 @@
 }
 
 .article-time {
+  margin-top: 10rpx;
   color: #666;
   font-size: 30rpx;
   padding: 0 10rpx;
@@ -84,6 +85,13 @@
   bottom: 0;
 }
 
+.avatar {
+  margin: 5rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+}
+
 .bottom-view {
   width: 100%;
   height: 100rpx;
@@ -132,7 +140,10 @@
   font-size: 18rpx;
   color: #666;
 }
-.star-container{
+
+.star-container {
+  display: flex;
+  direction: row;
 }
 
 .progress {

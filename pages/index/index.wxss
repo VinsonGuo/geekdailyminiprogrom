@@ -6,7 +6,7 @@
 }
 
 .article-container {
-  width:94%;
+  width: 94%;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -14,23 +14,34 @@
   box-sizing: content-box;
 }
 
-.article-date{
+.star-container {
+  width: 94%;
+  display: flex;
+  direction: row;
+}
+
+.star-progress {
+  width: 50rpx;
+}
+
+.article-date {
   padding: 5rpx 5rpx;
   font-size: 36rpx;
-  background: #eee
+  background: #eee;
 }
 
 .article-item {
-  width:100%
+  width: 100%;
 }
 
-.article-left{
+.article-left {
   width: 60%;
   height: 260rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .article-box-vertical {
   padding: 16rpx 0;
   display: flex;
@@ -38,32 +49,37 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border:1px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 15rpx;
   margin-bottom: 20rpx;
 }
-.article-top{
+
+.article-top {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.article-middle{
+
+.article-middle {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items:center;
-  padding-top: 10rpx; 
+  align-items: center;
+  padding-top: 10rpx;
+  margin-top: 8rpx;
 }
-.article-bottom{
+
+.article-bottom {
   width: 100%;
   padding-top: 16rpx;
   display: flex;
 }
+
 .article-title {
   font-size: 35rpx;
   font-weight: 750;
   padding-left: 10rpx;
-  margin-bottom: 10rp
+  margin-bottom: 10rp;
 }
 
 .article-des {
@@ -76,16 +92,17 @@
   color: #666;
   font-size: 30rpx;
   padding: 0 10rpx;
+  margin-top: 8rpx;
 }
 
-.article-right{
+.article-right {
   width: 40%;
-  height: 260rpx; 
+  height: 260rpx;
   padding: 20rpx;
 }
-.article-img{
-  width:65%;
-  
+
+.article-img {
+  width: 65%;
 }
 
 .article-box2 {
@@ -123,19 +140,21 @@
   text-align: center;
   color: #999;
 }
+
 .article-view {
-  flex:1;
+  flex: 1;
   text-align: center;
   font-size: 28rpx;
   color: #999;
-  border-right:1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
 .avatar {
-  width: 28rpx;
-  height: 28rpx;
+  margin: 5rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
 }
-
 
 /*  加载更多   */
 
@@ -163,5 +182,3 @@
   display: inline-block;
   vertical-align: middle;
 }
-
-

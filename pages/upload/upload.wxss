@@ -85,6 +85,7 @@
   margin-top: 5px;
   padding: 10rpx 0;
   margin-right: 15rpx;
+  background-color: #fff;
 }
 .division {
   height: 25rpx;
