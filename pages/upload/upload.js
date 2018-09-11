@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imageUrl: '/images/default_upload_img.png',
-    categoryArray: ['Android', 'iOS', '微信小程序', '后端'],
+    imageUrl: '/images/add_image.png',
+    categoryArray: ['Android'],
     categoryIndex: 0,
     items: [{
         value: '所有人',
@@ -56,7 +56,7 @@ Page({
     if (this.data.imageContent) {
       param.article_img = this.data.imageContent;
       this.upload(param);
-    }else {
+    } else {
       if (this.data.imageUrl === '/images/default_upload_img.png') { //默认图片，请求失败
         wx.showToast({
           title: '请上传图片',
@@ -65,24 +65,24 @@ Page({
         wx.hideLoading();
         return;
       }
-    wx.uploadFile({
-      url: api.uploadArticleImg,
-      filePath: this.data.imageUrl,
-      name: 'article_img',
-      success:  (res) => {
-        console.log(res)
-        param.article_img = JSON.parse(res.data).article_img;
-        this.upload(param);
-      },
-      fail:(res)=>{
-        console.log(res)
-        wx.showToast({
-          title: '上传失败!',
-          icon: 'none'
-        })
-        wx.hideLoading();
-      }
-    })
+      wx.uploadFile({
+        url: api.uploadArticleImg,
+        filePath: this.data.imageUrl,
+        name: 'article_img',
+        success: (res) => {
+          console.log(res)
+          param.article_img = JSON.parse(res.data).article_img;
+          this.upload(param);
+        },
+        fail: (res) => {
+          console.log(res)
+          wx.showToast({
+            title: '上传失败!',
+            icon: 'none'
+          })
+          wx.hideLoading();
+        }
+      })
     }
   },
 
@@ -91,7 +91,7 @@ Page({
     param.category = this.data.categoryArray[this.data.categoryIndex];
     param.contributor_id = app.globalData.userId;
     console.log(param)
-    if(!param.title || !param.des || !param.link || !param.article_img) {
+    if (!param.title || !param.des || !param.link || !param.article_img) {
       wx.showToast({
         title: '请输入内容',
         icon: 'none'
@@ -193,7 +193,7 @@ Page({
     })
   },
 
-  bindKeyInputImage: function (e) {
+  bindKeyInputImage: function(e) {
     this.setData({
       imageContent: e.detail.value
     })
@@ -211,8 +211,8 @@ Page({
   },
   radioChangeLevel: function(e) {
     console.log(e.detail.value)
-    this.data.items.forEach((item, index)=>{
-      if(item.value === e.detail.value) {
+    this.data.items.forEach((item, index) => {
+      if (item.value === e.detail.value) {
         this.setData({
           levelIndex: index
         })

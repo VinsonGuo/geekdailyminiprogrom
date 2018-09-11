@@ -3,22 +3,18 @@
   <form class='form' bindsubmit='onFormSubmit'>
     <view class='category-container'>
       <picker name="category" bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
-        <view class="picker">
-          分类：{{categoryArray[categoryIndex]}}
-        </view>
+        <view class="picker">分类：{{categoryArray[categoryIndex]}}</view>
       </picker>
     </view>
     <view class="division"></view>
 
     <view class='level-container'>
-      <text class="page__desc">适用于：</text>
-      <view class="section section_gap">
-        <radio-group name="rank" class="radio-group-level" bindchange="radioChangeLevel">
-          <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
-            <text>{{item.value}}</text>
-          </radio>
-        </radio-group>
-      </view>
+      <text>适用：</text>
+      <radio-group name="rank" class="radio-group-level" bindchange="radioChangeLevel">
+        <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
     </view>
 
     <view class="division"></view>
@@ -40,14 +36,14 @@
     </view>
 
     <view class="division"></view>
-
-
-    <view class='image-image'>
-      <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
-    </view>
+   
     <view class='image-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" auto-height type='text' name="image" placeholder="4.图片链接" value='{{imageContent}}' maxlength='140' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" auto-height type='text' name="image" placeholder="4.图片，上传本地图片或插入链接" value='{{imageContent}}' maxlength='140' />
       <button bindtap="pasteImage">粘贴</button>
+    </view>
+
+     <view class='image-image'>
+      <image class='image' mode='widthFix' src='{{imageUrl}}' bindtap='onImageClick'></image>
     </view>
 
     <view class="division"></view>
