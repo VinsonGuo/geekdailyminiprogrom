@@ -87,7 +87,9 @@
 }
 
 .avatar {
-  margin: 5rpx;
+  margin-left: 5rpx;
+  margin-right:5rpx;
+  margin-bottom: -12rpx;
   width: 50rpx;
   height: 50rpx;
   border-radius: 25rpx;
