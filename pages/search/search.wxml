@@ -1,6 +1,6 @@
 <view class="container">
   <view class="search-view">
-    <zan-search bindsearch="toSearch" focus="true" searchStyle="height: 88rpx; padding: 0 30rpx; background: {{ searchbg || '#F2F2F2' }};" keyword="{{ inputValue }}" bindchange="searchChange" inputStyle="height: 56rpx; border-radius: 8rpx;" />
+    <zan-search bindsearch="toSearch" focus="true" searchStyle="height: 88rpx; padding: 0 30rpx; background: {{ searchbg || '#eee' }};" keyword="{{ inputValue }}" bindchange="searchChange" inputStyle="height: 56rpx; border-radius: 8rpx;" />
   </view>
 
   <view class="article-container">
