@@ -2,7 +2,7 @@
 <view class='container'>
   <form class='form' bindsubmit='onFormSubmit'>
     <view class='category-container'>
-      <picker name="category" bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
+      <picker bindchange="bindCategoryPickerChange" value="{{categoryIndex}}" range="{{categoryArray}}">
         <view class="picker">分类：{{categoryArray[categoryIndex]}}</view>
       </picker>
     </view>
@@ -10,7 +10,7 @@
 
     <view class='level-container'>
       <text>适用：</text>
-      <radio-group name="rank" class="radio-group-level" bindchange="radioChangeLevel">
+      <radio-group class="radio-group-level" bindchange="radioChangeLevel">
         <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
@@ -20,26 +20,26 @@
     <view class="division"></view>
 
     <view class='input-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputTitle" auto-height type='text' name="title" placeholder="1.标题，<100字" value='{{titleContent}}' maxlength='100' />
+      <input class="textarea" style="flex:1" bindinput="bindKeyInputTitle" type='text' name="title" placeholder="1.标题，<100字" value='{{titleContent}}' maxlength='100' />
       <button bindtap="pasteTitle">粘贴</button>
     </view>
     <view class="division"></view>
 
     <view class='des-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputDes" auto-height type='text' name="des" placeholder="2.描述，<140字" value='{{desContent}}' maxlength='140' />
+      <input class="textarea" style="flex:1" bindinput="bindKeyInputDes" type='text' name="des" placeholder="2.描述，<140字" value='{{desContent}}' maxlength='140' />
       <button bindtap="pasteDes">粘贴</button>
     </view>
     <view class="division"></view>
 
     <view class='link-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputLink" auto-height type='text' name="link" placeholder="3.链接，源文地址" value='{{linkContent}}' maxlength='-1' />
+      <input class="textarea" style="flex:1" bindinput="bindKeyInputLink" type='text' name="link" placeholder="3.链接，原文地址" value='{{linkContent}}' />
       <button bindtap="pasteLink">粘贴</button>
     </view>
 
     <view class="division"></view>
 
     <view class='image-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" auto-height type='text' name="image" placeholder="4.图片，插入链接或上传本地图片" value='{{imageContent}}' maxlength='140' />
+      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" type='text' placeholder="4.图片，插入链接或上传本地图片" value='{{imageContent}}' maxlength='140' />
       <button bindtap="pasteImage">粘贴</button>
     </view>
 

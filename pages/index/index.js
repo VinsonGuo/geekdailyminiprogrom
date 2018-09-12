@@ -165,25 +165,28 @@ Page({
           articles:[]
         });
       }
+
+      that.data.articles.push(...res.data.data);
       // 处理数据
-      for (let i = 0; i < res.data.data.length; i++) {
-        let item = res.data.data[i];
+      for (let i = 0; i < that.data.articles.length; i++) {
+        let item = that.data.articles[i];
         if (i == 0) {
           item.isSameDay = false;
         } else {
           item.isSameDay = that.isSameDay(util.parseDate(item.date, format),
-            util.parseDate(res.data.data[i - 1].date, format))
+            util.parseDate(that.data.articles[i - 1].date, format))
         }
         let arr = item.date.split(' ');
-        if(util.isToday(util.parseDate(item.date, format))){
-          item.day='今日更新';
-        } else if (util.isYesterday(util.parseDate(item.date, format))){
-          item.day='昨天'
+        if (util.isToday(util.parseDate(item.date, format))) {
+          item.day = '今日更新';
+        } else if (util.isYesterday(util.parseDate(item.date, format))) {
+          item.day = '昨天'
+        }else{
+          item.day = arr[0]
         }
+        
         item.time = arr[1];
       }
-
-      that.data.articles.push(...res.data.data);
       // console.log(res.data.data)
       this.setData({
         articles: that.data.articles,

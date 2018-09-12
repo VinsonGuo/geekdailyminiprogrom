@@ -22,8 +22,8 @@ Page({
 
   //item点击事件
   itemTap: function (e) {
-    var item = e.currentTarget.dataset.article;
-    let article = JSON.stringify(item);
+    let item = e.currentTarget.dataset.article;
+    let article = encodeURIComponent(JSON.stringify(item));
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
