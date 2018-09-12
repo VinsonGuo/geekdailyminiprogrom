@@ -21,26 +21,26 @@
 
     <view class='input-container'>
       <input class="textarea" style="flex:1" bindinput="bindKeyInputTitle" type='text' name="title" placeholder="1.标题，<100字" value='{{titleContent}}' maxlength='100' />
-      <button bindtap="pasteTitle">粘贴</button>
+      <button class="small-button" bindtap="pasteTitle">粘贴</button>
     </view>
     <view class="division"></view>
 
     <view class='des-container'>
       <input class="textarea" style="flex:1" bindinput="bindKeyInputDes" type='text' name="des" placeholder="2.描述，<140字" value='{{desContent}}' maxlength='140' />
-      <button bindtap="pasteDes">粘贴</button>
+      <button class="small-button" bindtap="pasteDes">粘贴</button>
     </view>
     <view class="division"></view>
 
     <view class='link-container'>
       <input class="textarea" style="flex:1" bindinput="bindKeyInputLink" type='text' name="link" placeholder="3.链接，原文地址" value='{{linkContent}}' />
-      <button bindtap="pasteLink">粘贴</button>
+      <button class="small-button" bindtap="pasteLink">粘贴</button>
     </view>
 
     <view class="division"></view>
 
     <view class='image-container'>
       <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" type='text' placeholder="4.图片，插入链接或上传本地图片" value='{{imageContent}}' maxlength='140' />
-      <button bindtap="pasteImage">粘贴</button>
+      <button class="small-button" bindtap="pasteImage">粘贴</button>
     </view>
 
     <view class='image-image'>
