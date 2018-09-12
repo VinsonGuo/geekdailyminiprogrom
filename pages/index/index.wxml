@@ -10,7 +10,6 @@
     <view class="weui-loadmore_tips">正在加载</view>
   </view>
 
-
   <dialog id='dialog' title='登录提示' content='授权后才能享受所有服务哦' confirmText='知道了' bind:confirmEvent='confirmEvent' bind:bindGetUserInfo='bindGetUserInfo'>
   </dialog>
 
