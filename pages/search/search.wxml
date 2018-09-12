@@ -3,9 +3,7 @@
   <view class="search-view">
     <zan-search bindsearch="toSearch" focus="true" searchStyle="height: 88rpx; padding: 0 30rpx; background: {{ searchbg || '#eee' }};" keyword="{{ inputValue }}" bindchange="searchChange" inputStyle="height: 56rpx; border-radius: 8rpx;" />
   </view>
-
   <view class="division"></view>
-
   <template wx:key="{{articles}}" is="article_small" data="{{articles}}"></template>
 
 </view>

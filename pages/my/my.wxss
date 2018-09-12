@@ -25,6 +25,7 @@
 .login-button {
   width: 140rpx;
   margin-right: 30rpx;
+  font-size: 28rpx;
 }
 
 .userinfo-nickname {

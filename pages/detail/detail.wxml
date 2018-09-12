@@ -9,6 +9,7 @@
       <view>{{'↓ 来源地址，请点击复制'}}</view>
       <view class='article-link' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
     </view>
+    <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
   </view>
 
   <van-progress custom-class="progress" percentage="{{starProgress}}" />
