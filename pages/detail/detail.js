@@ -1,4 +1,4 @@
-import api from '../../utils/api'
+import api from '../../utils/api';
 const app = getApp()
 let user_id = 0;
 let lastScrollTop = 0;
@@ -50,13 +50,13 @@ Page({
 
   },
 
-  onShareAppMessage: function() {
-    let article = encodeUriComponent(JSON.stringify(this.data.article));
+  onShareAppMessage: function () {
     let self = this;
+    let article = encodeURIComponent(JSON.stringify(this.data.article));
+    console.log(article);
     return {
       title: self.data.article.title,
-      path: '/pages/index/index?article=' + article,
-      imageUrl: self.data.article.img_url
+      path: '/pages/index/index?article=' + article
     }
   },
 

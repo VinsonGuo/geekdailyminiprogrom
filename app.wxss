@@ -166,5 +166,5 @@
 }
 
 .divition {
-  height: 40rpx;
+  height: 60rpx;
 }
