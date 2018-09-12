@@ -14,16 +14,15 @@ Page({
     isHideLoadMore: true,
     articles: [],
     buttons: [{
-        label: '我的',
-        icon: 'contact',
-      },{
-        label: '搜索',
-        icon: 'search',
-      }, {
-        label: '投稿',
-        icon: 'add',
-      }
-    ]
+      label: '我的',
+      icon: 'contact',
+    }, {
+      label: '搜索',
+      icon: 'search',
+    }, {
+      label: '投稿',
+      icon: 'add',
+    }]
   },
   isSameDay: function(d1, d2) {
     return d1.getFullYear() === d2.getFullYear() &&
@@ -48,8 +47,8 @@ Page({
     })
   },
 
-  onLoad: function (options) {
-    if(options.article) { // 如果是转发过来的，直接跳转到详情页
+  onLoad: function(options) {
+    if (options.article) { // 如果是转发过来的，直接跳转到详情页
       wx.navigateTo({
         url: '/pages/detail/detail?article=' + options.article
       })
@@ -162,7 +161,7 @@ Page({
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
         that.setData({
-          articles:[]
+          articles: []
         });
       }
 
@@ -181,10 +180,10 @@ Page({
           item.day = '今日更新';
         } else if (util.isYesterday(util.parseDate(item.date, format))) {
           item.day = '昨天'
-        }else{
+        } else {
           item.day = arr[0]
         }
-        
+
         item.time = arr[1];
       }
       // console.log(res.data.data)
@@ -199,13 +198,11 @@ Page({
     });
 
   },
- onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
-      title: 'GeekReader-极客的阅读世界',
+      title: '极客的开源世界 -- Android',
       path: '/pages/index/index'
     }
   },
-
-
 
 })
