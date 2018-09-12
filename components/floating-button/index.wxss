@@ -42,8 +42,8 @@
   position: absolute;
   right: 30rpx;
   bottom: 30rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 110rpx;
+  height: 110rpx;
   border-radius: 50%;
   z-index: 1500;
   background-color: #33cd5f;
@@ -105,8 +105,8 @@
   pointer-events: none;
 }
 .wux-speed-dial__button {
-  width: 80rpx;
-  height: 80rpx;
+  width: 85rpx;
+  height: 85rpx;
   opacity: 0;
   color: #fff;
   border-radius: 50%;

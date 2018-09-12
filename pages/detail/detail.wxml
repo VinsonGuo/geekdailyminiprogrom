@@ -1,8 +1,7 @@
 <view class="markdown">
   <view class="container-top">
     <view>
-      <image class='avatar' src='{{article.user.avatar}}'></image>
-      <text class='article-des' wx:if="{{article.des}}">{{article.user.nick_name + ': '+article.des}}</text>
+      <image class='avatar' src='{{article.user.avatar}}'></image>{{article.user.nick_name + ': '+article.des}}
     </view>
     <view class='article-time'>{{'分享于 '+article.date}}</view>
     <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
@@ -19,6 +18,8 @@
     <button class='star-progress' bindtap='dislikeTap'>踩</button>
   </view>
 
+  <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
+  
   <!--收藏按钮  -->
   <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
     <zan-icon type="{{starStatus==0?'like-o':'like'}}"></zan-icon>
