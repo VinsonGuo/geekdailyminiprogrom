@@ -54,7 +54,7 @@ Page({
       })
     }
     wx.setNavigationBarTitle({
-      title: 'GeekReader',
+      title: 'GitClub',
     })
     this.getArticle(0, size, false);
 

@@ -11,14 +11,12 @@
     </view>
   </view>
 
-  <van-progress custom-class="progress" percentage="{{starProgress}}" />
-  <view class='star-container'>
+  <van-progress wx:if="{{false}}" custom-class="progress" percentage="{{starProgress}}" />
+  <view wx:if="{{false}}" class='star-container'>
     <button class='star-progress' bindtap='likeTap'>顶</button>
     <view style="flex:1"> </view>
     <button class='star-progress' bindtap='dislikeTap'>踩</button>
   </view>
-
-  <view class='divition'></view>
 
   <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
 

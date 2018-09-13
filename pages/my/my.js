@@ -140,8 +140,14 @@ Page({
 
   tabChange(e) {
     let id = e.detail;
+    if(id == this.data.tab.selectedId) {
+      return;
+    }
+    let tab = this.data.tab;
+    tab.selectedId = id;
     this.setData({
       articles: [],
+      tab
     })
     page = 0;
     this.getMyStarArticles(id);

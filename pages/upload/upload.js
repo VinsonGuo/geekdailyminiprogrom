@@ -54,7 +54,7 @@ Page({
       title: '上传中',
     })
     if (this.data.imageContent) {
-      param.article_img = this.data.imageContent;
+      param.img_url = this.data.imageContent;
       this.upload(param);
     } else {
       if (this.data.imageUrl === '/images/add_image.png') { //默认图片，请求失败
@@ -71,7 +71,7 @@ Page({
         name: 'article_img',
         success: (res) => {
           console.log(res)
-          param.article_img = JSON.parse(res.data).data.article_img;
+          param.img_url = JSON.parse(res.data).data.article_img;
           this.upload(param);
         },
         fail: (res) => {
@@ -91,7 +91,7 @@ Page({
     param.category = this.data.categoryArray[this.data.categoryIndex];
     param.contributor_id = app.globalData.userId;
     console.log(param)
-    if (!param.title || !param.des || !param.link || !param.article_img) {
+    if (!param.title || !param.des || !param.link || !param.img_url) {
       wx.showToast({
         title: '请输入内容',
         icon: 'none'
