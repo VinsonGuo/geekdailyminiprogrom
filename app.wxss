@@ -166,5 +166,12 @@
 }
 
 .divition {
-  height: 60rpx;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  padding-left: 15rpx;
+  background-color: #eee;
+  /* border-width: 0 0 5rpx 0; */
+  /* border-color: green; */
+  /* border-style: solid; */
 }

@@ -1,26 +1,44 @@
 <view class="container">
-  <view class="container-top">
+
+  <view class="detail-top">
     <view>
       <image class='avatar' src='{{article.user.avatar}}'></image>{{article.user.nick_name + ': '+article.des}}
     </view>
-    <view class='article-time'>{{article.category+'  '+'分享于'+article.date}}</view>
     <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
-    <view class='container-link'>
-      <view>{{'↓ 来源地址，请点击复制'}}</view>
-      <view class='article-link' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
-    </view>
   </view>
 
-  <van-progress custom-class="progress" percentage="{{starProgress}}" />
+  <view class='divition'>
+    <text class='article-title'>详情</text>
+  </view>
+  <view class='container-detail-more'>
+    <view class='article-time'>{{'分类：'+article.category}}</view>
+    <view class='article-time'>{{'适用于：'+article.rank}}</view>
+    <view class='article-time'>{{'分享于：'+article.date}}</view>
+    <view class='article-time'></view>
+    <text class='article-time'>原文链接，请点击复制</text>
+    <view class='article-time' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
+  </view>
+
+  <view class='divition'>
+    <text class='article-title'>用户评价</text>
+  </view>
   <view class='star-container'>
-    <button class='star-progress' bindtap='likeTap'>顶</button>
-    <view style="flex:1"> </view>
-    <button class='star-progress' bindtap='dislikeTap'>踩</button>
+    <button class='star-good' bindtap='likeTap'>顶</button>
+    <view class='star-progress'>
+      <van-progress custom-class="progress" percentage="{{starProgress}}" />
+    </view>
+    <button class='star-bad' bindtap='dislikeTap'>踩</button>
   </view>
 
-  <view class='divition'></view>
 
-  <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
+
+  <view class='divition'>
+    <text class='article-title'>README.md</text>
+  </view>
+
+  <view class='md-container'>
+    <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
+  </view>
 
   <!--收藏按钮  -->
   <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>

@@ -1,13 +1,47 @@
 .container {
   min-height: 100%;
-  position: relative;
-  padding: 20rpx 20rpx 100rpx 20rpx;
+  background-color: #fff;
 }
 
-.container-top {
-  width: 100%;
+.detail-top {
   flex-direction: column;
   display: flex;
+  padding: 30rpx;
+}
+
+.md-container {
+  flex-direction: column;
+  display: flex;
+  padding: 30rpx;
+}
+
+.star-container {
+  height: 200rpx;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.container-detail-more {
+  flex-direction: column;
+  display: flex;
+  padding: 30rpx;
+}
+
+.star-progress {
+  width: 70%;
+}
+
+.star-good {
+  background-color: rgb(44, 141, 252);
+  color: #fff;
+}
+
+.star-bad {
+  background-color: rgb(255, 102, 0);
+  color: #fff;
 }
 
 .article-image {
@@ -32,28 +66,20 @@
 }
 
 .container-link {
-  width: 100%;
-  flex-direction: column;
+  height: 140rpx;
+  align-items: center;
   display: flex;
-  padding: 10rpx;
-  margin-top: 30rpx;
+  padding: 30rpx;
 }
 
 .article-link {
   color: #666;
   font-size: 30rpx;
-  padding: 6rpx;
-  display: -webkit-box;
-  line-height: 40rpx;
   word-break: break-all;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 15rpx;
-  margin-bottom: 30rpx;
-  background-color: #33cd5f;
-  border-radius: 8rpx;
 }
 
 .round-click {
@@ -84,7 +110,7 @@
 
 .avatar {
   margin-left: 5rpx;
-  margin-right:5rpx;
+  margin-right: 5rpx;
   margin-bottom: -12rpx;
   width: 50rpx;
   height: 50rpx;
@@ -133,16 +159,6 @@
 .comment-content {
   font-size: 24rpx;
   color: #444;
-}
-
-.comment-time {
-  font-size: 18rpx;
-  color: #666;
-}
-
-.star-container {
-  display: flex;
-  direction: row;
 }
 
 .progress {
