@@ -11,7 +11,7 @@ Page({
   data: {
     article: {},
     comments: [],
-    starStatus:0,
+    starStatus: 0,
     starProgress: 0,
     isScrollUp: true,
     md: "",
@@ -29,10 +29,11 @@ Page({
     var that = this;
     console.log(options)
     let article = JSON.parse(decodeURIComponent(options.article));
-    let starProgress = (article.stars)/(article.stars + article.un_stars) * 100;
+    let starProgress = (article.stars) / (article.stars + article.un_stars) * 100;
     console.log("starProgress" + starProgress);
     that.setData({
-      article, starProgress
+      article,
+      starProgress
     });
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
     api.isStarArticle(article.article_id, user_id, (res) => {
@@ -41,7 +42,7 @@ Page({
         starStatus
       })
     })
-    api.relativeArticles(article.title, (res)=> {
+    api.relativeArticles(article.title, (res) => {
       console.log(res);
     })
     wx.setNavigationBarTitle({
@@ -50,7 +51,7 @@ Page({
 
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     let self = this;
     let article = encodeURIComponent(JSON.stringify(this.data.article));
     console.log(article);
@@ -62,7 +63,9 @@ Page({
 
   toStar: function() {
     if (user_id != 0) {
-      this.star(this.data.article.article_id, user_id, 1);
+      let starStatus = this.data.starStatus;
+      this.star(this.data.article.article_id, user_id,
+        starStatus == 0 ? 1 : 0);
     }
   },
 
@@ -82,7 +85,7 @@ Page({
   star: function(article_id, user_id, status) {
     let that = this;
     api.articleStar(article_id, user_id, status, (res) => {
-      let starStatus = that.data.data;
+      let starStatus = that.data.starStatus==0?1:0;
       wx.showToast({
         title: res.data.data,
       })

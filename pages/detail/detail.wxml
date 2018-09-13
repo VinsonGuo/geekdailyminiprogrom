@@ -30,15 +30,13 @@
     <button class='star-bad' bindtap='dislikeTap'>踩</button>
   </view>
 
-
-
   <view class='divition'>
     <text class='article-title'>README.md</text>
   </view>
-
   <view class='md-container'>
     <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
   </view>
+
 
   <!--收藏按钮  -->
   <view wx:if="{{isScrollUp}}" class="round-click" bindtap='toStar'>
