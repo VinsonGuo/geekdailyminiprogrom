@@ -26,7 +26,7 @@
 .article-time {
   margin-top: 10rpx;
   color: #666;
-  font-size: 30rpx;
+  font-size: 20rpx;
   padding: 0 10rpx;
   margin-bottom: 10rpx;
 }
@@ -85,7 +85,7 @@
 .avatar {
   margin-left: 5rpx;
   margin-right:5rpx;
-  margin-bottom: -12rpx;
+  margin-bottom: -14rpx;
   width: 50rpx;
   height: 50rpx;
   border-radius: 25rpx;
