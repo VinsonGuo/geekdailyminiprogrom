@@ -63,6 +63,12 @@
   font-size: 30rpx;
   padding: 0 10rpx;
   margin-bottom: 10rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .container-link {
@@ -75,11 +81,12 @@
 .article-link {
   color: #666;
   font-size: 30rpx;
+  display: -webkit-box;
   word-break: break-all;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .round-click {
@@ -111,7 +118,7 @@
 .avatar {
   margin-left: 5rpx;
   margin-right: 5rpx;
-  margin-bottom: -12rpx;
+  margin-bottom: -14rpx;
   width: 50rpx;
   height: 50rpx;
   border-radius: 25rpx;
