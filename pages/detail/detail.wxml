@@ -1,7 +1,7 @@
 <view class="container">
 
   <view class="detail-top">
-    <view>
+    <view class='avatar-container'>
       <image class='avatar' src='{{article.user.avatar}}'></image>{{article.user.nick_name + ': '+article.des}}
     </view>
     <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
@@ -16,10 +16,10 @@
     <view class='article-time'>{{'分享于：'+article.date}}</view>
     <view class='article-time'></view>
     <text class='article-time'>原文链接，请点击复制</text>
-    <view class='article-time' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
+    <view class='article-link' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
   </view>
 
-  <view class='divition'>
+  <!-- <view class='divition'>
     <text class='article-title'>用户评价</text>
   </view>
   <view class='star-container'>
@@ -28,7 +28,7 @@
       <van-progress custom-class="progress" percentage="{{starProgress}}" />
     </view>
     <button class='star-bad' bindtap='dislikeTap'>踩</button>
-  </view>
+  </view> -->
 
   <view class='divition'>
     <text class='article-title'>README.md</text>

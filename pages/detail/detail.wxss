@@ -15,6 +15,10 @@
   padding: 30rpx;
 }
 
+.avatar-container {
+  margin-bottom: 10rpx;
+}
+
 .star-container {
   height: 200rpx;
   flex-direction: row;
@@ -79,13 +83,16 @@
 }
 
 .article-link {
-  color: #666;
+  margin-top: 10rpx;
+  color: blue;
   font-size: 30rpx;
+  padding: 0 10rpx;
+  margin-bottom: 10rpx;
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   overflow: hidden;
 }
 

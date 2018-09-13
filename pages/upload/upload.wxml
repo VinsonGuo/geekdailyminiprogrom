@@ -39,7 +39,7 @@
     <view class="division"></view>
 
     <view class='image-container'>
-      <textarea class="textarea" style="flex:1" bindinput="bindKeyInputImage" type='text' placeholder="4.图片，插入链接或上传本地图片" value='{{imageContent}}' maxlength='140' />
+      <input class="textarea" style="flex:1" bindinput="bindKeyInputImage" type='text' placeholder="4.图片，插入链接或上传本地图片" value='{{imageContent}}' maxlength='140' />
       <button class="small-button" bindtap="pasteImage">粘贴</button>
     </view>
 
