@@ -10,17 +10,7 @@ Page({
     imageUrl: '/images/add_image.png',
     categoryArray: ['Android'],
     categoryIndex: 0,
-    items: [{
-        value: '所有人',
-        checked: 'true'
-      },
-      {
-        value: '入门'
-      },
-      {
-        value: '进阶'
-      },
-    ],
+    items: app.globalData.levelItems,
     levelIndex: 0,
     titleContent: '',
     desContent: '',

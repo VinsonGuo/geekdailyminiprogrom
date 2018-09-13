@@ -2,7 +2,6 @@ import api from '../../utils/api';
 const app = getApp()
 let user_id = 0;
 let lastScrollTop = 0;
-
 Page({
 
   /**
@@ -29,6 +28,7 @@ Page({
     var that = this;
     console.log(options)
     let article = JSON.parse(decodeURIComponent(options.article));
+    article.rankText = app.globalData.levelItems[article.rank].value;
     let starProgress = (article.stars) / (article.stars + article.un_stars) * 100;
     console.log("starProgress" + starProgress);
     that.setData({

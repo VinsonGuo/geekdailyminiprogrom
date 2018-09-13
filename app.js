@@ -16,6 +16,18 @@ App({
         that.globalData.userInfo = res.userInfo;
       }
     })
+
+    this.globalData.levelItems = [{
+      value: '所有人',
+      checked: 'true'
+    },
+    {
+      value: '入门'
+    },
+    {
+      value: '进阶'
+    },
+    ];
   },
 
   globalData: {

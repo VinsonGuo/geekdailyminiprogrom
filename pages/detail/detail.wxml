@@ -12,7 +12,7 @@
   </view>
   <view class='container-detail-more'>
     <view class='article-time'>{{'分类：'+article.category}}</view>
-    <view class='article-time'>{{'适用于：'+article.rank}}</view>
+    <view class='article-time'>{{'适用于：'+article.rankText}}</view>
     <view class='article-time'>{{'分享于：'+article.date}}</view>
     <view class='article-time'></view>
     <text class='article-time'>原文链接，请点击复制</text>
@@ -30,11 +30,11 @@
     <button class='star-bad' bindtap='dislikeTap'>踩</button>
   </view> -->
 
-  <view class='divition'>
+  <view wx:if="{{md}}" class='divition'>
     <text class='article-title'>README.md</text>
   </view>
   <view class='md-container'>
-    <wemark style="border-top:4rpx solid #999;" md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
+    <wemark md="{{md}}" link="true" highlight="true" type="wemark"></wemark>
   </view>
 
 
