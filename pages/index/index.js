@@ -24,6 +24,12 @@ Page({
       icon: 'add',
     }]
   },
+  
+  getVisitCount() {
+    let now = new Date();
+    let count = now.getHours() * 600 + now.getMinutes() * 10 + Math.random() * 10;
+    return parseInt(count);
+  },
   isSameDay: function(d1, d2) {
     return d1.getFullYear() === d2.getFullYear() &&
       d1.getMonth() === d2.getMonth() &&
@@ -171,6 +177,7 @@ Page({
         let item = that.data.articles[i];
         if (i == 0) {
           item.isSameDay = false;
+          item.visitCount = that.getVisitCount();
         } else {
           item.isSameDay = that.isSameDay(util.parseDate(item.date, format),
             util.parseDate(that.data.articles[i - 1].date, format))

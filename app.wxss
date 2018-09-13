@@ -28,6 +28,9 @@
   padding: 5rpx 5rpx;
   font-size: 36rpx;
   background: #eee;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .article-item {

@@ -2,6 +2,7 @@ import api from '../../utils/api';
 const app = getApp()
 let user_id = 0;
 let lastScrollTop = 0;
+
 Page({
 
   /**
