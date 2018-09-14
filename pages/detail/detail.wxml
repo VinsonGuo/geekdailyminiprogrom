@@ -8,7 +8,7 @@
   </view>
 
   <view class='divition'>
-    <text class='article-title'>详情</text>
+    <text class='article-title'>更多信息</text>
   </view>
   <view class='container-detail-more'>
     <view class='article-time'>{{'分类：'+article.category}}</view>
@@ -31,7 +31,7 @@
   </view> -->
 
   <view wx:if="{{md}}" class='divition'>
-    <text class='article-title'>README.md</text>
+    <text class='article-title'>README</text>
   </view>
   <view class='md-container'>
     <wemark md="{{md}}" link="true" highlight="true" type="wemark"></wemark>

@@ -65,7 +65,6 @@
   margin-top: 10rpx;
   color: #666;
   font-size: 30rpx;
-  padding: 0 10rpx;
   margin-bottom: 10rpx;
   display: -webkit-box;
   word-break: break-all;
