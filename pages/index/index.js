@@ -25,7 +25,7 @@ Page({
       icon: 'add',
     }]
   },
-  
+
   isSameDay: function(d1, d2) {
     return d1.getFullYear() === d2.getFullYear() &&
       d1.getMonth() === d2.getMonth() &&
@@ -81,46 +81,48 @@ Page({
 
   async bindGetUserInfo() {
     let that = this;
-    await wx.getUserInfo({
-      success: function(res) {
-        app.globalData.userInfo = res.userInfo;
-      }
-    })
-   
-    // 用户点击授权后，这里可以做一些登陆操作
-    wx.login({
-      success: res => {
-        console.log(res.code)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var userInfo = app.globalData.userInfo;
-        api.WxLogin(res.code, userInfo.nickName, userInfo.avatarUrl, (res) => {
-          console.log(res.data.data)
-          //保存user_id到内存
-          let userId = res.data.data.user_id;
-          wx.setStorage({
-            key: 'user_id',
-            data: userId,
-            success: function() {
-              app.globalData.userId = userId;
-            }
-          })
-          wx.showToast({
-            title: '登录成功!',
-          })
-          wx.hideLoading();
-        }, (res) => {
-          wx.showToast({
-            title: '登录失败!',
-          })
-          wx.hideLoading();
-        });
-      },
-      fail: res => {
-        wx.showToast({
-          title: '登录失败!',
-        })
-        wx.hideLoading();
-      }
+
+    // 1先获取userInfo
+    let userInfo = await new Promise((resolve, reject) => wx.getUserInfo({
+      success: (res) => resolve(res),
+      fail: (res) => reject(res)
+    })).then(res => {
+      app.globalData.userInfo = res.userInfo;
+      return res.userInfo
+    });
+
+    // 2进行微信登录，获取code
+    let code = await new Promise((resolve, reject) => {
+      wx.login({
+        success: (res) => resolve(res),
+        fail: (res) => reject(res)
+      })
+    }).then(res => {
+      console.log(res.code)
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId;
+      return res.code;
+    }).catch(err => {
+      wx.showToast({
+        title: '登录失败!',
+      })
+      wx.hideLoading();
+    });
+    // 3.后台登录
+    api.WxLogin(code, userInfo.nickName, userInfo.avatarUrl, (res) => {
+      console.log(res.data.data)
+      //保存user_id到内存
+      let userId = res.data.data.user_id;
+      wx.setStorage({
+        key: 'user_id',
+        data: userId,
+        success: () => {
+          app.globalData.userId = userId;
+        }
+      })
+      wx.showToast({
+        title: '登录成功!',
+      })
+      wx.hideLoading();
     })
   },
 
@@ -174,7 +176,7 @@ Page({
         let item = that.data.articles[i];
         if (i == 0) {
           item.isSameDay = false;
-          await api.getArticleTotalViews().then((res)=>{
+          await api.getArticleTotalViews().then((res) => {
             item.readCount = res.data.data;
           });
         } else {
