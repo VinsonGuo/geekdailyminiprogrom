@@ -281,7 +281,7 @@ export default class api {
          reject(res)
        }
      })
-   })
+   }).then((res)=> res.data.data);
   }
 }
 

@@ -107,6 +107,7 @@ Page({
       })
       wx.hideLoading();
     });
+
     // 3.后台登录
     api.WxLogin(code, userInfo.nickName, userInfo.avatarUrl, (res) => {
       console.log(res.data.data)
@@ -176,9 +177,7 @@ Page({
         let item = that.data.articles[i];
         if (i == 0) {
           item.isSameDay = false;
-          await api.getArticleTotalViews().then((res) => {
-            item.readCount = res.data.data;
-          });
+          item.readCount = await api.getArticleTotalViews();
         } else {
           item.isSameDay = that.isSameDay(util.parseDate(item.date, format),
             util.parseDate(that.data.articles[i - 1].date, format))
