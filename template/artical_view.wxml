@@ -5,7 +5,7 @@
       <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
       <view class='article-date' wx:if='{{!item.isSameDay}}'>
       <view>{{item.day}}</view>
-      <view wx:if='{{item.visitCount}}'>今日访问量：{{item.visitCount}}</view>
+      <view wx:if='{{item.readCount}}'>今日阅读量：{{item.readCount}}</view>
       </view>
       <view class="article-box-vertical">
         <view class='article-top'>

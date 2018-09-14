@@ -1,5 +1,6 @@
 import api from '../../utils/api';
 import util from '../../utils/util';
+import regeneratorRuntime from '../../utils/regenerator-runtime/runtime'
 //index.js
 //获取应用实例
 const app = getApp()
@@ -25,11 +26,6 @@ Page({
     }]
   },
   
-  getVisitCount() {
-    let now = new Date();
-    let count = now.getHours() * 600 + now.getMinutes() * 10 + Math.random() * 10;
-    return parseInt(count);
-  },
   isSameDay: function(d1, d2) {
     return d1.getFullYear() === d2.getFullYear() &&
       d1.getMonth() === d2.getMonth() &&
@@ -83,13 +79,14 @@ Page({
     this.dialog.hideDialog();
   },
 
-  bindGetUserInfo: function() {
+  async bindGetUserInfo() {
     let that = this;
-    wx.getUserInfo({
+    await wx.getUserInfo({
       success: function(res) {
         app.globalData.userInfo = res.userInfo;
       }
     })
+   
     // 用户点击授权后，这里可以做一些登陆操作
     wx.login({
       success: res => {
@@ -158,9 +155,9 @@ Page({
   },
 
   //获取article内容
-  getArticle: function(page, size, isLoadMore) {
+  getArticle(page, size, isLoadMore) {
     let that = this;
-    api.getArticalList(page, size, (res) => {
+    api.getArticalList(page, size, async(res) => {
       isLastPage = (res.data.data.length === 0);
       //完成停止加载
       if (!isLoadMore) {
@@ -177,7 +174,9 @@ Page({
         let item = that.data.articles[i];
         if (i == 0) {
           item.isSameDay = false;
-          item.visitCount = that.getVisitCount();
+          await api.getArticleTotalViews().then((res)=>{
+            item.readCount = res.data.data;
+          });
         } else {
           item.isSameDay = that.isSameDay(util.parseDate(item.date, format),
             util.parseDate(that.data.articles[i - 1].date, format))
@@ -193,7 +192,6 @@ Page({
 
         item.time = arr[1];
       }
-      // console.log(res.data.data)
       this.setData({
         articles: that.data.articles,
         isHideLoadMore: true

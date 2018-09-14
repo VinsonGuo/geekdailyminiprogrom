@@ -1,3 +1,6 @@
+
+import regeneratorRuntime from 'regenerator-runtime/runtime'
+
 const baseUrl = "https://502tech.com/geekdaily/";
 const contentType = 'application/x-www-form-urlencoded';
 
@@ -132,7 +135,7 @@ export default class api {
 
 
   //获取文章详情
-  static getArticleDetail = (article_id, success, fail) => {
+  static getArticleDetail = (article_id, success, fail= (res)=>{}) => {
     wx.request({
       url: `${baseUrl}getArticleDetail`,
       method: "POST",
@@ -261,6 +264,24 @@ export default class api {
         fail(res)
       }
     })
+  }
+
+  static getArticleTotalViews = async() => {
+   return await new Promise((resolve, reject)=>{
+     wx.request({
+       url: `${baseUrl}getArticleTotalViews`,
+       method: "POST",
+       header: {
+         'content-type': contentType
+       },
+       success: (res) => {
+         resolve(res)
+       },
+       fail: (res) => {
+         reject(res)
+       }
+     })
+   })
   }
 }
 
