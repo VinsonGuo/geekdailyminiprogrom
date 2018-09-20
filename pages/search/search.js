@@ -8,7 +8,8 @@ Page({
    */
   data: {
     articles: [],
-    inputValue: ''
+    inputValue: '',
+    showTag:true
   },
 
   /**
@@ -32,8 +33,20 @@ Page({
 
   searchChange(e) {
     this.setData({
-      inputValue: e.detail.value
+      inputValue: e.detail.value,
     });
+    if(!e.detail.value) { // 输入框为空，显示tag
+      this.setData({
+        showTag:true
+      })
+    }
+  },
+
+  onTagTap(e) {
+    this.setData({
+      inputValue: e.target.dataset.value,
+    });
+    this.toSearch();
   },
 
   toSearch: function(){
@@ -44,9 +57,16 @@ Page({
   query: function (page, size, query) {
     let that = this;
     api.query(page, size, query, (res) => {
-      console.log(res.data.data)
+      if(res.data.data.length===0) {
+        wx.showToast({
+          title: '暂无搜索结果',
+          icon:'none'
+        })
+        return
+      }
       that.setData({
         articles: res.data.data,
+        showTag:false
       })
     });
 

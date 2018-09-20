@@ -18,3 +18,19 @@
 .division {
   height: 100rpx;
 }
+
+.keyword-container{
+  background: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10rpx 20rpx;
+}
+
+.keyword{
+  padding: 4rpx 10rpx;
+  margin: 6rpx 8rpx;
+  font-size: 28rpx;
+  border: 1px solid #999;
+  border-radius: 8rpx;
+}

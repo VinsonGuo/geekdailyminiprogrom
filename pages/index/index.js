@@ -17,13 +17,11 @@ Page({
     buttons: [{
       label: '我的',
       icon: 'contact',
-    }, {
-      label: '搜索',
-      icon: 'search',
-    }, {
+    },{
       label: '投稿',
       icon: 'add',
-    }]
+    }],
+    searchText:''
   },
 
   isSameDay: function(d1, d2) {
@@ -41,15 +39,11 @@ Page({
     })
 
     index === 1 && wx.navigateTo({
-      url: '/pages/search/search'
-    })
-
-    index === 2 && wx.navigateTo({
       url: '/pages/upload/upload'
     })
   },
 
-  onLoad: function(options) {
+  async onLoad(options) {
     if (options.article) { // 如果是转发过来的，直接跳转到详情页
       wx.navigateTo({
         url: '/pages/detail/detail?article=' + options.article
@@ -59,6 +53,10 @@ Page({
       title: 'GitClub',
     })
     this.getArticle(0, size, false);
+    let count = await api.getArticleTotalViews();
+    this.setData({
+      searchText:`已收录${count}个优质开源项目，点击搜索`
+    })
 
     wx.showShareMenu({
       withShareTicket: true
@@ -77,6 +75,12 @@ Page({
 
   confirmEvent: function() {
     this.dialog.hideDialog();
+  },
+
+  toSearch(e) {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
   },
 
   async bindGetUserInfo() {
@@ -146,11 +150,11 @@ Page({
 
   //item点击事件
   itemTap: function(e) {
-    var item = e.currentTarget.dataset.article;
+    let item = e.currentTarget.dataset.article;
     //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
     // item.img_url = encodeURIComponent(item.img_url);
     // item.link = encodeURIComponent(item.link);
-    var article = encodeURIComponent(JSON.stringify(item));
+    let article = encodeURIComponent(JSON.stringify(item));
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
@@ -160,7 +164,7 @@ Page({
   //获取article内容
   getArticle(page, size, isLoadMore) {
     let that = this;
-    api.getArticalList(page, size, async(res) => {
+    api.getArticalList(page, size, (res) => {
       isLastPage = (res.data.data.length === 0);
       //完成停止加载
       if (!isLoadMore) {
@@ -176,8 +180,7 @@ Page({
       for (let i = 0; i < that.data.articles.length; i++) {
         let item = that.data.articles[i];
         if (i == 0) {
-          item.isSameDay = false;
-          item.readCount = await api.getArticleTotalViews();
+          item.isSameDay = true;
         } else {
           item.isSameDay = that.isSameDay(util.parseDate(item.date, format),
             util.parseDate(that.data.articles[i - 1].date, format))

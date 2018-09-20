@@ -269,7 +269,7 @@ export default class api {
   static getArticleTotalViews = async() => {
    return await new Promise((resolve, reject)=>{
      wx.request({
-       url: `${baseUrl}getArticleTotalViews`,
+       url: `${baseUrl}getArticleTotals`,
        method: "POST",
        header: {
          'content-type': contentType

@@ -5,7 +5,7 @@
       <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
       <view class='article-date' wx:if='{{!item.isSameDay}}'>
       <view>{{item.day}}</view>
-      <view wx:if='{{item.readCount}}'>今日阅读量：{{item.readCount}}</view>
+      <view wx:if='{{item.readCount}}'>已收录{{item.readCount}}个开源项目</view>
       </view>
       <view class="article-box-vertical">
         <view class='article-top'>
