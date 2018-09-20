@@ -1,7 +1,8 @@
 <import src="../../template/artical_view.wxml" />
 
 <view class="container">
-  
+  <zan-search disabled focus="false" class="search" searchStyle="height: 88rpx; padding: 0 30rpx; background: {{ searchbg || '#eee' }};" bindtap="toSearch" placeholder="{{searchText}}" inputStyle="height: 56rpx; border-radius: 8rpx;" />
+  <view style='height:88rpx;width:100%;'></view>
   <template wx:key="{{articles}}" is="article_big" data="{{articles}}"></template>
   
   <!-- 上拉加载更多 -->

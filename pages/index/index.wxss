@@ -4,7 +4,10 @@
   background-color: #eee;
   min-height: 100%;
 }
-
+.search{
+  width: 100%;
+  position: fixed;
+}
 /*  加载更多   */
 
 .weui-loading {

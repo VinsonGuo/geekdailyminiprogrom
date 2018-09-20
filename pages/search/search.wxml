@@ -4,6 +4,24 @@
     <zan-search bindsearch="toSearch" focus="true" searchStyle="height: 88rpx; padding: 0 30rpx; background: {{ searchbg || '#eee' }};" keyword="{{ inputValue }}" bindchange="searchChange" inputStyle="height: 56rpx; border-radius: 8rpx;" />
   </view>
   <view class="division"></view>
-  <template wx:key="{{articles}}" is="article_small" data="{{articles}}"></template>
+  <view wx:if="{{showTag}}" class='keyword-container'>
+  <text class='keyword' bindtap='onTagTap' data-value='自定义View'>自定义View</text>
+  <text class='keyword' bindtap='onTagTap' data-value='Tab'>Tab</text>
+  <text class='keyword' bindtap='onTagTap' data-value='WebView'>WebView</text>
+  <text class='keyword' bindtap='onTagTap' data-value='相机'>相机</text>
+  <text class='keyword' bindtap='onTagTap' data-value='图片加载'>图片加载</text>
+  <text class='keyword' bindtap='onTagTap' data-value='图表'>图表</text>
+  <text class='keyword' bindtap='onTagTap' data-value='列表'>列表</text>
+  <text class='keyword' bindtap='onTagTap' data-value='数据库'>数据库</text>
+  <text class='keyword' bindtap='onTagTap' data-value='蓝牙'>蓝牙</text>
+  <text class='keyword' bindtap='onTagTap' data-value='视频'>视频</text>
+  <text class='keyword' bindtap='onTagTap' data-value='音频'>音频</text>
+  <text class='keyword' bindtap='onTagTap' data-value='人脸识别'>人脸识别</text>
+  <text class='keyword' bindtap='onTagTap' data-value='OpenGL'>OpenGL</text>
+  <text class='keyword' bindtap='onTagTap' data-value='Canvas'>Canvas</text>
+  <text class='keyword' bindtap='onTagTap' data-value='网络请求'>网络请求</text>
+  <text class='keyword' bindtap='onTagTap' data-value='完整项目'>完整项目</text>
+  </view>
+  <template wx:if="{{!showTag}}" wx:key="{{articles}}" is="article_small" data="{{articles}}"></template>
 
 </view>
