@@ -11,7 +11,6 @@ Page({
     score: '当前积分 0',
     score_sign_continuous: 0,
     userInfo: {},
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     tab: {
       list: [{
         id: 1,
@@ -39,25 +38,7 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo
-          })
-        }
-      })
-    }
+    } 
     this.getMyStarArticles(1);
   },
 
@@ -132,7 +113,6 @@ Page({
 
   itemTap(e) {
     let item = e.currentTarget.dataset.article;
-    //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
     let article = encodeURIComponent(JSON.stringify(item));
     api.viewArticle(item.article_id);
     wx.navigateTo({
