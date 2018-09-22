@@ -4,6 +4,8 @@ import regeneratorRuntime from 'regenerator-runtime/runtime'
 const baseUrl = "https://502tech.com/geekdaily/";
 const contentType = 'application/x-www-form-urlencoded';
 
+const app = getApp();
+
 export default class api {
   //微信登陆
   static WxLogin = (code, nickName, avatarUrl, success, fail) => {
@@ -266,22 +268,80 @@ export default class api {
     })
   }
 
+  static request = async(data, path) => {
+    return await new Promise((resolve, reject) => {
+      wx.request({
+        url: `${baseUrl}${path}`,
+        method: "POST",
+        data:data,
+        header: {
+          'content-type': contentType
+        },
+        success: (res) => {
+          resolve(res)
+        },
+        fail: (res) => {
+          reject(res)
+        }
+      })
+    }).then((res) => res.data.data);
+  }
+
   static getArticleTotalViews = async() => {
-   return await new Promise((resolve, reject)=>{
-     wx.request({
-       url: `${baseUrl}getArticleTotals`,
-       method: "POST",
-       header: {
-         'content-type': contentType
-       },
-       success: (res) => {
-         resolve(res)
-       },
-       fail: (res) => {
-         reject(res)
-       }
-     })
-   }).then((res)=> res.data.data);
+    return api.request(null, "getArticleTotals");
+  }
+
+  static getMyStarArticles = async (data) => {
+    return api.request(data, "getMyStarArticles");
+  }
+
+  static getMyContributeArticles = async (data) => {
+    return api.request(data, "getMyContributeArticles");
+  }
+
+  static login = async() => {
+    // 1先获取userInfo
+    let userInfo = await new Promise((resolve, reject) => wx.getUserInfo({
+      success: (res) => resolve(res),
+      fail: (res) => reject(res)
+    })).then(res => {
+      return res.userInfo
+    });
+    app.globalData.userInfo = userInfo;
+
+    // 2进行微信登录，获取code
+    let code = await new Promise((resolve, reject) => {
+      wx.login({
+        success: (res) => resolve(res),
+        fail: (res) => reject(res)
+      })
+    }).then(res => {
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId;
+      return res.code;
+    }).catch(err => {
+      wx.showToast({
+        title: '登录失败!',
+      })
+      wx.hideLoading();
+    });
+
+    // 3.后台登录
+    api.WxLogin(code, userInfo.nickName, userInfo.avatarUrl, (res) => {
+      console.log(res.data.data)
+      //保存user_id到内存
+      let userId = res.data.data.user_id;
+      wx.setStorage({
+        key: 'user_id',
+        data: userId,
+        success: () => {
+          app.globalData.userId = userId;
+        }
+      })
+      wx.showToast({
+        title: '登录成功!',
+      })
+      wx.hideLoading();
+    });
   }
 }
 

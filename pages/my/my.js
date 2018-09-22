@@ -1,9 +1,8 @@
 import api from '../../utils/api'
+import regeneratorRuntime from '../../utils/regenerator-runtime/runtime'
 //index.js
 //获取应用实例
 const app = getApp()
-//用户唯一的id
-var user_id = 0;
 let page = 0;
 
 Page({
@@ -12,7 +11,6 @@ Page({
     score: '当前积分 0',
     score_sign_continuous: 0,
     userInfo: {},
-    hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     tab: {
       list: [{
@@ -27,11 +25,9 @@ Page({
     articles: []
   },
 
-  onLoad: function() {
-    var that = this;
-    user_id = app.globalData.userId;
-    if (user_id != 0) { //已登录
-      that.setData({
+  onLoad() {
+    if (app.globalData.userId) { //已登录
+      this.setData({
         loginOrLogout: "退出",
       })
     }
@@ -41,16 +37,14 @@ Page({
     })
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        userInfo: app.globalData.userInfo
       })
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+          userInfo: res.userInfo
         })
       }
     } else {
@@ -59,8 +53,7 @@ Page({
         success: res => {
           app.globalData.userInfo = res.userInfo
           this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+            userInfo: res.userInfo
           })
         }
       })
@@ -69,78 +62,29 @@ Page({
   },
 
   //登录或登出
-  loginOrLogout: function() {
-    var that = this;
-    if (user_id != 0) { //存在user_id
+  async loginOrLogout() {
+    if (app.globalData.userId) { //存在user_id
       //登出
       wx.removeStorage({
         key: 'user_id',
-        success: function(res) {
-          console.log(res.data)
-          user_id = 0;
-          app.globalData.userId = 0;
-          that.setData({
+        success: (res)=> {
+          app.globalData.userId = undefined;
+          this.setData({
             loginOrLogout: "登录",
           })
         }
       })
     } else { //不存在user_id
-      wx.showLoading({
-        title: '登录中...',
-      })
-      //微信登陆获取微信临时登陆code
-      wx.login({
-        success: res => {
-          console.log(res.code)
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          console.log(that.data.userInfo)
-          var userInfo = that.data.userInfo;
-          that.wxLogin(res.code, userInfo.nickName, userInfo.avatarUrl);
-        },
-        fail: res => {
-          wx.showToast({
-            title: '登录失败!',
-          })
-          wx.hideLoading();
-        }
+      await api.login();
+      this.setData({
+        loginOrLogout: "退出",
       })
     }
   },
 
-  wxLogin: function(code, nickName, avatarUrl) {
-    let that = this;
-    api.WxLogin(code, nickName, avatarUrl, (res) => {
-      console.log(res.data.data)
-      //保存user_id到内存
-      var userId = res.data.data.user_id;
-      console.log(userId)
-      wx.setStorage({
-        key: 'user_id',
-        data: userId,
-        success: function() {
-          user_id = userId;
-          app.globalData.userId = userId;
-          that.setData({
-            loginOrLogout: "退出",
-          })
-        }
-      })
-      wx.showToast({
-        title: '登录成功!',
-      })
-      wx.hideLoading();
-    }, (res) => {
-      wx.showToast({
-        title: '登录失败!',
-      })
-      wx.hideLoading();
-    });
-
-  },
-
   tabChange(e) {
     let id = e.detail;
-    if(id == this.data.tab.selectedId) {
+    if (id == this.data.tab.selectedId) {
       return;
     }
     let tab = this.data.tab;
@@ -154,53 +98,42 @@ Page({
   },
 
   //获取我的收藏(点赞)文章列表
-  getMyStarArticles: function(id, size = 10) {
-    var that = this;
-    let url = id === 1 ? 'https://502tech.com/geekdaily/getMyStarArticles' :
-      'https://502tech.com/geekdaily/getMyContributeArticles';
-    wx.request({
-      url,
-      method: "POST",
-      data: {
-        page: page,
-        size: size,
-        user_id: user_id
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 
-      },
-      success: function(res) {
-        console.log(res.data)
-        if (page == 0) {
-          that.setData({
-            articles: res.data.data,
-          })
-        } else {
-          that.data.articles.push(...res.data.data)
-          that.setData({
-            articles: that.data.articles,
-          })
-        }
-      },
-      fail: function(res) {
-        page--;
+  async getMyStarArticles(selectId, size = 10) {
+    let param = {
+      page: page,
+      size: size,
+      user_id: app.globalData.userId
+    }
+    let data = selectId == 1 ? await api.getMyStarArticles(param) :
+      await api.getMyContributeArticles(param);
+    if (data) {
+      if (page == 0) {
+        this.setData({
+          articles: data,
+        })
+      } else {
+        this.data.articles.push(...data)
+        this.setData({
+          articles: this.data.articles,
+        })
       }
-    })
+    } else {
+      page--;
+    }
 
   },
 
 
 
-  onReachBottom: function() {
-    let that = this;
+  onReachBottom() {
     page += 1
     this.getMyStarArticles(this.data.tab.selectedId);
   },
 
-  itemTap: function(e) {
-    var item = e.currentTarget.dataset.article;
+  itemTap(e) {
+    let item = e.currentTarget.dataset.article;
     //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
-    var article = encodeURIComponent(JSON.stringify(item));
+    let article = encodeURIComponent(JSON.stringify(item));
     api.viewArticle(item.article_id);
     wx.navigateTo({
       url: '../detail/detail?article=' + article

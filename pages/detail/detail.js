@@ -26,7 +26,7 @@ Page({
    */
   onLoad: function(options) {
     user_id = app.globalData.userId;
-    var that = this;
+    let that = this;
     console.log(options)
     let article = JSON.parse(decodeURIComponent(options.article));
     article.rankText = app.globalData.levelItems[article.rank].value;

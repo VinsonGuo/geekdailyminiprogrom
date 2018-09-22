@@ -17,11 +17,24 @@ Page({
     buttons: [{
       label: '我的',
       icon: 'contact',
-    },{
+    }, {
       label: '投稿',
       icon: 'add',
     }],
-    searchText:''
+    tab: {
+      list: [{
+        id: 1,
+        title: 'Android'
+      }, {
+        id: 2,
+        title: 'iOS'
+      }, {
+        id: 3,
+        title: 'Web'
+      }],
+      selectedId: 1
+    },
+    searchText: ''
   },
 
   isSameDay: function(d1, d2) {
@@ -55,7 +68,7 @@ Page({
     this.getArticle(0, size, false);
     let count = await api.getArticleTotalViews();
     this.setData({
-      searchText:`已收录${count}个优质开源项目，点击搜索`
+      searchText: `已收录${count}个优质开源项目，点击搜索`
     })
 
     wx.showShareMenu({
@@ -68,7 +81,7 @@ Page({
     let that = this;
     this.dialog = this.selectComponent("#dialog");
     //如果没登录，显示弹窗引导登录
-    if (app.globalData.userId == 0) {
+    if (!app.globalData.userId) {
       that.dialog.showDialog();
     }
   },
@@ -84,51 +97,7 @@ Page({
   },
 
   async bindGetUserInfo() {
-    let that = this;
-
-    // 1先获取userInfo
-    let userInfo = await new Promise((resolve, reject) => wx.getUserInfo({
-      success: (res) => resolve(res),
-      fail: (res) => reject(res)
-    })).then(res => {
-      app.globalData.userInfo = res.userInfo;
-      return res.userInfo
-    });
-
-    // 2进行微信登录，获取code
-    let code = await new Promise((resolve, reject) => {
-      wx.login({
-        success: (res) => resolve(res),
-        fail: (res) => reject(res)
-      })
-    }).then(res => {
-      console.log(res.code)
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId;
-      return res.code;
-    }).catch(err => {
-      wx.showToast({
-        title: '登录失败!',
-      })
-      wx.hideLoading();
-    });
-
-    // 3.后台登录
-    api.WxLogin(code, userInfo.nickName, userInfo.avatarUrl, (res) => {
-      console.log(res.data.data)
-      //保存user_id到内存
-      let userId = res.data.data.user_id;
-      wx.setStorage({
-        key: 'user_id',
-        data: userId,
-        success: () => {
-          app.globalData.userId = userId;
-        }
-      })
-      wx.showToast({
-        title: '登录成功!',
-      })
-      wx.hideLoading();
-    })
+    await api.login();
   },
 
   //下拉刷新
@@ -139,13 +108,12 @@ Page({
   },
 
   //上拉加载更多
-  onReachBottom: function() {
-    var that = this;
-    that.setData({
+  onReachBottom() {
+    this.setData({
       isHideLoadMore: isLastPage
     })
     currentPage += 1
-    that.getArticle(currentPage, size, true)
+    this.getArticle(currentPage, size, true)
   },
 
   //item点击事件
@@ -212,6 +180,23 @@ Page({
       title: '极客的开源世界 -- Android',
       path: '/pages/index/index'
     }
+  },
+  tabChange(e) {
+    let id = e.detail;
+    console.log("tab id "+id);
+    if (id == this.data.tab.selectedId) {
+      return;
+    }
+    let tab = this.data.tab;
+    tab.selectedId = id;
+    this.setData({
+      // articles: [],
+      tab
+    });
+    let category = tab.list.filter((item) => {
+       return item.id === id;
+    })[0].title;
+    console.log(category)
   },
 
 })
