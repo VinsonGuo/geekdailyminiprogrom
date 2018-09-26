@@ -1,33 +1,12 @@
 
-import regeneratorRuntime from 'regenerator-runtime/runtime'
+import regeneratorRuntime from './regenerator-runtime/runtime'
 
 const baseUrl = "https://502tech.com/geekdaily/";
 const contentType = 'application/x-www-form-urlencoded';
 
 const app = getApp();
 
-export default class api {
-  //微信登陆
-  static WxLogin = (code, nickName, avatarUrl, success, fail) => {
-    wx.request({
-      url: `${baseUrl}WxLogin`,
-      method: "POST",
-      data: {
-        code: code,
-        nickName: nickName,
-        avatarUrl: avatarUrl
-      },
-      header: {
-        'content-type': contentType
-      },
-      success: (res) => {
-        success(res)
-      },
-      fail: (res) => {
-        fail(res)
-      }
-    })
-  }
+export default class Api {
 
   //获取文章列表
   static getArticalList = (page, size, success, fail) => {
@@ -93,7 +72,7 @@ export default class api {
     })
   }
 
-  static isStarArticle = (article_id, user_id, success, fail = (res)=>{}) => {
+  static isStarArticle = (article_id, user_id, success, fail = (res) => { }) => {
     wx.request({
       url: `${baseUrl}getStarStatus`,
       method: "POST",
@@ -137,7 +116,7 @@ export default class api {
 
 
   //获取文章详情
-  static getArticleDetail = (article_id, success, fail= (res)=>{}) => {
+  static getArticleDetail = (article_id, success, fail = (res) => { }) => {
     wx.request({
       url: `${baseUrl}getArticleDetail`,
       method: "POST",
@@ -203,7 +182,7 @@ export default class api {
   //评论文章
   static commentArticle = (article_id, article_type, content, from_uid, from_nick,
     from_avatar, to_uid, to_nick, to_avatar,
-  success, fail) => {
+    success, fail) => {
     wx.request({
       url: `${baseUrl}commentArticle`,
       method: "POST",
@@ -230,7 +209,7 @@ export default class api {
     })
   }
 
-//上传文章
+  //上传文章
   static uploadArticle = (param, success, fail) => {
     wx.request({
       url: `${baseUrl}uploadArticle`,
@@ -248,14 +227,14 @@ export default class api {
     })
   }
 
-/**
- * 相关文章
- */
-  static relativeArticles = (key, success, fail = (res)=>{}) => {
+  /**
+   * 相关文章
+   */
+  static relativeArticles = (key, success, fail = (res) => { }) => {
     wx.request({
       url: `${baseUrl}like`,
       method: "POST",
-      data: {key},
+      data: { key },
       header: {
         'content-type': contentType
       },
@@ -268,12 +247,12 @@ export default class api {
     })
   }
 
-  static request = async(data, path) => {
+  static request = async (data, path) => {
     return await new Promise((resolve, reject) => {
       wx.request({
         url: `${baseUrl}${path}`,
         method: "POST",
-        data:data,
+        data: data,
         header: {
           'content-type': contentType
         },
@@ -287,19 +266,23 @@ export default class api {
     }).then((res) => res.data.data);
   }
 
-  static getArticleTotalViews = async() => {
-    return api.request(null, "getArticleTotals");
+  static getArticleTotalViews = async () => {
+    return Api.request(null, "getArticleTotals");
   }
 
   static getMyStarArticles = async (data) => {
-    return api.request(data, "getMyStarArticles");
+    return Api.request(data, "getMyStarArticles");
   }
 
   static getMyContributeArticles = async (data) => {
-    return api.request(data, "getMyContributeArticles");
+    return Api.request(data, "getMyContributeArticles");
   }
 
-  static login = async() => {
+  static wxLogin = async (code, nickName, avatarUrl) => {
+    return Api.request({code, nickName, avatarUrl}, 'WxLogin');
+  }
+
+  static login = async () => {
     // 1先获取userInfo
     let userInfo = await new Promise((resolve, reject) => wx.getUserInfo({
       success: (res) => resolve(res),
@@ -325,25 +308,38 @@ export default class api {
       wx.hideLoading();
     });
 
+    let userId = await Api.wxLogin(code, userInfo.nickName, userInfo.avatarUrl);
+    wx.setStorage({
+      key: 'user_id',
+      data: userId,
+      success: () => {
+        app.globalData.userId = userId;
+      }
+    })
+    wx.showToast({
+      title: '登录成功!',
+    })
+    wx.hideLoading();
+
     // 3.后台登录
-    api.WxLogin(code, userInfo.nickName, userInfo.avatarUrl, (res) => {
-      console.log(res.data.data)
-      //保存user_id到内存
-      let userId = res.data.data.user_id;
-      wx.setStorage({
-        key: 'user_id',
-        data: userId,
-        success: () => {
-          app.globalData.userId = userId;
-        }
-      })
-      wx.showToast({
-        title: '登录成功!',
-      })
-      wx.hideLoading();
-    });
+    // Api.wxLogin(code, userInfo.nickName, userInfo.avatarUrl, (res) => {
+    //   console.log(res.data.data)
+    //   //保存user_id到内存
+    //   let userId = res.data.data.user_id;
+    //   wx.setStorage({
+    //     key: 'user_id',
+    //     data: userId,
+    //     success: () => {
+    //       app.globalData.userId = userId;
+    //     }
+    //   })
+    //   wx.showToast({
+    //     title: '登录成功!',
+    //   })
+    //   wx.hideLoading();
+    // });
   }
 }
 
-api.baseUrl = baseUrl;
-api.uploadArticleImg = baseUrl +'uploadArticleImg';
+Api.baseUrl = baseUrl;
+Api.uploadArticleImg = baseUrl + 'uploadArticleImg';
