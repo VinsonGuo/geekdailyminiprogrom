@@ -89,11 +89,24 @@ Page({
       await api.getMyContributeArticles(param);
     if (data) {
       if (page == 0) {
+        this.data.articles.push(...data)
+        // 处理数据
+        for (let i = 0; i < this.data.articles.length; i++) {
+          let item = this.data.articles[i];
+          item.childCategoryText = app.globalData.childCategoryItems[this.data.articles[i].child_category].value;
+          item.childCategorycolor = app.globalData.childCategoryItems[this.data.articles[i].child_category].color;
+        }
         this.setData({
-          articles: data,
+          articles: this.data.articles,
         })
       } else {
         this.data.articles.push(...data)
+        // 处理数据
+        for (let i = 0; i < this.data.articles.length; i++) {
+          let item = this.data.articles[i];
+          item.childCategoryText = app.globalData.childCategoryItems[this.data.articles[i].child_category].value;
+          item.childCategorycolor = app.globalData.childCategoryItems[this.data.articles[i].child_category].color;
+        }
         this.setData({
           articles: this.data.articles,
         })

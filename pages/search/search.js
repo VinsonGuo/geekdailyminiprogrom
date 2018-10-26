@@ -64,8 +64,15 @@ Page({
         })
         return
       }
+      that.data.articles.push(...res.data.data);
+      // 处理数据
+      for (let i = 0; i < that.data.articles.length; i++) {
+        let item = that.data.articles[i];
+        item.childCategoryText = app.globalData.childCategoryItems[that.data.articles[i].child_category].value;
+        item.childCategorycolor = app.globalData.childCategoryItems[that.data.articles[i].child_category].color;
+      }
       that.setData({
-        articles: res.data.data,
+        articles: that.data.articles,
         showTag:false
       })
     });

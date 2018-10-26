@@ -76,7 +76,7 @@
 }
 
 .article-title-box {
-  width: 100%;
+  width: 99%;
   padding: 6rpx;
   align-items: center;
   display: -webkit-box;

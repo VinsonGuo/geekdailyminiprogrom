@@ -164,6 +164,7 @@ Page({
 
         item.time = arr[1];
         item.childCategoryText = app.globalData.childCategoryItems[that.data.articles[i].child_category].value;
+        item.childCategorycolor = app.globalData.childCategoryItems[that.data.articles[i].child_category].color;
       }
       this.setData({
         articles: that.data.articles,
