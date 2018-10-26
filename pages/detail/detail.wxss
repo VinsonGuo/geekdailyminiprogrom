@@ -84,10 +84,9 @@
 }
 
 .article-link {
-  margin-top: 10rpx;
+  margin-top: 20rpx;
   color: blue;
-  font-size: 30rpx;
-  padding: 0 10rpx;
+  font-size: 34rpx;
   margin-bottom: 10rpx;
   display: -webkit-box;
   word-break: break-all;
