@@ -18,7 +18,14 @@
     <text class='article-time'>原文链接，请点击复制</text>
     <view class='article-link' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
   </view>
-
+  <view wx:if="{{md}}" class='divition'>
+    <text class='article-title'>Github Detail</text>
+  </view>
+  <view class='container-detail-more'>
+    <text wx:if="{{md}}" class='article-time'>{{'Owner：'+githubDetail.owner.login}}</text>
+    <text wx:if="{{md}}" class='article-time'>{{'Stars：'+githubDetail.stargazers_count}}</text>
+    <text wx:if="{{md}}" class='article-time'>{{'Forks：'+githubDetail.forks}}</text>
+  </view>
   <!-- <view class='divition'>
     <text class='article-title'>用户评价</text>
   </view>

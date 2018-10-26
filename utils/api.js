@@ -114,6 +114,25 @@ export default class Api {
     })
   }
 
+  //获取文章GitHub详情
+  static getGitHubDetail = (github_link, success, fail = (res) => { }) => {
+    wx.request({
+      url: `${baseUrl}getGitHubDetail`,
+      method: "POST",
+      data: {
+        link: github_link
+      },
+      header: {
+        'content-type': contentType
+      },
+      success: (res) => {
+        success(res)
+      },
+      fail: (res) => {
+        fail(res)
+      }
+    })
+  }
 
   //获取文章详情
   static getArticleDetail = (article_id, success, fail = (res) => { }) => {

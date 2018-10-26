@@ -17,6 +17,7 @@ Page({
     starProgress: 0,
     isScrollUp: true,
     md: "",
+    githubDetail: {},
     actionSheetHidden: true,
     actionSheetItems: [],
     inputValue: ''
@@ -40,6 +41,7 @@ Page({
       starProgress
     });
     that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
+    that.getArticleGithubDetail(article.link);
     Api.isStarArticle(article.article_id, user_id, (res) => {
       let starStatus = res.data.data;
       that.setData({
@@ -89,7 +91,7 @@ Page({
   star: function(article_id, user_id, status) {
     let that = this;
     Api.articleStar(article_id, user_id, status, (res) => {
-      let starStatus = that.data.starStatus==0?1:0;
+      let starStatus = that.data.starStatus == 0 ? 1 : 0;
       wx.showToast({
         title: res.data.data,
       })
@@ -108,7 +110,26 @@ Page({
     })
     lastScrollTop = obj.scrollTop;
   },
-  
+
+
+  //获取文章Github详情
+  getArticleGithubDetail: function(github_link) {
+    let that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
+    Api.getGitHubDetail(github_link, (res) => {
+      wx.hideLoading()
+      log(res.data.data);
+      let detail = JSON.parse(decodeURIComponent(res.data.data));
+      that.setData({
+        githubDetail: detail,
+      })
+    }, (res) => {
+      wx.hideLoading()
+    });
+
+  },
 
   //获取文章MD内容详情
   getArticleDetail: function(article_id) {
