@@ -16,6 +16,7 @@
 }
 
 .avatar-container {
+  line-height: 170%;
   margin-bottom: 10rpx;
 }
 

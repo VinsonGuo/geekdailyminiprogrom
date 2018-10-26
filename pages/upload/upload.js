@@ -11,7 +11,9 @@ Page({
     categoryArray: ['Android'],
     categoryIndex: 0,
     items: app.globalData.levelItems,
+    childCategoryItems: app.globalData.childCategoryItems,
     levelIndex: 0,
+    childCategory: 0,
     titleContent: '',
     desContent: '',
     linkContent: '',
@@ -78,6 +80,7 @@ Page({
 
   upload(param) {
     param.rank = this.data.levelIndex;
+    param.child_category = this.data.childCategory;
     param.category = this.data.categoryArray[this.data.categoryIndex];
     param.contributor_id = app.globalData.userId;
     console.log(param)
@@ -116,12 +119,6 @@ Page({
   bindCategoryPickerChange(e) {
     this.setData({
       categoryIndex: e.detail.value
-    })
-  },
-
-  bindLevelPickerChange(e) {
-    this.setData({
-      levelIndex: e.detail.value
     })
   },
 
@@ -198,6 +195,16 @@ Page({
         this.setData({
           imageContent: image + res.data,
           imageUrl: image + res.data
+        })
+      }
+    })
+  },
+  radioChangeChildCategory: function(e) {
+    console.log(e.detail.value)
+    this.data.childCategoryItems.forEach((item, index) => {
+      if (item.value === e.detail.value) {
+        this.setData({
+          childCategory: index
         })
       }
     })

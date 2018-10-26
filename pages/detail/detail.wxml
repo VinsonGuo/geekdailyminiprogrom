@@ -2,7 +2,7 @@
 
   <view class="detail-top">
     <view class='avatar-container'>
-      <image class='avatar' src='{{article.user.avatar}}'></image>{{article.user.nick_name + ': '+article.des}}
+      <image class='avatar' src='{{article.user.avatar}}'></image>{{article.user.nick_name + ' : '+article.des}}
     </view>
     <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
   </view>
@@ -11,7 +11,7 @@
     <text class='article-title'>更多信息</text>
   </view>
   <view class='container-detail-more'>
-    <view class='article-time'>{{'分类：'+article.category}}</view>
+    <view class='article-time'>{{'分类：'+article.category+' - '+article.childCategoryText}}</view>
     <view class='article-time'>{{'适用于：'+article.rankText}}</view>
     <view class='article-time'>{{'分享于：'+article.date}}</view>
     <view class='article-time'></view>

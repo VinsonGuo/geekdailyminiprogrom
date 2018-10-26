@@ -4,24 +4,33 @@
     <view class='article-item' wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}" wx:for-index='idx'>
       <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
       <view class='article-date' wx:if='{{!item.isSameDay}}'>
-      <view>{{item.day}}</view>
-      <view wx:if='{{item.readCount}}'>已收录{{item.readCount}}个开源项目</view>
+        <view>{{item.day}}</view>
+        <view wx:if='{{item.readCount}}'>已收录{{item.readCount}}个开源项目</view>
       </view>
+
       <view class="article-box-vertical">
         <view class='article-top'>
-          <view class='article-title'>{{item.title}}</view>
+        
+          <view class='article-title-box'>
+            <text class='article-childCategory'>{{item.childCategoryText}}</text>{{item.title}}
+          </view>
+
           <view class='article-des'>
-            <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}</view>
+            <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}
+          </view>
         </view>
+
         <view class='article-middle'>
           <image wx:if="{{item.img_url}}" class='article-img' mode='widthFix' lazy-load src='{{item.img_url}}'></image>
         </view>
+
         <view class='article-bottom'>
           <view class='article-view'>
             <zan-icon type="browsing-history" /> {{item.views}}</view>
           <view class='article-stars'>
             <zan-icon type="like" /> {{item.stars}}</view>
         </view>
+
       </view>
     </view>
   </view>
@@ -36,8 +45,8 @@
         <view class='article-box2'>
           <view class='article-des-small'>
             <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}</view>
-            <view class='article-image-small'>
-          <image wx:if="{{item.img_url}}" mode='widthFix' lazy-load src='{{item.img_url}}'></image>
+          <view class='article-image-small'>
+            <image wx:if="{{item.img_url}}" mode='widthFix' lazy-load src='{{item.img_url}}'></image>
           </view>
         </view>
         <view class='article-box3'>

@@ -32,6 +32,7 @@ Page({
     log(options)
     let article = JSON.parse(decodeURIComponent(options.article));
     article.rankText = app.globalData.levelItems[article.rank].value;
+    article.childCategoryText = app.globalData.childCategoryItems[article.child_category].value;
     let starProgress = (article.stars) / (article.stars + article.un_stars) * 100;
     log("starProgress" + starProgress);
     that.setData({

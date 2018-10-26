@@ -63,12 +63,12 @@ Page({
       })
     }
     wx.setNavigationBarTitle({
-      title: 'GitClub',
+      title: 'GitClub - Android',
     })
     this.getArticle(0, size, false);
     let count = await api.getArticleTotalViews();
     this.setData({
-      searchText: `已收录${count}个优质开源项目，点击搜索`
+      searchText: `已收录${count}个Android开源项目，点击搜索`
     })
 
     wx.showShareMenu({
@@ -163,6 +163,7 @@ Page({
         }
 
         item.time = arr[1];
+        item.childCategoryText = app.globalData.childCategoryItems[that.data.articles[i].child_category].value;
       }
       this.setData({
         articles: that.data.articles,
@@ -183,7 +184,7 @@ Page({
   },
   tabChange(e) {
     let id = e.detail;
-    console.log("tab id "+id);
+    console.log("tab id " + id);
     if (id == this.data.tab.selectedId) {
       return;
     }
@@ -194,7 +195,7 @@ Page({
       tab
     });
     let category = tab.list.filter((item) => {
-       return item.id === id;
+      return item.id === id;
     })[0].title;
     console.log(category)
   },

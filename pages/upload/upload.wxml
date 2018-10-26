@@ -9,6 +9,15 @@
     <view class="division"></view>
 
     <view class='level-container'>
+      <radio-group class="radio-group-level" bindchange="radioChangeChildCategory">
+        <radio class="radio-level" wx:for-items="{{childCategoryItems}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+    <view class="division"></view>
+
+    <view class='level-container'>
       <text>适用：</text>
       <radio-group class="radio-group-level" bindchange="radioChangeLevel">
         <radio class="radio-level" wx:for-items="{{items}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">
