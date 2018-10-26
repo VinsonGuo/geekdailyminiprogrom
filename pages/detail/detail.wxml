@@ -14,17 +14,16 @@
     <view class='article-time'>{{'分类：'+article.category+' - '+article.childCategoryText}}</view>
     <view class='article-time'>{{'适用于：'+article.rankText}}</view>
     <view class='article-time'>{{'分享于：'+article.date}}</view>
-    <view class='article-time'></view>
-    <text class='article-time'>原文链接，请点击复制</text>
+    <text class='article-time'>原文链接，请点击复制 ↓</text>
     <view class='article-link' bindtap='copyText' data-text="{{article.link}}">{{article.link}}</view>
   </view>
   <view wx:if="{{md}}" class='divition'>
     <text class='article-title'>Github Detail</text>
   </view>
-  <view class='container-detail-more'>
-    <text wx:if="{{md}}" class='article-time'>{{'Owner：'+githubDetail.owner.login}}</text>
-    <text wx:if="{{md}}" class='article-time'>{{'Stars：'+githubDetail.stargazers_count}}</text>
-    <text wx:if="{{md}}" class='article-time'>{{'Forks：'+githubDetail.forks}}</text>
+  <view wx:if="{{md}}" class='container-detail-more'>
+    <view class='article-time'><image class='avatar' src='/images/Github.png'></image>{{'Owner：'+githubDetail.owner.login}}</view>
+    <view class='article-time'><image class='avatar' src='/images/star.png'></image>{{'Star：'+githubDetail.stargazers_count}}</view>
+    <view class='article-time'><image class='avatar' src='/images/fork.png'></image>{{'Fork：'+githubDetail.forks}}</view>
   </view>
   <!-- <view class='divition'>
     <text class='article-title'>用户评价</text>

@@ -52,7 +52,7 @@ Page({
       log(res);
     })
     wx.setNavigationBarTitle({
-      title: article.title,
+      title: article.childCategoryText + '-' + article.title,
     })
 
   },
@@ -62,7 +62,7 @@ Page({
     let article = encodeURIComponent(JSON.stringify(this.data.article));
     log(article);
     return {
-      title: self.data.article.title,
+      title: self.data.article.childCategoryText + '-' + self.data.article.title,
       path: '/pages/index/index?article=' + article
     }
   },
