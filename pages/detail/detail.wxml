@@ -5,16 +5,31 @@
       <image class='avatar' src='{{article.user.avatar}}'></image>{{article.user.nick_name + ' : '+article.des}}
     </view>
     <image wx:if="{{article.img_url}}" class='article-image' mode='widthFix' lazy-load src='{{article.img_url}}'></image>
+
+    <view class='option-container'>
+      <button class='option-button' bindtap='copyText' data-text="{{article.link}}">复制原文链接</button>
+      <button class='option-button' bindtap='toStar'>{{starStatusValue[starStatus]+'收藏'}}</button>
+      <button class='option-button' data-name="shareBtn" open-type="share">分享给好友</button>
+    </view>
   </view>
 
   <view class='divition'>
     <text class='article-title'>更多信息</text>
   </view>
-  <view class='container-detail-more'>
-    <view class='article-time'>{{'分类：'+article.category+' - '+article.childCategoryText}}</view>
-    <view class='article-time'>{{'适用于：'+article.rankText}}</view>
-    <view class='article-time'>{{'分享于：'+article.date}}</view>
-    <view class='article-link' bindtap='copyText' data-text="{{article.link}}">点击复制原文链接</view>
+  <view class='more-info-container'>
+    <view class='container-detail-more'>
+      <view class='article-content'>{{'分类：'+article.category+' - '+article.childCategoryText}}</view>
+      <view class='article-content'>{{'阅读：'+article.views+'次'}}</view>
+      <view class='article-content'>{{'投稿：'+article.user.nick_name}}</view>
+    </view>
+    <view class='container-detail-more'>
+      <view class='article-content'>{{'适用：'+article.rankText}}</view>
+      <view class='article-content'>{{'收藏：'+article.stars+'次'}}</view>
+      <view class='article-content'>{{article.date}}</view>
+    </view>
+
+    <!-- <view class='article-link' bindtap='copyText' data-text="{{article.link}}">复制原文链接</view> -->
+
   </view>
   <view wx:if="{{md}}" class='divition'>
     <text class='article-title'>Github Detail</text>

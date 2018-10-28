@@ -14,6 +14,7 @@ Page({
     article: {},
     comments: [],
     starStatus: 0,
+    starStatusValue: ['添加', '取消'],
     starProgress: 0,
     isScrollUp: true,
     md: "",

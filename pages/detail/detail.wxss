@@ -15,6 +15,17 @@
   padding: 30rpx;
 }
 
+.more-info-container {
+  flex-wrap: nowrap;
+  align-items: center;
+  display: flex;
+}
+
+.option-container {
+  margin-top: 20rpx;
+  display: flex;
+}
+
 .avatar-container {
   line-height: 170%;
   margin-bottom: 10rpx;
@@ -62,18 +73,24 @@
   margin-bottom: 10rpx;
 }
 
-.article-time {
+.article-content {
   margin-top: 10rpx;
   height: 50rpx;
   color: #666;
   font-size: 30rpx;
   margin-bottom: 10rpx;
-  display: -webkit-box;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
+}
+
+.article-time {
+  margin-top: 10rpx;
+  height: 50rpx;
+  color: #666;
+  font-size: 25rpx;
+  margin-bottom: 10rpx;
+}
+
+.more-info-container-space {
+  width: 100rpx;
 }
 
 .container-link {
@@ -94,6 +111,13 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
+}
+
+.option-button {
+  margin-top: 20rpx;
+  color: #fff;
+  background-color: #33cd5f;
+  font-size: 28rpx;
 }
 
 .round-click {
