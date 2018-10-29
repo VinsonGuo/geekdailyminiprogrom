@@ -36,11 +36,15 @@
   </view>
   <view wx:if="{{md}}" class='container-detail-more'>
     <view class='article-time'>
-      <image class='avatar' src='/images/Github.png'></image>{{'Owner：'+githubDetail.owner.login}}</view>
+      <image class='avatar' src='/images/Github.png'></image>{{'Owner：'+githubDetail.owner.login}}
+      <image class='avatar' src='{{githubDetail.owner.avatar_url}}'></image>
+    </view>
     <view class='article-time'>
       <image class='avatar' src='/images/star.png'></image>{{'Star：'+githubDetail.stargazers_count}}</view>
     <view class='article-time'>
       <image class='avatar' src='/images/fork.png'></image>{{'Fork：'+githubDetail.forks}}</view>
+      <view class='article-time'>
+      <image class='avatar' src='/images/update time.png'></image>{{'Updated：'+githubDetail.updated_at}}</view>
   </view>
   <!-- <view class='divition'>
     <text class='article-title'>用户评价</text>

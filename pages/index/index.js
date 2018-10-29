@@ -68,7 +68,7 @@ Page({
     this.getArticle(0, size, false);
     let count = await api.getArticleTotalViews();
     this.setData({
-      searchText: `已收录${count}个Android开源项目，点击搜索`
+      searchText: `点击搜索，已收录${count}个Android开源项目`
     })
 
     wx.showShareMenu({

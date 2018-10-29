@@ -85,7 +85,7 @@
   margin-top: 10rpx;
   height: 50rpx;
   color: #666;
-  font-size: 25rpx;
+  font-size: 30rpx;
   margin-bottom: 10rpx;
 }
 
