@@ -81,7 +81,7 @@ Page({
     let that = this;
     this.dialog = this.selectComponent("#dialog");
     //如果没登录，显示弹窗引导登录
-    if (!app.globalData.userId) {
+    if (!app.globalData.userId || typeof(app.globalData.userId) === 'object') {
       that.dialog.showDialog();
     }
   },
