@@ -327,7 +327,8 @@ export default class Api {
       wx.hideLoading();
     });
 
-    let userId = await Api.wxLogin(code, userInfo.nickName, userInfo.avatarUrl);
+    let loginInfo = await Api.wxLogin(code, userInfo.nickName, userInfo.avatarUrl);
+    let userId = loginInfo.user_id;
     wx.setStorage({
       key: 'user_id',
       data: userId,
