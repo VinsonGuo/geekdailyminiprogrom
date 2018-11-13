@@ -64,16 +64,17 @@ Page({
         })
         return
       }
-      that.data.articles.push(...res.data.data);
+      var newActicles = new Array();
       // 处理数据
-      for (let i = 0; i < that.data.articles.length; i++) {
-        let item = that.data.articles[i];
-        item.childCategoryText = app.globalData.childCategoryItems[that.data.articles[i].child_category].value;
-        item.childCategorycolor = app.globalData.childCategoryItems[that.data.articles[i].child_category].color;
+      for (let i = 0; i < res.data.data.length; i++) {
+        let item = res.data.data[i];
+        item.childCategoryText = app.globalData.childCategoryItems[res.data.data[i].child_category].value;
+        item.childCategorycolor = app.globalData.childCategoryItems[res.data.data[i].child_category].color;
+        newActicles.push(item)
       }
       that.setData({
-        articles: that.data.articles,
-        showTag:false
+        articles: newActicles,
+        showTag: false
       })
     });
 
