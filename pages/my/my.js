@@ -83,7 +83,7 @@ Page({
     let param = {
       page: page,
       size: size,
-      user_id: app.globalData.userId
+      userId: app.globalData.userId
     }
     let data = selectId == 1 ? await api.getMyStarArticles(param) :
       await api.getMyContributeArticles(param);
@@ -93,8 +93,8 @@ Page({
         // 处理数据
         for (let i = 0; i < this.data.articles.length; i++) {
           let item = this.data.articles[i];
-          item.childCategoryText = app.globalData.childCategoryItems[this.data.articles[i].child_category].value;
-          item.childCategorycolor = app.globalData.childCategoryItems[this.data.articles[i].child_category].color;
+          item.childCategoryText = app.globalData.childCategoryItems[this.data.articles[i].childCategory].value;
+          item.childCategorycolor = app.globalData.childCategoryItems[this.data.articles[i].childCategory].color;
         }
         this.setData({
           articles: this.data.articles,
@@ -104,8 +104,8 @@ Page({
         // 处理数据
         for (let i = 0; i < this.data.articles.length; i++) {
           let item = this.data.articles[i];
-          item.childCategoryText = app.globalData.childCategoryItems[this.data.articles[i].child_category].value;
-          item.childCategorycolor = app.globalData.childCategoryItems[this.data.articles[i].child_category].color;
+          item.childCategoryText = app.globalData.childCategoryItems[this.data.articles[i].childCategory].value;
+          item.childCategorycolor = app.globalData.childCategoryItems[this.data.articles[i].childCategory].color;
         }
         this.setData({
           articles: this.data.articles,
@@ -127,7 +127,7 @@ Page({
   itemTap(e) {
     let item = e.currentTarget.dataset.article;
     let article = encodeURIComponent(JSON.stringify(item));
-    api.viewArticle(item.article_id);
+    api.viewArticle(item.articleId);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
     })

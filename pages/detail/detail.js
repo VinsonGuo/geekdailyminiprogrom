@@ -34,16 +34,16 @@ Page({
     log(options)
     let article = JSON.parse(decodeURIComponent(options.article));
     article.rankText = app.globalData.levelItems[article.rank].value;
-    article.childCategoryText = app.globalData.childCategoryItems[article.child_category].value;
-    let starProgress = (article.stars) / (article.stars + article.un_stars) * 100;
+    article.childCategoryText = app.globalData.childCategoryItems[article.childCategory].value;
+    let starProgress = (article.stars) / (article.stars + article.unstars) * 100;
     log("starProgress" + starProgress);
     that.setData({
       article,
       starProgress
     });
-    that.getArticleDetail(article.article_id != null ? article.article_id : article.id);
+    that.getArticleDetail(article.articleId != null ? article.articleId : article.id);
     that.getArticleGithubDetail(article.link);
-    Api.isStarArticle(article.article_id, user_id, (res) => {
+    Api.isStarArticle(article.articleId, user_id, (res) => {
       let starStatus = res.data.data;
       that.setData({
         starStatus
@@ -71,20 +71,20 @@ Page({
   toStar() {
     if (user_id != 0) {
       let starStatus = this.data.starStatus;
-      this.star(this.data.article.article_id, user_id,
+      this.star(this.data.article.articleId, user_id,
         starStatus == 0 ? 1 : 0);
     }
   },
 
   likeTap() {
     if (user_id != 0) {
-      this.star(this.data.article.article_id, user_id, 1);
+      this.star(this.data.article.articleId, user_id, 1);
     }
   },
 
   dislikeTap() {
     if (user_id != 0) {
-      this.star(this.data.article.article_id, user_id, 2);
+      this.star(this.data.article.articleId, user_id, 2);
     }
   },
 

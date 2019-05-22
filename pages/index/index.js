@@ -119,11 +119,9 @@ Page({
   //item点击事件
   itemTap: function(e) {
     let item = e.currentTarget.dataset.article;
-    //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）
-    // item.img_url = encodeURIComponent(item.img_url);
-    // item.link = encodeURIComponent(item.link);
+    //对象转成json字符串传过去   此处必须把这两个url进行编码  不然json解析会出错（记得接收端将这两个url解码）;
     let article = encodeURIComponent(JSON.stringify(item));
-    api.viewArticle(item.article_id);
+    api.viewArticle(item.articleId);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
     })
@@ -163,8 +161,8 @@ Page({
         }
 
         item.time = arr[1];
-        item.childCategoryText = app.globalData.childCategoryItems[that.data.articles[i].child_category].value;
-        item.childCategorycolor = app.globalData.childCategoryItems[that.data.articles[i].child_category].color;
+        item.childCategoryText = app.globalData.childCategoryItems[that.data.articles[i].childCategory].value;
+        item.childCategorycolor = app.globalData.childCategoryItems[that.data.articles[i].childCategory].color;
       }
       this.setData({
         articles: that.data.articles,

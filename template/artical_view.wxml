@@ -1,7 +1,7 @@
 <!--  主页用到的article显示模板  高度大-->
 <template name="article_big">
   <view class="article-container">
-    <view class='article-item' wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}" wx:for-index='idx'>
+    <view class='article-item' wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.articleId}}" bindtap="itemTap" data-id="{{item.articleId}}" wx:for-index='idx'>
       <!--这里用日期和上一天的比较，如果日期不通则显示日期  -->
       <view class='article-date' wx:if='{{!item.isSameDay}}'>
         <view>{{item.day}}</view>
@@ -16,12 +16,12 @@
           </view>
 
           <view class='article-des'>
-            <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}
+            <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.userName + ': ' +item.des}}
           </view>
         </view>
 
         <view class='article-middle'>
-          <image wx:if="{{item.img_url}}" class='article-img' mode='widthFix' lazy-load src='{{item.img_url}}'></image>
+          <image wx:if="{{item.imgUrl}}" class='article-img' mode='widthFix' lazy-load src='{{item.imgUrl}}'></image>
         </view>
 
         <view class='article-bottom'>
@@ -39,7 +39,7 @@
 <!--  搜索、收藏、贡献等页面到的article显示模板  高度小-->
 <template name="article_small">
   <view class="article-container">
-    <view class="article-box-small" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.article_id}}" bindtap="itemTap" data-id="{{item.article_id}}">
+    <view class="article-box-small" wx:for="{{articles}}" wx:for-item="item" data-title="{{item.des}}" data-article='{{item}}' data-link='{{item.link}}' wx:key="{{item.articleId}}" bindtap="itemTap" data-id="{{item.articleId}}">
       <view class='article-item'>
       
         <view class='article-title-box'>
@@ -48,9 +48,9 @@
 
         <view class='article-box2'>
           <view class='article-des-small'>
-            <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.nick_name + ': ' +item.des}}</view>
+            <image class='avatar' wx:if="{{item.user.avatar}}" src='{{item.user.avatar}}'></image>{{item.user.userName + ': ' +item.des}}</view>
           <view class='article-image-small'>
-            <image wx:if="{{item.img_url}}" mode='widthFix' lazy-load src='{{item.img_url}}'></image>
+            <image wx:if="{{item.imgUrl}}" mode='widthFix' lazy-load src='{{item.imgUrl}}'></image>
           </view>
         </view>
         <view class='article-box3'>

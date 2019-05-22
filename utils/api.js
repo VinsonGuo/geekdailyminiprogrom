@@ -35,7 +35,7 @@ export default class Api {
       url: `${baseUrl}viewArticle`,
       method: "POST",
       data: {
-        article_id: id
+        articleId: id
       },
       header: {
         'content-type': contentType
@@ -55,8 +55,8 @@ export default class Api {
       url: `${baseUrl}starArticle`,
       method: "POST",
       data: {
-        article_id: article_id,
-        user_id: user_id,
+        articleId: article_id,
+        userId: user_id,
         type: 1,
         status: status,
       },
@@ -77,8 +77,8 @@ export default class Api {
       url: `${baseUrl}getStarStatus`,
       method: "POST",
       data: {
-        article_id: article_id,
-        user_id: user_id
+        articleId: article_id,
+        userId: user_id
       },
       header: {
         'content-type': contentType
@@ -100,7 +100,7 @@ export default class Api {
       data: {
         page: page,
         size: size,
-        user_id: user_id,
+        userId: user_id,
       },
       header: {
         'content-type': contentType
@@ -140,7 +140,7 @@ export default class Api {
       url: `${baseUrl}getArticleDetail`,
       method: "POST",
       data: {
-        article_id: article_id
+        articleId: article_id
       },
       header: {
         'content-type': contentType
@@ -184,7 +184,7 @@ export default class Api {
       data: {
         page: page,
         size: size,
-        article_id: article_id
+        articleId: article_id
       },
       header: {
         'content-type': contentType
@@ -198,36 +198,7 @@ export default class Api {
     })
   }
 
-  //评论文章
-  static commentArticle = (article_id, article_type, content, from_uid, from_nick,
-    from_avatar, to_uid, to_nick, to_avatar,
-    success, fail) => {
-    wx.request({
-      url: `${baseUrl}commentArticle`,
-      method: "POST",
-      data: {
-        article_id: article_id,
-        article_type: article_type,
-        content: content,
-        from_uid: from_uid,
-        from_nick: from_nick,
-        from_avatar: from_avatar,
-        to_uid: to_uid,
-        to_nick: to_nick,
-        to_avatar: to_avatar
-      },
-      header: {
-        'content-type': contentType
-      },
-      success: (res) => {
-        success(res)
-      },
-      fail: (res) => {
-        fail(res)
-      }
-    })
-  }
-
+  
   //上传文章
   static uploadArticle = (param, success, fail) => {
     wx.request({
@@ -328,7 +299,7 @@ export default class Api {
     });
 
     let loginInfo = await Api.wxLogin(code, userInfo.nickName, userInfo.avatarUrl);
-    let userId = loginInfo.user_id;
+    let userId = loginInfo.userId;
     wx.setStorage({
       key: 'user_id',
       data: userId,

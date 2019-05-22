@@ -8,13 +8,11 @@
     "pages/qrcode/qrcode",
     "pages/upload/upload"
   ],
-  "workers": {
-    "workers": "workers"
-  },
   "window": {
     "navigationBarBackgroundColor": "#eee",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#eee",
-    "backgroundTextStyle": "black"
-  }
+    "backgroundTextStyle": "light"
+  },
+  "sitemapLocation": "sitemap.json"
 }

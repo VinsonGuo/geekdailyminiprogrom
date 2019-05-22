@@ -25,7 +25,7 @@ Page({
   itemTap: function (e) {
     let item = e.currentTarget.dataset.article;
     let article = encodeURIComponent(JSON.stringify(item));
-    api.viewArticle(item.article_id);
+    api.viewArticle(item.articleId);
     wx.navigateTo({
       url: '../detail/detail?article=' + article
     })
@@ -68,8 +68,8 @@ Page({
       // 处理数据
       for (let i = 0; i < res.data.data.length; i++) {
         let item = res.data.data[i];
-        item.childCategoryText = app.globalData.childCategoryItems[res.data.data[i].child_category].value;
-        item.childCategorycolor = app.globalData.childCategoryItems[res.data.data[i].child_category].color;
+        item.childCategoryText = app.globalData.childCategoryItems[res.data.data[i].childCategory].value;
+        item.childCategorycolor = app.globalData.childCategoryItems[res.data.data[i].childCategory].color;
         newActicles.push(item)
       }
       that.setData({
